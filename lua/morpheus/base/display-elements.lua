@@ -1,4 +1,10 @@
 return {
+  {
+    'psjay/buffer-closer.nvim',
+    config = function()
+      require('buffer-closer').setup()
+    end,
+  },
   { 'echasnovski/mini.icons', version = '*' },
   {
     'echasnovski/mini.statusline',

@@ -12,7 +12,19 @@ return {
       cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
   },
-  { 'echasnovski/mini.ai', version = '*' },
-  { 'echasnovski/mini.surround', version = '*' },
+  {
+    'echasnovski/mini.ai',
+    version = '*',
+    config = function()
+      require('mini.ai').setup {}
+    end,
+  },
+  {
+    'echasnovski/mini.surround',
+    version = '*',
+    config = function()
+      require('mini.surround').setup {}
+    end,
+  },
   'tpope/vim-sleuth',
 }

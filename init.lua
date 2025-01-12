@@ -23,7 +23,9 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Quickfix list' })
+vim.keymap.set('n', '<leader>|', '<cmd>vsplit<CR>', { desc = 'VSplit' })
+vim.keymap.set('n', '<leader>=', '<cmd>split<CR>', { desc = 'Split' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -67,6 +69,7 @@ require('lazy').setup({
   require 'morpheus.base.telescope',
   require 'morpheus.base.vc',
 
+  require 'morpheus.code.essentials',
   require 'morpheus.code.treesitter',
   require 'morpheus.code.lsp',
   require 'morpheus.code.debug',
@@ -74,6 +77,7 @@ require('lazy').setup({
   require 'morpheus.code.lint',
 
   require 'morpheus.code.scala',
+  require 'morpheus.ai.copilot',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -96,5 +100,6 @@ require('lazy').setup({
   },
 })
 
+-- global keys
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

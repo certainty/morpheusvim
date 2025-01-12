@@ -28,6 +28,7 @@ return {
     opts = {
       filesystem = {
         window = {
+          auto_expand_width = true,
           mappings = {
             ['\\'] = 'close_window',
           },

@@ -96,8 +96,8 @@ return {
       local nt = require 'neotest'
       -- set keys for neotest commands
       vim.keymap.set('n', '<leader>tt', nt.run.run, { desc = 'Run' })
-      vim.keymap.set('n', '<leader>[n', "<lua> require('neotest').jump.prev({ status = 'failed'})<CR>", { desc = 'Run' })
-      vim.keymap.set('n', '<leader>]n', "<lua> require('neotest').jump.next({ status = 'failed'})<CR>", { desc = 'Run' })
+      vim.keymap.set('n', '[n', "<lua> require('neotest').jump.prev({ status = 'failed'})<CR>", { desc = 'Run' })
+      vim.keymap.set('n', ']n', "<lua> require('neotest').jump.next({ status = 'failed'})<CR>", { desc = 'Run' })
       vim.keymap.set('n', '<leader>tl', nt.run.run_last, { desc = 'Run Last' })
       vim.keymap.set('n', '<leader>ts', nt.summary.toggle, { desc = 'Summary' })
     end,

@@ -56,8 +56,8 @@ return { -- Autocompletion
 
       -- make sure we have a maximum window size
       window = {
-
         completion = {
+          winhighlight = 'Normal:CmpNormal',
           border = 'rounded',
         },
         documentation = {

@@ -19,14 +19,13 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 vim.opt.scrolloff = 10
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Quickfix list' })
 vim.keymap.set('n', '<leader>|', '<cmd>vsplit<CR>', { desc = 'VSplit' })
 vim.keymap.set('n', '<leader>=', '<cmd>split<CR>', { desc = 'Split' })
-
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -68,6 +67,7 @@ require('lazy').setup({
   require 'morpheus.base.completion',
   require 'morpheus.base.telescope',
   require 'morpheus.base.vc',
+  require 'morpheus.base.files',
 
   require 'morpheus.code.essentials',
   require 'morpheus.code.treesitter',
@@ -78,6 +78,8 @@ require('lazy').setup({
 
   require 'morpheus.code.scala',
   require 'morpheus.ai.copilot',
+
+  require 'morpheus.writing.neorg',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

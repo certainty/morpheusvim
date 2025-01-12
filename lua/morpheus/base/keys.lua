@@ -3,6 +3,7 @@ return {
   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
   opts = {
     delay = 0.3,
+    triggers = { '<leader>', '<localleader>' },
     win = {
       border = 'rounded',
     },

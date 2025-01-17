@@ -54,23 +54,29 @@ return {
       },
     }
 
-    -- Enable Telescope extensions if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
-    vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = 'Files' })
+    vim.keymap.set('n', '<leader><leader>', builtin.oldfiles, { desc = 'Recent Files' })
+    vim.keymap.set('n', '<leader>f', builtin.git_files, { desc = 'Files' })
+    vim.keymap.set('n', '<leader>F', builtin.find_files, { desc = 'All Files' })
     vim.keymap.set('n', '<leader>gd', builtin.diagnostics, { desc = 'Diagnostics' })
     vim.keymap.set('n', '<leader>go', builtin.oldfiles, { desc = 'Recent Files ("o" for old)' })
     vim.keymap.set('n', '<leader>gb', builtin.buffers, { desc = 'Buffers buffers' })
 
     vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Help' })
     vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Keymaps' })
-    vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = 'Select Telescope' })
+    vim.keymap.set('n', '<leader>st', builtin.builtin, { desc = 'Select Telescope' })
     vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = 'Word' })
-    vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Grep' })
+    vim.keymap.set('n', '<leader>ss', builtin.live_grep, { desc = 'Grep' })
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Resume' })
+
+    vim.keymap.set('n', '<leader>gvb', builtin.git_branches, { desc = 'Git branches' })
+    vim.keymap.set('n', '<leader>gvc', builtin.git_commits, { desc = 'Git commits' })
+
+    vim.keymap.set('n', '<leader>:', builtin.commands, { desc = 'Commands' })
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>/', function()

@@ -1,5 +1,17 @@
 return {
   {
+    'ggandor/leap.nvim',
+    init = function()
+      vim.keymap.set({ 'n', 'x', 'o' }, 'gj', '<Plug>(leap-forward)')
+      vim.keymap.set({ 'n', 'x', 'o' }, 'gJ', '<Plug>(leap-backward)')
+      vim.keymap.set({ 'n', 'x', 'o' }, 'gs', '<Plug>(leap-from-window)')
+    end,
+
+    config = function()
+      require('leap').setup {}
+    end,
+  },
+  {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
     -- Optional dependency

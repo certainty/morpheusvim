@@ -68,7 +68,28 @@ return {
       handlers = {},
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
-        'delve',
+        'go-debug-adapter',
+      },
+    }
+
+    -- enable scala debugger
+    dap.configurations.scala = {
+      {
+        type = 'scala',
+        request = 'launch',
+        name = 'RunOrTest',
+        metals = {
+          runType = 'runOrTestFile',
+          --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+        },
+      },
+      {
+        type = 'scala',
+        request = 'launch',
+        name = 'Test Target',
+        metals = {
+          runType = 'testTarget',
+        },
       },
     }
 

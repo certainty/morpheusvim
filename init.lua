@@ -21,23 +21,17 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 vim.opt.cursorline = false
 vim.opt.scrolloff = 10
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Quickfix list' })
-vim.keymap.set('n', '<leader>|', '<cmd>vsplit<CR>', { desc = 'VSplit' })
-vim.keymap.set('n', '<leader>=', '<cmd>split<CR>', { desc = 'Split' })
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- make the UI less cluttered
+vim.diagnostic.config {
+  virtual_text = false,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  float = {
+    border = 'rounded',
+  },
+}
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -60,7 +54,7 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ Configure and install plugins ]]
 --
 require('lazy').setup({
-  require 'morpheus.base.keys',
+  require 'morpheus.base.whichkey',
   require 'morpheus.base.ui',
   require 'morpheus.base.display-elements',
   require 'morpheus.base.editing',
@@ -68,6 +62,7 @@ require('lazy').setup({
   require 'morpheus.base.telescope',
   require 'morpheus.base.vc',
   require 'morpheus.base.files',
+  require 'morpheus.base.dashboard',
 
   require 'morpheus.code.essentials',
   require 'morpheus.code.treesitter',
@@ -79,6 +74,8 @@ require('lazy').setup({
   require 'morpheus.code.scala',
   require 'morpheus.ai.copilot',
 
+  require 'morpheus.tools.terminal',
+  require 'morpheus.writing.markdown',
   require 'morpheus.writing.neorg',
 }, {
   ui = {
@@ -101,6 +98,8 @@ require('lazy').setup({
     },
   },
 })
+
+require 'morpheus.base.keys'
 
 -- global keys
 -- The line beneath this is called `modeline`. See `:help modeline`

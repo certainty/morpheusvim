@@ -35,7 +35,7 @@ vim.diagnostic.config {
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  group = vim.api.nvim_create_augroup('morpheus-highlight-yank', { clear = true }),
   callback = function()
     vim.highlight.on_yank()
   end,
@@ -76,7 +76,7 @@ require('lazy').setup({
 
   require 'morpheus.tools.terminal',
   require 'morpheus.writing.markdown',
-  require 'morpheus.writing.neorg',
+  require 'morpheus.writing.obsidian',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

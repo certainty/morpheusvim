@@ -1,12 +1,5 @@
 return {
   {
-    'numToStr/Comment.nvim',
-    opts = {
-      -- add any options here
-    },
-  },
-
-  {
     'stevearc/overseer.nvim',
     cmd = {
       'OverseerOpen',

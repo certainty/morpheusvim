@@ -19,6 +19,7 @@ return {
       { '<leader>c', group = 'Code', mode = { 'n', 'x' } },
       { '<leader>t', group = 'Test' },
       { '<leader>D', group = 'Debug' },
+      { '<leader>n', group = 'Notes' },
       { '<leader>d', group = 'Document' },
       { '<leader>g', group = 'Goto' },
       { '<leader>s', group = 'Search' },

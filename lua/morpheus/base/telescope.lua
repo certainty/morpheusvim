@@ -59,9 +59,8 @@ return {
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
-    vim.keymap.set('n', '<leader><leader>', builtin.oldfiles, { desc = 'Recent Files' })
-    vim.keymap.set('n', '<leader>f', builtin.git_files, { desc = 'Files' })
-    vim.keymap.set('n', '<leader>F', builtin.find_files, { desc = 'All Files' })
+    vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = 'Files' })
+    vim.keymap.set('n', '<leader>f', builtin.git_files, { desc = 'Git Files' })
     vim.keymap.set('n', '<leader>gd', builtin.diagnostics, { desc = 'Diagnostics' })
     vim.keymap.set('n', '<leader>go', builtin.oldfiles, { desc = 'Recent Files ("o" for old)' })
     vim.keymap.set('n', '<leader>gb', builtin.buffers, { desc = 'Buffers buffers' })

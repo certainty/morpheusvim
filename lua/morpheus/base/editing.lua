@@ -1,27 +1,30 @@
 return {
   {
-    'ggandor/leap.nvim',
-    init = function()
-      vim.keymap.set({ 'n', 'x', 'o' }, 'gj', '<Plug>(leap-forward)')
-      vim.keymap.set({ 'n', 'x', 'o' }, 'gJ', '<Plug>(leap-backward)')
-      vim.keymap.set({ 'n', 'x', 'o' }, 'gs', '<Plug>(leap-from-window)')
-    end,
-
+    'echasnovski/mini.bracketed',
+    version = '*',
     config = function()
-      require('leap').setup {}
+      require('mini.bracketed').setup {}
     end,
   },
   {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    -- Optional dependency
-    dependencies = { 'hrsh7th/nvim-cmp' },
+    'echasnovski/mini.comment',
+    version = '*',
     config = function()
-      require('nvim-autopairs').setup {}
-      -- If you want to automatically add `(` after selecting a function or method
-      local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-      local cmp = require 'cmp'
-      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+      require('mini.comment').setup {}
+    end,
+  },
+  {
+    'echasnovski/mini.operators',
+    version = '*',
+    config = function()
+      require('mini.operators').setup {}
+    end,
+  },
+  {
+    'echasnovski/mini.pairs',
+    version = '*',
+    config = function()
+      require('mini.pairs').setup {}
     end,
   },
   {

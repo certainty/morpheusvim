@@ -1,4 +1,4 @@
 brew 'pngpaste'
 brew 'ripgrep'
 brew 'fzf'
-brew 'imagemagick'
+brew 'font-jetbrains-mono-nerd-font'

@@ -1,42 +1,21 @@
 return {
   {
-    'stevearc/overseer.nvim',
-    cmd = {
-      'OverseerOpen',
-      'OverseerClose',
-      'OverseerToggle',
-      'OverseerSaveBundle',
-      'OverseerLoadBundle',
-      'OverseerDeleteBundle',
-      'OverseerRunCmd',
-      'OverseerRun',
-      'OverseerInfo',
-      'OverseerBuild',
-      'OverseerQuickAction',
-      'OverseerTaskAction',
-      'OverseerClearCache',
-    },
-    opts = {
-      task_list = { -- the window that shows the results.
-        direction = 'bottom',
-        min_height = 25,
-        max_height = 25,
-        default_detail = 1,
+    'folke/trouble.nvim',
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = 'Trouble',
+    keys = {
+      {
+        '<leader>xx',
+        '<cmd>Trouble diagnostics toggle<cr>',
+        desc = 'Diagnostics (Trouble)',
       },
-      -- component_aliases = {
-      --   default = {
-      --     -- Behaviors that will apply to all tasks.
-      --     "on_exit_set_status",                   -- don't delete this one.
-      --     "on_output_summarize",                  -- show last line on the list.
-      --     "display_duration",                     -- display duration.
-      --     "on_complete_notify",                   -- notify on task start.
-      --     "open_output",                          -- focus last executed task.
-      --     { "on_complete_dispose", timeout=300 }, -- dispose old tasks.
-      --   },
-      -- },
+      {
+        '<leader>xX',
+        '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+        desc = 'Buffer Diagnostics (Trouble)',
+      },
     },
   },
-
   {
     'zeioth/compiler.nvim',
     cmd = {

@@ -65,7 +65,28 @@ return {
     ft = { 'markdown' },
     opts = {},
     config = function()
-      require('render-markdown').setup {}
+      require('render-markdown').setup {
+        heading = {
+          enabled = true,
+          width = 'block',
+          icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+          backgrounds = {},
+          above = '▄',
+          -- Used below heading for border
+          below = '▀',
+        },
+        link = {
+          enabled = true,
+        },
+        latex = {
+          enabled = true,
+          render_modes = false,
+          converter = 'latex2text',
+          highlight = 'RenderMarkdownMath',
+          top_pad = 0,
+          bottom_pad = 0,
+        },
+      }
     end,
   },
 }

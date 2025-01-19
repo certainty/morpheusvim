@@ -22,6 +22,12 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = false
 vim.opt.scrolloff = 10
 
+-- TODO: make folds work
+-- vim.o.foldmethod = 'syntax'
+-- vim.o.foldenable = true
+-- vim.o.foldlevelstart = 1
+-- vim.opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
+
 -- make the UI less cluttered
 vim.diagnostic.config {
   virtual_text = false,
@@ -73,6 +79,8 @@ require('lazy').setup({
 
   require 'morpheus.code.scala',
   require 'morpheus.ai.copilot',
+  require 'morpheus.ai.avante',
+  -- require 'morpheus.ai.chatgpt',
 
   require 'morpheus.tools.terminal',
   require 'morpheus.writing.markdown',

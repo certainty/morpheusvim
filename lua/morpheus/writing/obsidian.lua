@@ -10,8 +10,8 @@ return {
   end,
 
   init = function()
-    vim.keymap.set('n', '<leader>n/', '<cmd>ObsidianQuickSwitch<CR>', { noremap = true, silent = true, desc = 'Quick Switch' })
-    vim.keymap.set('n', '<leader>nn', '<cmd>ObsidianNew<CR>', { noremap = true, silent = true, desc = 'New Note' })
+    vim.keymap.set('n', '<leader>nn', '<cmd>ObsidianQuickSwitch<CR>', { noremap = true, silent = true, desc = 'Quick Switch' })
+    vim.keymap.set('n', '<leader>nc', '<cmd>ObsidianNew<CR>', { noremap = true, silent = true, desc = 'New Note' })
     vim.keymap.set({ 'n', 'v' }, '<leader>nx', '<cmd>ObsidianExtractNote<CR>', { noremap = true, silent = true, desc = 'Extract Note' })
 
     vim.keymap.set('n', '<leader>nd', '<cmd>ObsidianDailies<CR>', { noremap = true, silent = true, desc = 'Dailies' })

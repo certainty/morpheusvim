@@ -62,14 +62,15 @@ return {
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-    ft = { 'markdown' },
+    ft = { 'markdown', 'Avante' },
     opts = {},
     config = function()
       require('render-markdown').setup {
         heading = {
           enabled = true,
           width = 'block',
-          icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+          icons = { '■ ', '■■ ', '■■■ ', '■■■■ ', '■■■■■ ', '■■■■■■ ' },
+          -- icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
           backgrounds = {},
           above = '▄',
           -- Used below heading for border

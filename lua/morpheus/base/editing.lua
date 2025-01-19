@@ -14,13 +14,6 @@ return {
     end,
   },
   {
-    'echasnovski/mini.operators',
-    version = '*',
-    config = function()
-      require('mini.operators').setup {}
-    end,
-  },
-  {
     'echasnovski/mini.pairs',
     version = '*',
     config = function()

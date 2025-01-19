@@ -3,7 +3,7 @@ return {
   event = 'VeryLazy',
   config = function()
     require('chatgpt').setup {
-      api_key_cmd = 'op read op://personal/openai-neovim/credential --no-newline',
+      -- local secret = require('op.api').item.get('personal/openai-neovim', 'credential'),
     }
   end,
   dependencies = {

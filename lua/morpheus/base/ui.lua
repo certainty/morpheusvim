@@ -1,5 +1,11 @@
 return {
   {
+    'cormacrelf/dark-notify',
+    init = function()
+      require('dark_notify').run()
+    end,
+  },
+  {
     'miikanissi/modus-themes.nvim',
     priority = 1000,
     config = function()

@@ -79,7 +79,10 @@ require('lazy').setup({
 
   require 'morpheus.code.scala',
   require 'morpheus.ai.copilot',
-  require 'morpheus.ai.avante',
+
+  -- one of these adds notable lag for some reason during typing
+  -- require 'morpheus.ai.copilotchat',
+  -- require 'morpheus.ai.avante',
   -- require 'morpheus.ai.chatgpt',
 
   require 'morpheus.tools.terminal',

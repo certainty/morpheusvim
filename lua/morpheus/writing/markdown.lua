@@ -62,7 +62,7 @@ return {
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-    ft = { 'markdown', 'Avante' },
+    ft = { 'markdown', 'Avante', 'copilot-chat' },
     opts = {},
     config = function()
       require('render-markdown').setup {

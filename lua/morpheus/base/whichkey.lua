@@ -32,6 +32,7 @@ return {
       { '<leader>ut', group = 'Toggle' },
       { '<leader>v', group = 'Vcs', mode = { 'n', 'v' } },
       { '<leader>w', group = 'Workspace' },
+      { '<leader>1', group = '1Password' },
     },
   },
 }

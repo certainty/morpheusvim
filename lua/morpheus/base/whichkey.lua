@@ -2,7 +2,7 @@ return {
   'folke/which-key.nvim',
   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
   opts = {
-    preset = 'modern',
+    preset = 'helix',
     delay = 0.3,
     triggers = {
       { '<leader>', mode = { 'n', 'v' } },

@@ -7,17 +7,19 @@ return {
     triggers = {
       { '<leader>', mode = { 'n', 'v' } },
       { '<localleader>', mode = { 'n', 'v' } },
+      { '[', mode = { 'n', 'v' } },
+      { ']', mode = { 'n', 'v' } },
     },
     win = {
       border = 'rounded',
     },
+    mappings = vim.g.have_nerd_font,
+    sort = { 'local', 'order', 'group', 'alphanum', 'mod' },
     icons = {
       separator = ' ',
       group = ' +',
-      mappings = vim.g.have_nerd_font,
       keys = vim.g.have_nerd_font and {},
     },
-    sort = { 'local', 'order', 'group', 'alphanum', 'mod' },
     spec = {
       { '<leader>a', group = 'AI', mode = { 'n', 'v' } },
       { '<leader>c', group = 'Code', mode = { 'n', 'x' } },

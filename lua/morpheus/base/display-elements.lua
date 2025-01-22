@@ -23,7 +23,7 @@ return {
           icons_enabled = true,
           component_separators = '',
           section_separators = '',
-          theme = 'auto',
+          theme = 'tokyonight',
           disabled_filetypes = {
             statusline = {},
             winbar = {},

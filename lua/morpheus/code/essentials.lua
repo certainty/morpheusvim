@@ -17,6 +17,10 @@ return {
     },
   },
   {
+    'stevearc/overseer.nvim',
+    opts = {},
+  },
+  {
     'zeioth/compiler.nvim',
     cmd = {
       'CompilerOpen',
@@ -25,29 +29,87 @@ return {
       'CompilerStop',
     },
     dependencies = { 'stevearc/overseer.nvim' },
-    opts = {},
+    opts = {
+      task_list = {
+        direction = 'right',
+        min_height = 25,
+        max_height = 25,
+        default_detail = 1,
+      },
+    },
+    keys = {
+      {
+        '<leader>rr',
+        '<cmd>CompilerOpen<cr>',
+        { desc = 'Open' },
+      },
+      {
+        '<leader>rR',
+        '<cmd>CompilerRedo<cr>',
+        { desc = 'Redo' },
+      },
+      {
+        '<leader>rs',
+        '<cmd>CompilerStop<cr>',
+        { desc = 'Stop' },
+      },
+      {
+        '<leader>rt',
+        '<cmd>CompilerToggleResults<cr>',
+        { desc = 'Toggle Results' },
+      },
+    },
   },
 
   {
     'nvim-neotest/neotest',
     dependencies = {
       'jfpedroza/neotest-elixir',
-      'nvim-neotest/neotest-go',
       'nvim-neotest/neotest-jest',
+      'fredrikaverpil/neotest-golang',
       'rouge8/neotest-rust',
       'stevanmilic/neotest-scala',
       'olimorris/neotest-rspec',
+      'zidhuss/neotest-minitest',
+    },
+    keys = {
+      {
+        '<leader>tt',
+        '<cmd>lua require("neotest").run.run()<cr>',
+        { desc = 'Run' },
+      },
+      {
+        '<leader>tl',
+        '<cmd>lua require("neotest").run.run_last()<cr>',
+        { desc = 'Run Last' },
+      },
+      {
+        '<leader>ts',
+        '<cmd>lua require("neotest").summary.toggle()<cr>',
+        { desc = 'Summary' },
+      },
+      {
+        '[n',
+        "<cmd>lua require('neotest').jump.prev({ status = 'failed'})<CR>",
+        { desc = 'Next failed' },
+      },
+      {
+        ']n',
+        "<cmd>lua require('neotest').jump.next({ status = 'failed'})<CR>",
+        { desc = 'Prev failed' },
+      },
     },
     opts = function()
       return {
         -- your neotest config here
         adapters = {
           require 'neotest-elixir',
-          require 'neotest-go',
+          require 'neotest-golang',
           require 'neotest-jest',
           require 'neotest-rust',
           require 'neotest-scala',
           require 'neotest-rspec',
+          require 'neotest-minitest',
         },
       }
     end,
@@ -64,14 +126,6 @@ return {
       }, neotest_ns)
 
       require('neotest').setup(opts)
-
-      local nt = require 'neotest'
-      -- set keys for neotest commands
-      vim.keymap.set('n', '<leader>tt', nt.run.run, { desc = 'Run' })
-      vim.keymap.set('n', '[n', "<lua> require('neotest').jump.prev({ status = 'failed'})<CR>", { desc = 'Run' })
-      vim.keymap.set('n', ']n', "<lua> require('neotest').jump.next({ status = 'failed'})<CR>", { desc = 'Run' })
-      vim.keymap.set('n', '<leader>tl', nt.run.run_last, { desc = 'Run Last' })
-      vim.keymap.set('n', '<leader>ts', nt.summary.toggle, { desc = 'Summary' })
     end,
   },
   {

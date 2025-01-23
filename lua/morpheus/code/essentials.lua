@@ -44,7 +44,7 @@ return {
         { desc = 'Open' },
       },
       {
-        '<leader>rR',
+        '<leader>r.',
         '<cmd>CompilerRedo<cr>',
         { desc = 'Redo' },
       },
@@ -79,7 +79,7 @@ return {
         { desc = 'Run' },
       },
       {
-        '<leader>tl',
+        '<leader>t.',
         '<cmd>lua require("neotest").run.run_last()<cr>',
         { desc = 'Run Last' },
       },

@@ -12,6 +12,7 @@ return {
   init = function()
     vim.keymap.set('n', '<leader>nn', '<cmd>ObsidianQuickSwitch<CR>', { noremap = true, silent = true, desc = 'Quick Switch' })
     vim.keymap.set('n', '<leader>nc', '<cmd>ObsidianNew<CR>', { noremap = true, silent = true, desc = 'New Note' })
+    vim.keymap.set('n', '<leader>nC', '<cmd>ObsidianNewFromTemplate<CR>', { noremap = true, silent = true, desc = 'New Note From Template' })
     vim.keymap.set({ 'n', 'v' }, '<leader>nx', '<cmd>ObsidianExtractNote<CR>', { noremap = true, silent = true, desc = 'Extract Note' })
 
     vim.keymap.set('n', '<leader>nd', '<cmd>ObsidianDailies<CR>', { noremap = true, silent = true, desc = 'Dailies' })
@@ -19,16 +20,25 @@ return {
     vim.keymap.set('n', '<leader>nT', '<cmd>ObsidianTomorrow<CR>', { noremap = true, silent = true, desc = 'Today' })
     vim.keymap.set('n', '<leader>ny', '<cmd>ObsidianYesterday<CR>', { noremap = true, silent = true, desc = 'Yesterday' })
 
+    vim.keymap.set('n', '<leader>nm', '<cmd>ObsidianTemplate<CR>', { noremap = true, silent = true, desc = 'Template' })
+
     vim.keymap.set({ 'n', 'v' }, '<leader>sn', '<cmd>ObsidianSearch<CR>', { noremap = true, silent = true, desc = 'Notes' })
     vim.keymap.set({ 'n', 'v' }, '<leader>ns', '<cmd>ObsidianSearch<CR>', { noremap = true, silent = true, desc = 'Search' })
 
     vim.keymap.set('n', '<leader>n<', '<cmd>ObsidianBacklinks<CR>', { noremap = true, silent = true, desc = 'Backlinks' })
     vim.keymap.set('n', '<leader>n>', '<cmd>ObsidianLinks<CR>', { noremap = true, silent = true, desc = 'Links' })
-
-    vim.keymap.set('n', '<leader>ne', '<cmd>cd ~/SharedNotes<CR>', { noremap = true, silent = true, desc = 'Workspace Directory' })
   end,
 
   opts = {
+    notes_subdir = 'Inbox',
+    new_notes_location = 'notes_subdir',
+    templates = {
+      folder = 'Templates',
+      date_format = '%Y-%m-%d',
+      time_format = '%H:%M',
+      substitutions = {},
+    },
+    open_notes_in = 'vsplit',
     daily_notes = {
       folder = 'Journal',
       template = 'Templates/Daily note template.md',
@@ -80,28 +90,9 @@ return {
           suffix = suffix .. string.char(math.random(65, 90))
         end
       end
-
-      return os.date '%Y%m%dt%H%M%S' .. '-' .. suffix
+      return tostring(os.time()) .. '-' .. suffix
     end,
-    ---@return table
-    note_frontmatter_func = function(note)
-      -- Add the title of the note as an alias.
-      if note.title then
-        note:add_alias(note.title)
-      end
 
-      local out = { id = note.id, aliases = note.aliases, tags = note.tags }
-
-      -- `note.metadata` contains any manually added fields in the frontmatter.
-      -- So here we just make sure those fields are kept in the frontmatter.
-      if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
-        for k, v in pairs(note.metadata) do
-          out[k] = v
-        end
-      end
-
-      return out
-    end,
     -- file it will be ignored but you can customize this behavior here.
     ---@param img string
     follow_img_func = function(img)

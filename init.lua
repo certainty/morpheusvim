@@ -16,8 +16,10 @@ vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.list = true
+
+vim.opt.list = false -- this is annoying
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
 vim.opt.inccommand = 'split'
 vim.opt.cursorline = false
 vim.opt.scrolloff = 10
@@ -82,31 +84,15 @@ require('lazy').setup({
 
   -- one of these adds notable lag for some reason during typing
   -- require 'morpheus.ai.copilotchat',
-  -- require 'morpheus.ai.avante',
-  -- require 'morpheus.ai.chatgpt',
+  require 'morpheus.ai.avante',
 
+  -- require 'morpheus.ai.chatgpt',
   require 'morpheus.tools.terminal',
   require 'morpheus.writing.markdown',
   require 'morpheus.writing.obsidian',
 }, {
   ui = {
-    -- If you are using a Nerd Font: set icons to an empty table which will use the
-    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
-    },
+    icons = {},
   },
 })
 

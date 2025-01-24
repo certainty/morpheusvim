@@ -41,7 +41,7 @@ return {
     open_notes_in = 'vsplit',
     daily_notes = {
       folder = 'Journal',
-      template = 'Templates/Daily note template.md',
+      template = 'Daily.md',
     },
     ui = {
       enable = false,

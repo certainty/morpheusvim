@@ -1,16 +1,4 @@
 return {
-  -- {
-  --   'echasnovski/mini.trailspace',
-  --   version = false,
-  --
-  --   config = function()
-  --     require('mini.trailspace').setup {
-  --       only_in_normal_buffers = true,
-  --     }
-  --
-  --     require('mini.trailspace').unhighlight()
-  --   end,
-  -- },
   {
     'echasnovski/mini.bracketed',
     version = '*',

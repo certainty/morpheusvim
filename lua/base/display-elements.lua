@@ -6,14 +6,6 @@ return {
     end,
   },
   { 'echasnovski/mini.icons', version = '*' },
-  --[[  {
-    'echasnovski/mini.statusline',
-    version = '*',
-    config = function()
-      require('mini.statusline').setup { use_icons = vim.g.have_nerd_font }
-    end,
-  },
-   ]]
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -23,7 +15,7 @@ return {
           icons_enabled = true,
           component_separators = '',
           section_separators = '',
-          theme = 'tokyonight',
+          theme = 'catppuccin',
           disabled_filetypes = {
             statusline = {},
             winbar = {},
@@ -40,18 +32,15 @@ return {
         },
         sections = {
           lualine_a = { 'mode' },
-          lualine_b = { 'branch', 'diff', 'diagnostics' },
+          lualine_b = { 'branch' },
           lualine_c = { 'filename' },
           lualine_x = { 'encoding', 'fileformat', 'filetype' },
-          lualine_y = { 'progress' },
-          lualine_z = { 'location' },
         },
         inactive_sections = {
           lualine_a = {},
           lualine_b = {},
           lualine_c = { 'filename' },
           lualine_x = { 'location' },
-          lualine_y = {},
           lualine_z = {},
         },
         tabline = {},

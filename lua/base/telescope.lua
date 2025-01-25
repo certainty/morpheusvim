@@ -15,6 +15,7 @@ return {
       { 'nvim-telescope/telescope-ui-select.nvim' },
       { 'nvim-telescope/telescope-file-browser.nvim' },
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'stevearc/aerial.nvim' },
     },
     config = function()
       require('telescope').setup {
@@ -28,12 +29,25 @@ return {
             theme = 'ivy',
             hijack_netrw = true,
           },
+          aerial = {
+            col1_width = 4,
+            col2_width = 30,
+            format_symbol = function(symbol_path, filetype)
+              if filetype == 'json' or filetype == 'yaml' then
+                return table.concat(symbol_path, '.')
+              else
+                return symbol_path[#symbol_path]
+              end
+            end,
+            show_columns = 'both',
+          },
         },
       }
 
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'file_browser')
+      pcall(require('telescope').load_extension, 'aerial')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -49,6 +63,7 @@ return {
       vim.keymap.set('n', '<leader>gd', builtin.diagnostics, { desc = 'Diagnostics' })
       vim.keymap.set('n', '<leader>go', builtin.oldfiles, { desc = 'Recent Files ("o" for old)' })
       vim.keymap.set('n', '<leader>gb', builtin.buffers, { desc = 'Buffers buffers' })
+      vim.keymap.set('n', '<leader>I', require('telescope').extensions.aerial.aerial, { desc = 'aerial' })
 
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Help' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Keymaps' })

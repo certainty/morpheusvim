@@ -58,7 +58,7 @@ return {
       backends = { 'lsp', 'treesitter', 'markdown', 'man', 'asciidoc' },
       layout = {
         min_width = 28,
-        default_direction = 'right',
+        default_direction = 'left',
         placement = 'edge',
       },
       show_guides = true,
@@ -71,6 +71,7 @@ return {
     },
     config = function(_, opts)
       require('aerial').setup(opts)
+      vim.keymap.set('n', '<leader>i', '<cmd>AerialToggle<CR>') -- imenu equivalent
     end,
   },
 }

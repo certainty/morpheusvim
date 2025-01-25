@@ -1,56 +1,54 @@
 return {
-  'nvim-treesitter/nvim-treesitter',
-  build = ':TSUpdate',
-  main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-  -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-  opts = {
-    ensure_installed = {
-      'bash',
-      'c',
-      'diff',
-      'html',
-      'lua',
-      'luadoc',
-      'markdown',
-      'markdown_inline',
-      'query',
-      'vim',
-      'vimdoc',
-      'ruby',
-      'go',
-      'scala',
-      'graphql',
-      'json',
-      'yaml',
-      'typescript',
-      'javascript',
-      'ruby',
-      'css',
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    opts = {
+      ensure_installed = {
+        'bash',
+        'c',
+        'diff',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
+        'vimdoc',
+        'ruby',
+        'go',
+        'gomod',
+        'gosum',
+        'scala',
+        'graphql',
+        'json',
+        'yaml',
+        'typescript',
+        'javascript',
+        'ruby',
+        'css',
+      },
+      auto_install = true,
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = { 'ruby' },
+      },
+      indent = { enable = true },
     },
-    -- Autoinstall languages that are not installed
-    auto_install = true,
-    highlight = {
-      enable = true,
-      -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-      --  If you are experiencing weird indenting issues, add the language to
-      --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-      additional_vim_regex_highlighting = { 'ruby' },
-    },
-    indent = { enable = true, disable = { 'ruby' } },
   },
-
   {
     'stevearc/aerial.nvim',
     opts = {
       filter_kind = { -- Symbols that will appear on the tree
-        -- "Class",
+        'Class',
         'Constructor',
         'Enum',
         'Function',
         'Interface',
-        -- "Module",
+        'Module',
         'Method',
-        -- "Struct",
+        'Struct',
       },
       open_automatic = false, -- Open if the buffer is compatible
       autojump = true,

@@ -69,8 +69,8 @@ require('lazy').setup({
   require 'base.files',
   require 'base.dashboard',
 
-  require 'code.essentials',
   require 'code.treesitter',
+  require 'code.essentials',
   require 'code.lsp',
   require 'code.debug',
   require 'code.format',

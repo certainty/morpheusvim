@@ -61,38 +61,38 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ Configure and install plugins ]]
 --
 require('lazy').setup({
-  require 'morpheus.base.whichkey',
-  require 'morpheus.base.theme',
-  require 'morpheus.base.display-elements',
-  require 'morpheus.base.editing',
-  require 'morpheus.base.completion',
-  require 'morpheus.base.telescope',
-  require 'morpheus.base.vc',
-  require 'morpheus.base.files',
-  require 'morpheus.base.dashboard',
+  require 'base.whichkey',
+  require 'base.theme',
+  require 'base.display-elements',
+  require 'base.editing',
+  require 'base.completion',
+  require 'base.telescope',
+  require 'base.vc',
+  require 'base.files',
+  require 'base.dashboard',
 
-  require 'morpheus.code.essentials',
-  require 'morpheus.code.treesitter',
-  require 'morpheus.code.lsp',
-  require 'morpheus.code.debug',
-  require 'morpheus.code.format',
-  require 'morpheus.code.lint',
+  require 'code.essentials',
+  require 'code.treesitter',
+  require 'code.lsp',
+  require 'code.debug',
+  require 'code.format',
+  require 'code.lint',
 
-  require 'morpheus.code.scala',
-  require 'morpheus.ai.copilot',
+  require 'code.scala',
+  require 'ai.copilot',
 
-  require 'morpheus.ai.avante',
+  require 'ai.avante',
 
-  require 'morpheus.tools.terminal',
-  require 'morpheus.writing.markdown',
-  require 'morpheus.writing.obsidian',
+  require 'tools.terminal',
+  require 'writing.markdown',
+  require 'writing.obsidian',
 }, {
   ui = {
     icons = {},
   },
 })
 
-require 'morpheus.base.keys'
+require 'base.keys'
 
 -- global keys
 -- The line beneath this is called `modeline`. See `:help modeline`

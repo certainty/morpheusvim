@@ -2,6 +2,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 vim.g.have_nerd_font = true
 vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
 vim.opt.showmode = false
 vim.schedule(function()
@@ -24,13 +25,11 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = false
 vim.opt.scrolloff = 10
 
--- TODO: make folds work
 -- vim.o.foldmethod = 'syntax'
 -- vim.o.foldenable = true
 -- vim.o.foldlevelstart = 1
 -- vim.opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
-
--- make the UI less cluttered
+--
 vim.diagnostic.config {
   virtual_text = false,
   signs = true,
@@ -63,7 +62,7 @@ vim.opt.rtp:prepend(lazypath)
 --
 require('lazy').setup({
   require 'morpheus.base.whichkey',
-  require 'morpheus.base.ui',
+  require 'morpheus.base.theme',
   require 'morpheus.base.display-elements',
   require 'morpheus.base.editing',
   require 'morpheus.base.completion',
@@ -82,11 +81,8 @@ require('lazy').setup({
   require 'morpheus.code.scala',
   require 'morpheus.ai.copilot',
 
-  -- one of these adds notable lag for some reason during typing
-  -- require 'morpheus.ai.copilotchat',
   require 'morpheus.ai.avante',
 
-  -- require 'morpheus.ai.chatgpt',
   require 'morpheus.tools.terminal',
   require 'morpheus.writing.markdown',
   require 'morpheus.writing.obsidian',

@@ -66,14 +66,32 @@ return {
     opts = {},
     config = function()
       require('render-markdown').setup {
+        indent = {
+          enabled = true,
+        },
+        sign = {
+          enabled = false,
+        },
+        dash = {
+          enabled = true,
+        },
+        code = {
+          enabled = true,
+        },
         heading = {
           enabled = true,
-          width = 'block',
+          -- width = 'block',
           icons = { '■ ', '■■ ', '■■■ ', '■■■■ ', '■■■■■ ', '■■■■■■ ' },
-          -- icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
           backgrounds = {},
+          foregrounds = {
+            'RenderMarkdownH1',
+            'RenderMarkdownH2',
+            'RenderMarkdownH3',
+            'RenderMarkdownH4',
+            'RenderMarkdownH5',
+            'RenderMarkdownH6',
+          },
           above = '▄',
-          -- Used below heading for border
           below = '▀',
         },
         link = {

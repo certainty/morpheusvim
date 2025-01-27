@@ -1,10 +1,11 @@
 -- global key bindings
-vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = false })
+vim.keymap.set('i', 'jj', '<Esc>', { noremap = false })
+vim.keymap.set('n', 'U', '<C-r>', { desc = 'Redo' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Quickfix list' })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- diagnostics
-vim.keymap.set('n', '<leader>!', function()
+vim.keymap.set('n', '<localleader>!', function()
   vim.diagnostic.open_float(nil, { focusable = false, scope = 'cursor' })
 end, { desc = 'Show diagnostics at cursor' })
 
@@ -24,7 +25,6 @@ vim.keymap.set('n', '<C-^>', '<cmd>b# <cr>', { desc = 'Switch to the last buffer
 vim.keymap.set('n', 'gb', '<cmd>b# <cr>', { desc = 'Switch to the last buffer' })
 
 -- quick file actions
-vim.api.nvim_set_keymap('n', 'C-s', ':w!<enter>', { noremap = false })
 vim.api.nvim_set_keymap('n', 'E', '$', { noremap = false })
 vim.api.nvim_set_keymap('n', 'B', '^', { noremap = false })
 

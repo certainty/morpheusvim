@@ -1,5 +1,41 @@
 return {
   {
+    'allaman/emoji.nvim',
+    opts = {
+      enable_cmp_integration = true,
+    },
+  },
+  {
+    'smoka7/multicursors.nvim',
+    event = 'VeryLazy',
+    dependencies = {
+      'nvimtools/hydra.nvim',
+    },
+    opts = {},
+    cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
+    init = function()
+      vim.keymap.set({ 'v', 'n' }, '<Leader>%', '<cmd>MCstart<cr>', { noremap = true, silent = true, desc = 'Start multicursor' })
+    end,
+    config = function()
+      require('multicursors').setup {
+        hint_config = {
+          float_opts = {
+            border = 'rounded',
+          },
+          position = 'bottom-right',
+        },
+        generate_hints = {
+          normal = true,
+          insert = true,
+          extend = true,
+          config = {
+            column_count = 1,
+          },
+        },
+      }
+    end,
+  },
+  {
     'echasnovski/mini.bracketed',
     version = '*',
     config = function()

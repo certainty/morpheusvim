@@ -16,6 +16,7 @@ return {
       { 'nvim-telescope/telescope-file-browser.nvim' },
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
       { 'stevearc/aerial.nvim' },
+      { 'allaman/emoji.nvim' },
     },
     config = function()
       require('telescope').setup {
@@ -48,6 +49,7 @@ return {
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'file_browser')
       pcall(require('telescope').load_extension, 'aerial')
+      pcall(require('telescope').load_extension, 'emoji')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -63,7 +65,7 @@ return {
       vim.keymap.set('n', '<leader>gd', builtin.diagnostics, { desc = 'Diagnostics' })
       vim.keymap.set('n', '<leader>go', builtin.oldfiles, { desc = 'Recent Files ("o" for old)' })
       vim.keymap.set('n', '<leader>gb', builtin.buffers, { desc = 'Buffers buffers' })
-      vim.keymap.set('n', '<leader>I', require('telescope').extensions.aerial.aerial, { desc = 'aerial' })
+      vim.keymap.set('n', '<leader>gi', require('telescope').extensions.aerial.aerial, { desc = 'aerial' })
 
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Help' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Keymaps' })
@@ -75,7 +77,8 @@ return {
       vim.keymap.set('n', '<leader>gvb', builtin.git_branches, { desc = 'Git branches' })
       vim.keymap.set('n', '<leader>gvc', builtin.git_commits, { desc = 'Git commits' })
 
-      vim.keymap.set('n', '<leader>:', builtin.commands, { desc = 'Commands' })
+      vim.keymap.set('n', '<leader>x', builtin.commands, { desc = 'Commands' })
+      vim.keymap.set('n', '<leader>ne', require('telescope').extensions.emoji.emoji, { desc = 'Emoji' })
 
       -- Shortcut for searching your Neovim configuration files
       vim.keymap.set('n', '<leader>gn', function()

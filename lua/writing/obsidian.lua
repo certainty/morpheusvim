@@ -46,11 +46,17 @@ return {
     ui = {
       enable = false,
       checkboxes = {
-        ['>'] = { char = '', hl_group = 'ObsidianRightArrow' },
+        ['>'] = { char = '󰜱', hl_group = 'ObsidianRightArrow' },
+        ['<'] = { char = '󰜴', hl_group = 'ObsidianRightArrow' },
         ['~'] = { char = '󰰱', hl_group = 'ObsidianTilde' },
         ['!'] = { char = '', hl_group = 'ObsidianImportant' },
-        [' '] = { char = '☐', hl_group = 'ObsidianTodo' },
+        ['?'] = { char = '', hl_group = 'ObsidianBullet' },
+        [' '] = { char = '◯', hl_group = 'ObsidianTodo' },
+        ['-'] = { char = '󰜺', hl_group = 'ObsidianDone' },
         ['x'] = { char = '✔', hl_group = 'ObsidianDone' },
+        ['e'] = { char = '', hl_group = 'ObsidianTodo' },
+        ['*'] = { char = '', hl_group = 'ObsidianBullet' },
+        ['q'] = { char = '󰉾', hl_group = 'ObsodianBullet' },
       },
       bullets = { char = '•', hl_group = 'ObsidianBullet' },
     },
@@ -73,6 +79,34 @@ return {
       },
     },
     preferred_link_style = 'wiki',
+    mappings = {
+      ['<localleader>c'] = {
+        action = function()
+          return require('obsidian').util.toggle_checkbox()
+        end,
+        opts = { buffer = true, desc = 'Toggle checkbox' },
+      },
+      ['<localleader>t'] = {
+        action = '<cmd>ObsidianTemplate<cr>',
+        opts = { buffer = true, desc = 'Template' },
+      },
+      ['<localleader>r'] = {
+        action = '<cmd>ObsidianRename<cr>',
+        opts = { buffer = true, desc = 'Rename' },
+      },
+      ['<localleader>o'] = {
+        action = '<cmd>ObsidianTOC<cr>',
+        opts = { buffer = true, desc = 'TOC' },
+      },
+      ['<localleader>,'] = {
+        action = '<cmd>ObsidianTags<cr>',
+        opts = { buffer = true, desc = 'Tags' },
+      },
+      ['<localleader><'] = {
+        action = '<cmd>ObsidianBacklinks<cr>',
+        opts = { buffer = true, desc = 'Backlinks' },
+      },
+    },
 
     ---@param title string|?
     ---@return string

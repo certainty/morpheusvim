@@ -5,12 +5,12 @@ return {
     cmd = 'Trouble',
     keys = {
       {
-        '<leader>xx',
+        '<leader>!!',
         '<cmd>Trouble diagnostics toggle<cr>',
         desc = 'Diagnostics (Trouble)',
       },
       {
-        '<leader>xX',
+        '<leader>!.',
         '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
         desc = 'Buffer Diagnostics (Trouble)',
       },
@@ -37,28 +37,12 @@ return {
         default_detail = 1,
       },
     },
-    keys = {
-      {
-        '<leader>rr',
-        '<cmd>CompilerOpen<cr>',
-        { desc = 'Open' },
-      },
-      {
-        '<leader>r.',
-        '<cmd>CompilerRedo<cr>',
-        { desc = 'Redo' },
-      },
-      {
-        '<leader>rs',
-        '<cmd>CompilerStop<cr>',
-        { desc = 'Stop' },
-      },
-      {
-        '<leader>rt',
-        '<cmd>CompilerToggleResults<cr>',
-        { desc = 'Toggle Results' },
-      },
-    },
+    init = function()
+      vim.keymap.set('n', '<leader>rr', '<cmd>CompilerOpen<cr>', { desc = 'Open' })
+      vim.keymap.set('n', '<leader>r.', '<cmd>CompilerRedo<cr>', { desc = 'Redo' })
+      vim.keymap.set('n', '<leader>rs', '<cmd>CompilerStop<cr>', { desc = 'Stop' })
+      vim.keymap.set('n', '<leader>rt', '<cmd>CompilerToggleResults<cr>', { desc = 'Toggle Results' })
+    end,
   },
 
   {
@@ -72,33 +56,13 @@ return {
       'olimorris/neotest-rspec',
       'zidhuss/neotest-minitest',
     },
-    keys = {
-      {
-        '<leader>tt',
-        '<cmd>lua require("neotest").run.run()<cr>',
-        { desc = 'Run' },
-      },
-      {
-        '<leader>t.',
-        '<cmd>lua require("neotest").run.run_last()<cr>',
-        { desc = 'Run Last' },
-      },
-      {
-        '<leader>ts',
-        '<cmd>lua require("neotest").summary.toggle()<cr>',
-        { desc = 'Summary' },
-      },
-      {
-        '[n',
-        "<cmd>lua require('neotest').jump.prev({ status = 'failed'})<CR>",
-        { desc = 'Next failed' },
-      },
-      {
-        ']n',
-        "<cmd>lua require('neotest').jump.next({ status = 'failed'})<CR>",
-        { desc = 'Prev failed' },
-      },
-    },
+    init = function()
+      vim.keymap.set('n', '<leader>tt', '<cmd>lua require("neotest").run.run()<cr>', { desc = 'Run' })
+      vim.keymap.set('n', '<leader>t.', '<cmd>lua require("neotest").run.run_last()<cr>', { desc = 'Run Last' })
+      vim.keymap.set('n', '<leader>ts', '<cmd>lua require("neotest").summary.toggle()<cr>', { desc = 'Summary' })
+      vim.keymap.set('n', '[n', "<cmd>lua require('neotest').jump.prev({ status = 'failed'})<CR>", { desc = 'Next failed' })
+      vim.keymap.set('n', ']n', "<cmd>lua require('neotest').jump.next({ status = 'failed'})<CR>", { desc = 'Prev failed' })
+    end,
     opts = function()
       return {
         -- your neotest config here

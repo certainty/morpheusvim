@@ -1,5 +1,9 @@
 return {
   {
+    'stevearc/stickybuf.nvim',
+    opts = {},
+  },
+  {
     'psjay/buffer-closer.nvim',
     config = function()
       require('buffer-closer').setup()

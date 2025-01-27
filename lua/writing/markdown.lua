@@ -21,7 +21,6 @@ return {
       require('diagram').setup {
         integrations = {
           require 'diagram.integrations.markdown',
-          require 'diagram.integrations.neorg',
         },
         renderer_options = {
           mermaid = {
@@ -67,7 +66,7 @@ return {
     config = function()
       require('render-markdown').setup {
         indent = {
-          enabled = true,
+          enabled = false,
         },
         sign = {
           enabled = false,
@@ -80,7 +79,6 @@ return {
         },
         heading = {
           enabled = true,
-          -- width = 'block',
           icons = { '■ ', '■■ ', '■■■ ', '■■■■ ', '■■■■■ ', '■■■■■■ ' },
           backgrounds = {},
           foregrounds = {
@@ -96,6 +94,30 @@ return {
         },
         link = {
           enabled = true,
+        },
+        bullet = {
+          enabled = true,
+          icons = { '•', '•', '•', '•' },
+        },
+        checkbox = {
+          enabled = true,
+
+          -- kept compatible with obsidian minimal theme checkboxes
+          custom = {
+            cancelled = { raw = '[-]', rendered = '󰜺 ', highlight = 'RenderMarkdownUnchecked' },
+            incomplete = { raw = '[/]', rendered = '󰜺 ', highlight = 'RenderMarkdownUnchecked' },
+            information = { raw = '[i]', rendered = '󰋼 ', highlight = 'RenderMarkdownBullet' },
+            idea = { raw = '[I]', rendered = '󰛨 ' },
+            event = { raw = '[e]', rendered = ' ' },
+            forwarded = { raw = '[>]', rendered = '󰜴 ' },
+            scheduled = { raw = '[<]', rendered = '󰜱 ' },
+            important = { raw = '[!]', rendered = ' ' },
+            quote = { raw = '["]', rendered = '󰉾 ' },
+            star = { raw = '[*]', rendered = ' ' },
+            question = { raw = '[?]', rendered = ' ' },
+            pros = { raw = '[p]', rendered = '󰔓 ', highlight = 'RenderMarkdownBullet' },
+            cons = { raw = '[c]', rendered = '󰔑 ', highlight = 'RenderMarkdownBullet' },
+          },
         },
         latex = {
           enabled = true,

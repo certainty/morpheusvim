@@ -149,6 +149,7 @@ return { -- Autocompletion
         { name = 'buffer', priority = 800 },
         { name = 'luasnip', priority = 700 },
         { name = 'path', priority = 600 },
+        { name = 'emoji', priority = 500 },
       },
     }
   end,

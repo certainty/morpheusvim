@@ -26,10 +26,6 @@ return {
           ['ui-select'] = {
             require('telescope.themes').get_ivy(),
           },
-          file_browser = {
-            theme = 'ivy',
-            hijack_netrw = true,
-          },
           aerial = {
             col1_width = 4,
             col2_width = 30,
@@ -47,7 +43,6 @@ return {
 
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
-      pcall(require('telescope').load_extension, 'file_browser')
       pcall(require('telescope').load_extension, 'aerial')
       pcall(require('telescope').load_extension, 'emoji')
 
@@ -58,8 +53,6 @@ return {
       vim.keymap.set('n', '<leader>F', function()
         builtin.find_files { cwd = vim.fn.expand '%:p:h' }
       end, { desc = 'File relative to buffer' })
-
-      vim.keymap.set('n', '<leader>e', require('telescope').extensions.file_browser.file_browser, { desc = 'File Browser' })
 
       vim.keymap.set('n', '<leader>f', builtin.git_files, { desc = 'Git Files' })
       vim.keymap.set('n', '<leader>gd', builtin.diagnostics, { desc = 'Diagnostics' })

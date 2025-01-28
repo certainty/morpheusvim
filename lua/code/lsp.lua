@@ -51,7 +51,17 @@ return {
           map('<LocalLeader>,', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
           map('<LocalLeader>?', vim.lsp.buf.signature_help, 'Signature')
           map('<LocalLeader>x', vim.lsp.codelens.run, 'Run Code Lens')
-          map('<localleader>r', require('telescope').extensions.refactoring.refactors, 'Refactor', { 'n', 'v' })
+          map('<localleader>rr', require('telescope').extensions.refactoring.refactors, 'Refactor', { 'n', 'x' })
+
+          map('<localleader>rp', function()
+            require('refactoring').debug.printf { below = false }
+          end, 'Add debug print')
+
+          map('<localleader>rv', require('refactoring').debug.print_var, 'Print var', { 'n', 'x' })
+
+          map('<localleader>rc', function()
+            require('refactoring').debug.cleanup {}
+          end, 'Cleanup')
 
           map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 

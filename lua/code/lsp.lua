@@ -11,6 +11,17 @@ return {
   },
   { 'Bilal2453/luvit-meta', lazy = true },
   {
+    'ThePrimeagen/refactoring.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+    },
+    config = function()
+      require('refactoring').setup {}
+      require('telescope').load_extension 'refactoring'
+    end,
+  },
+  {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -36,10 +47,11 @@ return {
           map('<LocalLeader>D', require('telescope.builtin').lsp_type_definitions, 'Type Definition')
           map('<LocalLeader>ds', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
           map('<LocalLeader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
-          map('<LocalLeader>r', vim.lsp.buf.rename, 'Rename')
+          map('<LocalLeader>c', vim.lsp.buf.rename, 'Rename')
           map('<LocalLeader>,', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
           map('<LocalLeader>?', vim.lsp.buf.signature_help, 'Signature')
           map('<LocalLeader>x', vim.lsp.codelens.run, 'Run Code Lens')
+          map('<localleader>r', require('telescope').extensions.refactoring.refactors, 'Refactor', { 'n', 'v' })
 
           map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 

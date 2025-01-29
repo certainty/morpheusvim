@@ -33,3 +33,9 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('v', '>', '<cmd>>gv<CR>')
 vim.keymap.set('v', '<', '<cmd><gv<CR>')
+
+-- navigation in insert mode mimics emacs keybindings
+vim.keymap.set('i', '<C-a>', '<Home>', { desc = 'Move to the beginning of the line' })
+vim.keymap.set('i', '<C-e>', '<End>', { desc = 'Move to the end of the line' })
+vim.keymap.set('i', '<C-b>', '<Left>', { desc = 'Move left' })
+vim.keymap.set('i', '<C-f>', '<Right>', { desc = 'Move right' })

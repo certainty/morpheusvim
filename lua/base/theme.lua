@@ -6,6 +6,34 @@ return {
     end,
   },
   {
+    'miikanissi/modus-themes.nvim',
+    init = function()
+      -- vim.cmd.colorscheme 'modus_vivendi'
+      -- vim.cmd.hi 'Comment gui=none'
+    end,
+    config = function()
+      require('modus-themes').setup {
+        style = 'modus_vivendi',
+        variant = 'default',
+        styles = {
+          -- Style to be applied to different syntax groups
+          -- Value is any valid attr-list value for `:help nvim_set_hl`
+          comments = { italic = true },
+          keywords = { italic = true },
+          functions = {},
+          variables = {},
+        },
+
+        ---@param colors ColorScheme
+        on_colors = function(colors) end,
+
+        ---@param highlights Highlights
+        ---@param colors ColorScheme
+        on_highlights = function(highlights, colors) end,
+      }
+    end,
+  },
+  {
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,

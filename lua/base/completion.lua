@@ -54,7 +54,6 @@ return { -- Autocompletion
         end,
       },
       completion = { completeopt = 'menu,menuone,noinsert' },
-
       -- make sure we have a maximum window size
       window = {
         completion = {
@@ -138,7 +137,6 @@ return { -- Autocompletion
       sources = {
         {
           name = 'lazydev',
-          -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
           group_index = 0,
         },
         {
@@ -146,7 +144,7 @@ return { -- Autocompletion
           priority = 1000,
         },
         { name = 'nvim_lsp', priority = 900 },
-        { name = 'buffer', priority = 800 },
+        { name = 'buffer', priority = 900, option = { keyword_length = 2 } },
         { name = 'luasnip', priority = 700 },
         { name = 'path', priority = 600 },
         { name = 'emoji', priority = 500 },

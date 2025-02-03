@@ -86,6 +86,10 @@ return {
         end,
         opts = { buffer = true, desc = 'Toggle checkbox' },
       },
+      ['<localleader>l'] = {
+        action = '<cmd>ObsidianFollowLink<cr>',
+        opts = { buffer = true, desc = 'Follow link' },
+      },
       ['<localleader>t'] = {
         action = '<cmd>ObsidianTemplate<cr>',
         opts = { buffer = true, desc = 'Template' },
@@ -97,6 +101,10 @@ return {
       ['<localleader>o'] = {
         action = '<cmd>ObsidianTOC<cr>',
         opts = { buffer = true, desc = 'TOC' },
+      },
+      ['<localleader>'] = {
+        action = '<cmd>ObsidianPasteImg<cr>',
+        opts = { buffer = true, desc = 'Paste image' },
       },
       ['<localleader>,'] = {
         action = '<cmd>ObsidianTags<cr>',

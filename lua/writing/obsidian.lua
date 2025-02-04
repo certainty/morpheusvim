@@ -30,7 +30,7 @@ return {
   end,
 
   opts = {
-    notes_subdir = 'Inbox',
+    notes_subdir = '00 Inbox',
     new_notes_location = 'notes_subdir',
     templates = {
       folder = 'Templates',
@@ -119,7 +119,7 @@ return {
         action = '<cmd>ObsidianTOC<cr>',
         opts = { buffer = true, desc = 'TOC' },
       },
-      ['<localleader>'] = {
+      ['<localleader>y'] = {
         action = '<cmd>ObsidianPasteImg<cr>',
         opts = { buffer = true, desc = 'Paste image' },
       },

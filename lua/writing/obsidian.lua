@@ -36,11 +36,22 @@ return {
       folder = 'Templates',
       date_format = '%Y-%m-%d',
       time_format = '%H:%M',
-      substitutions = {},
+      substitutions = {
+        quarter = function()
+          local month = os.date('*t').month
+          local quarter = math.ceil(month / 3)
+          return 'Q' .. quarter
+        end,
+        year = function()
+          return os.date '%Y'
+        end,
+      },
     },
     open_notes_in = 'vsplit',
+
     daily_notes = {
-      folder = 'Journal',
+      folder = os.date 'Journal/%Y',
+      default_tags = { 'daily' },
       template = 'Daily.md',
     },
     ui = {
@@ -80,6 +91,12 @@ return {
     },
     preferred_link_style = 'wiki',
     mappings = {
+      ['gf'] = {
+        action = function()
+          return require('obsidian').util.gf_passthrough()
+        end,
+        opts = { expr = true, buffer = true, desc = 'Follow', noremap = false },
+      },
       ['<localleader>c'] = {
         action = function()
           return require('obsidian').util.toggle_checkbox()
@@ -119,9 +136,6 @@ return {
     ---@param title string|?
     ---@return string
     note_id_func = function(title)
-      -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
-      -- In this case a note with the title 'My new note' will be given an ID that looks
-      -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
       local suffix = ''
       if title ~= nil then
         -- If title is given, transform it into valid file name.
@@ -146,5 +160,22 @@ return {
     follow_url_func = function(url)
       vim.fn.jobstart { 'open', url } -- Mac OS
     end,
+
+    attachments = {
+      img_folder = 'Assets',
+
+      ---@return string
+      img_name_func = function()
+        -- Prefix image names with timestamp.
+        return string.format('%s-', os.time())
+      end,
+
+      ---@param client obsidian.Client
+      ---@param path obsidian.Path the absolute path to the image file
+      ---@return string
+      img_text_func = function(client, path)
+        return string.format('![%s](%s)', path.name, path)
+      end,
+    },
   },
 }

@@ -143,8 +143,11 @@ return { -- Autocompletion
           name = 'copilot',
           priority = 1000,
         },
+
+        { name = 'bibtex' },
         { name = 'nvim_lsp', priority = 900 },
         { name = 'buffer', priority = 900, option = { keyword_length = 2 } },
+        { name = 'render-markdown', priority = 800 },
         { name = 'luasnip', priority = 700 },
         { name = 'path', priority = 600 },
         { name = 'emoji', priority = 500 },

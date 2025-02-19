@@ -4,7 +4,6 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim', -- required
       'sindrets/diffview.nvim', -- optional - Diff integration
-      'nvim-telescope/telescope.nvim', -- optional
     },
     config = function()
       vim.keymap.set('n', '<leader>vv', '<cmd>Neogit<CR>', { desc = 'vc (neogit)' })
@@ -48,11 +47,9 @@ return {
         map('v', '<leader>br', function()
           gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
         end, { desc = 'git reset hunk' })
-        -- normal mode
         map('n', '<leader>vs', gitsigns.stage_hunk, { desc = 'stage hunk' })
         map('n', '<leader>vr', gitsigns.reset_hunk, { desc = 'reset hunk' })
         map('n', '<leader>vS', gitsigns.stage_buffer, { desc = 'stage buffer' })
-        map('n', '<leader>vu', gitsigns.undo_stage_hunk, { desc = 'sndo stage hunk' })
         map('n', '<leader>vR', gitsigns.reset_buffer, { desc = 'reset buffer' })
         map('n', '<leader>vp', gitsigns.preview_hunk, { desc = 'preview hunk' })
         map('n', '<leader>vb', gitsigns.blame_line, { desc = 'blame line' })
@@ -61,9 +58,7 @@ return {
         map('n', '<leader>vD', function()
           gitsigns.diffthis '@'
         end, { desc = 'diff against last commit' })
-        -- Toggles
         map('n', '<leader>utb', gitsigns.toggle_current_line_blame, { desc = 'toggle git show blame line' })
-        map('n', '<leader>utD', gitsigns.toggle_deleted, { desc = 'toggle git show deleted' })
       end,
     },
   },

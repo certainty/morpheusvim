@@ -83,7 +83,7 @@ return {
         -- your neotest config here
         adapters = {
           require 'neotest-elixir',
-          require 'neotest-golang',
+          require 'neotest-golang' {},
           require 'neotest-jest',
           require 'neotest-rust',
           require 'neotest-scala',

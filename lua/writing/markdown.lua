@@ -38,7 +38,7 @@ return {
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     build = 'cd app && yarn install',
-    ft = { 'markdown' },
+    ft = { 'markdown', 'codecompanion' },
     init = function()
       vim.g.mkdp_filetypes = { 'markdown' }
       local markdown_group = vim.api.nvim_create_augroup('MarkdownSettings', { clear = true })
@@ -61,10 +61,16 @@ return {
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-    ft = { 'markdown', 'Avante', 'copilot-chat' },
+    ft = { 'markdown', 'Avante', 'copilot-chat', 'codecompanion' },
     opts = {},
     config = function()
+      local cmp = require 'cmp'
+      local cmp_cfg = cmp.get_config()
+      table.insert(cmp_cfg.sources, { name = 'render-markdown', priority = 800 })
+      cmp.setup(cmp_cfg)
+
       require('render-markdown').setup {
+        render_modes = true,
         indent = {
           enabled = false,
         },

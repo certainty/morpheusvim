@@ -8,6 +8,22 @@ return {
     },
     config = function()
       require('codecompanion').setup {
+        adapters = {
+          openai = function()
+            return require('codecompanion.adapters').extend('openai', {
+              env = {
+                api_key = 'cmd:op read op://personal/openai-neovim/credential --no-newline',
+              },
+            })
+          end,
+          anthropic = function()
+            return require('codecompanion.adapters').extend('anthropic', {
+              env = {
+                api_key = 'cmd:op read op://personal/anthropic-neovim/credential --no-newline',
+              },
+            })
+          end,
+        },
         display = {
           action_palette = {
             width = 95,

@@ -75,14 +75,13 @@ require('lazy').setup({
   require 'code.debug',
   require 'code.format',
   require 'code.lint',
-
   require 'code.scala',
+
   require 'ai.copilot',
   require 'ai.codecompanion',
 
-  --  require 'ai.avante',
-
   require 'tools.terminal',
+
   require 'writing.markdown',
   require 'writing.obsidian',
 }, {

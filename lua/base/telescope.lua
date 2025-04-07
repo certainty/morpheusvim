@@ -61,6 +61,9 @@ return {
       end, { desc = 'File relative to buffer' })
 
       vim.keymap.set('n', '<leader>f', builtin.git_files, { desc = 'Git Files' })
+      vim.keymap.set('n', '<leader>gf', function()
+        builtin.find_files { hidden = true }
+      end, { desc = 'Files (hidden=true)' })
       vim.keymap.set('n', '<leader>gd', builtin.diagnostics, { desc = 'Diagnostics' })
       vim.keymap.set('n', '<leader>go', builtin.oldfiles, { desc = 'Recent Files ("o" for old)' })
       vim.keymap.set('n', '<leader>gb', builtin.buffers, { desc = 'Buffers buffers' })

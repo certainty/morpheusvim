@@ -30,6 +30,10 @@ return {
   {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
+    init = function()
+      vim.keymap.set('n', '<leader>ac', '<cmd>Copilot enable<cr>', { desc = 'Enable Copilot' })
+      vim.keymap.set('n', '<leader>aC', '<cmd>Copilot disable<cr>', { desc = 'Disable Copilot' })
+    end,
     config = function()
       require('copilot').setup {
         suggestion = { enabled = true },

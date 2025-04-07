@@ -39,6 +39,13 @@ return {
         strategies = {
           chat = {
             adapter = 'copilot',
+            keymaps = {
+              close = {
+                -- I almost never want to actually close.
+                -- Toggle is what I usually want
+                modes = { n = '<C-q>', i = '<C-q>' },
+              },
+            },
           },
           inline = {
             adapter = 'copilot',

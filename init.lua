@@ -76,11 +76,13 @@ require('lazy').setup({
   require 'code.format',
   require 'code.lint',
   require 'code.scala',
+  require 'code.clojure',
 
   require 'ai.copilot',
   require 'ai.codecompanion',
 
   require 'tools.terminal',
+  require 'tools.harpoon',
 
   require 'writing.markdown',
   require 'writing.obsidian',
@@ -91,5 +93,16 @@ require('lazy').setup({
 })
 
 require 'base.keys'
+
+vim.filetype.add {
+  extension = {
+    gotmpl = 'gotmpl',
+  },
+  pattern = {
+    ['.*/templates/.*%.tpl'] = 'helm',
+    ['.*/templates/.*%.ya?ml'] = 'helm',
+    ['helmfile.*%.ya?ml'] = 'helm',
+  },
+}
 
 -- vim: ts=2 sts=2 sw=2 et

@@ -7,6 +7,8 @@ return {
     triggers = {
       { '<leader>', mode = { 'n', 'v' } },
       { '<localleader>', mode = { 'n', 'v' } },
+      { 'g', mode = { 'n', 'v' } },
+      { 's', mode = { 'n' } },
       { '[', mode = { 'n', 'v' } },
       { ']', mode = { 'n', 'v' } },
     },

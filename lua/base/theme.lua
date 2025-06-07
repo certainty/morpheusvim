@@ -67,6 +67,9 @@ return {
             mantle = '#000000',
             crust = '#000000',
           },
+          latte = {
+            base = '#eeeeee',
+          },
         },
         default_integrations = true,
         integrations = {
@@ -93,6 +96,9 @@ return {
     init = function()
       vim.cmd.colorscheme 'catppuccin'
       vim.cmd.hi 'Comment gui=none'
+      -- set to light
+      vim.keymap.set('n', '<leader>udl', '<cmd>colorscheme catppuccin-latte<CR>', { desc = 'ColorScheme Light' })
+      vim.keymap.set('n', '<leader>udd', '<cmd>colorscheme catppuccin-mocha<CR>', { desc = 'ColorScheme Dark ' })
     end,
   },
 }

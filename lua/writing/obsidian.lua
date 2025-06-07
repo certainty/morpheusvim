@@ -13,12 +13,8 @@ return {
     vim.keymap.set('n', '<leader>nn', '<cmd>ObsidianQuickSwitch<CR>', { noremap = true, silent = true, desc = 'Quick Switch' })
     vim.keymap.set('n', '<leader>nc', '<cmd>ObsidianNew<CR>', { noremap = true, silent = true, desc = 'New Note' })
     vim.keymap.set('n', '<leader>nC', '<cmd>ObsidianNewFromTemplate<CR>', { noremap = true, silent = true, desc = 'New Note From Template' })
+    vim.keymap.set('n', '<leader>nw', '<cmd>ObsidianWorkspace<CR>', { noremap = true, silent = true, desc = 'Workspace' })
     vim.keymap.set({ 'n', 'v' }, '<leader>nx', '<cmd>ObsidianExtractNote<CR>', { noremap = true, silent = true, desc = 'Extract Note' })
-
-    vim.keymap.set('n', '<leader>nd', '<cmd>ObsidianDailies<CR>', { noremap = true, silent = true, desc = 'Dailies' })
-    vim.keymap.set('n', '<leader>nt', '<cmd>ObsidianToday<CR>', { noremap = true, silent = true, desc = 'Today' })
-    vim.keymap.set('n', '<leader>nT', '<cmd>ObsidianTomorrow<CR>', { noremap = true, silent = true, desc = 'Today' })
-    vim.keymap.set('n', '<leader>ny', '<cmd>ObsidianYesterday<CR>', { noremap = true, silent = true, desc = 'Yesterday' })
 
     vim.keymap.set('n', '<leader>nm', '<cmd>ObsidianTemplate<CR>', { noremap = true, silent = true, desc = 'Template' })
 
@@ -48,12 +44,6 @@ return {
       },
     },
     open_notes_in = 'vsplit',
-
-    daily_notes = {
-      folder = os.date 'Journal/%Y',
-      default_tags = { 'daily' },
-      template = 'Daily.md',
-    },
     ui = {
       enable = false,
       checkboxes = {
@@ -85,8 +75,12 @@ return {
     },
     workspaces = {
       {
-        name = 'shared',
-        path = '~/SharedNotes',
+        name = 'work',
+        path = '~/Data/Notes/Work/',
+      },
+      {
+        name = 'personal',
+        path = '~/Data/Notes/Personal/',
       },
     },
     preferred_link_style = 'wiki',
@@ -162,7 +156,7 @@ return {
     end,
 
     attachments = {
-      img_folder = 'Assets',
+      img_folder = 'assets',
 
       ---@return string
       img_name_func = function()

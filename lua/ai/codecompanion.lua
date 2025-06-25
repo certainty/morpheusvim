@@ -64,10 +64,13 @@ return {
       }
     end,
     init = function()
-      vim.keymap.set({ 'n', 'v' }, '<Localleader>aa', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true })
-      vim.keymap.set('v', '<Localleader>aA', '<cmd>CodeCompanionChat Add<cr>', { noremap = true, silent = true })
-      vim.keymap.set({ 'n', 'v' }, '<Leader>a,', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true })
-      vim.keymap.set({ 'n', 'v' }, '<Leader>aa', '<cmd>CodeCompanionChat Toggle<cr>', { noremap = true, silent = true })
+      vim.keymap.set({ 'n', 'v' }, '<Localleader>ax', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true })
+      vim.keymap.set('v', '<Localleader>aA', '<cmd>CodeCompanionChat Add<cr>', { noremap = true, silent = true, desc = ' Add to CodeCompanionChat' })
+      vim.keymap.set({ 'n', 'v' }, '<Leader>ax', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true, desc = ' CodeCompanionActions' })
+      vim.keymap.set({ 'n', 'v' }, '<Leader>aa', '<cmd>CodeCompanionChat Toggle<cr>', { noremap = true, silent = true, desc = ' Chat toggle' })
+      vim.keymap.set({ 'n', 'v' }, '<Leader>a1', '<cmd>CodeCompanionChat anthropic<cr>', { noremap = true, silent = true, desc = ' Chat with Anthropic' })
+      vim.keymap.set({ 'n', 'v' }, '<Leader>a2', '<cmd>CodeCompanionChat copilot<cr>', { noremap = true, silent = true, desc = ' Chat with Copilot' })
+      vim.keymap.set({ 'n', 'v' }, '<Leader>a3', '<cmd>CodeCompanionChat openai<cr>', { noremap = true, silent = true, desc = ' Chat with OpenAI' })
 
       -- Expand 'cc' into 'CodeCompanion' in the command line
       vim.cmd [[cab cc CodeCompanion]]

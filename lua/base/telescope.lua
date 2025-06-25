@@ -15,6 +15,7 @@ return {
       { 'nvim-telescope/telescope-ui-select.nvim' },
       { 'nvim-telescope/telescope-file-browser.nvim' },
       { 'nvim-telescope/telescope-bibtex.nvim' },
+      { 'nvim-telescope/telescope-dap.nvim' },
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
       { 'stevearc/aerial.nvim' },
       { 'allaman/emoji.nvim' },
@@ -51,6 +52,7 @@ return {
       pcall(require('telescope').load_extension, 'aerial')
       pcall(require('telescope').load_extension, 'emoji')
       pcall(require('telescope').load_extension, 'bibtex')
+      pcall(require('telescope').load_extension 'dap')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'

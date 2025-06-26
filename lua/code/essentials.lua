@@ -32,35 +32,6 @@ return {
     },
   },
   {
-    'stevearc/overseer.nvim',
-    opts = {},
-  },
-  {
-    'zeioth/compiler.nvim',
-    cmd = {
-      'CompilerOpen',
-      'CompilerToggleResults',
-      'CompilerRedo',
-      'CompilerStop',
-    },
-    dependencies = { 'stevearc/overseer.nvim' },
-    opts = {
-      task_list = {
-        direction = 'right',
-        min_height = 25,
-        max_height = 25,
-        default_detail = 1,
-      },
-    },
-    init = function()
-      vim.keymap.set('n', '<leader>rr', '<cmd>CompilerOpen<cr>', { desc = 'Open' })
-      vim.keymap.set('n', '<leader>r.', '<cmd>CompilerRedo<cr>', { desc = 'Redo' })
-      vim.keymap.set('n', '<leader>rs', '<cmd>CompilerStop<cr>', { desc = 'Stop' })
-      vim.keymap.set('n', '<leader>rt', '<cmd>CompilerToggleResults<cr>', { desc = 'Toggle Results' })
-    end,
-  },
-
-  {
     'nvim-neotest/neotest',
     dependencies = {
       'jfpedroza/neotest-elixir',

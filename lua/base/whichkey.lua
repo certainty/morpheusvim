@@ -30,7 +30,6 @@ return {
       { '<leader>d', group = 'Debug' },
       { '<leader>g', group = 'Goto' },
       { '<leader>s', group = 'Search' },
-      { '<leader>r', group = 'Run' },
       { '<leader>m', group = 'Format' },
       { '<leader>u', group = 'Ux' },
       { '<leader>ut', group = 'Toggle' },

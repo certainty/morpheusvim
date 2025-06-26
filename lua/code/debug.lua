@@ -3,9 +3,10 @@ return {
   dependencies = {
     'rcarriga/nvim-dap-ui',
     'nvim-neotest/nvim-nio',
+    'theHamsta/nvim-dap-virtual-text',
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
-    'leoluz/nvim-dap-go',
+    'suketa/nvim-dap-ruby',
   },
   keys = {
     {
@@ -63,33 +64,28 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
 
+    require('nvim-dap-virtual-text').setup {
+      enabled = true,
+      enabled_commands = true,
+      highlight_changed_variables = true,
+      highlight_new_as_changed = false,
+      show_stop_reason = true,
+      commented = false,
+      only_first_definition = true,
+      all_references = false,
+      filter_references_pattern = '<module',
+      virt_text_pos = 'eol',
+      all_frames = false,
+      virt_lines = false,
+      virt_text_win_col = nil,
+    }
+
     require('mason-nvim-dap').setup {
       automatic_installation = true,
       handlers = {},
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'go-debug-adapter',
-      },
-    }
-
-    -- enable scala debugger
-    dap.configurations.scala = {
-      {
-        type = 'scala',
-        request = 'launch',
-        name = 'RunOrTest',
-        metals = {
-          runType = 'runOrTestFile',
-          --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
-        },
-      },
-      {
-        type = 'scala',
-        request = 'launch',
-        name = 'Test Target',
-        metals = {
-          runType = 'testTarget',
-        },
       },
     }
 
@@ -111,22 +107,22 @@ return {
     }
 
     -- Change breakpoint icons
-    -- vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
-    -- vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
-    -- local breakpoint_icons = vim.g.have_nerd_font
-    --     and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
-    --   or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
-    -- for type, icon in pairs(breakpoint_icons) do
-    --   local tp = 'Dap' .. type
-    --   local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
-    --   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
-    -- end
+    vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
+    vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
+    local breakpoint_icons = vim.g.have_nerd_font
+        and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
+      or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
+    for type, icon in pairs(breakpoint_icons) do
+      local tp = 'Dap' .. type
+      local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
+      vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
+    end
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
-    -- Install golang specific config
-    require('dap-go').setup {}
+    -- individual language debug settings where we don't have inidividual modules
+    require('dap-ruby').setup()
   end,
 }

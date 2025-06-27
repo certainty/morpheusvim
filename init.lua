@@ -30,15 +30,40 @@ vim.opt.scrolloff = 10
 -- vim.o.foldlevelstart = 1
 -- vim.opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
 
-vim.diagnostic.config {
-  virtual_text = false,
-  signs = true,
-  underline = true,
-  update_in_insert = false,
-  float = {
-    border = 'rounded',
-  },
-}
+-- global object that we use to configure diagnostics consistently.
+-- some plubins insist on setting it themselves and we overwrite with what we have here
+
+if vim.g.have_nerd_font then
+  local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
+  local diagnostic_signs = {}
+  for type, icon in pairs(signs) do
+    diagnostic_signs[vim.diagnostic.severity[type]] = icon
+  end
+  vim.g.diagnostic_config = {
+    signs = { text = diagnostic_signs },
+    virtual_text = false,
+    underline = true,
+    update_in_insert = false,
+    float = {
+      border = 'rounded',
+    },
+  }
+else
+  vim.g.diagnostic_config = {
+    signs = true,
+    virtual_text = false,
+    underline = true,
+    update_in_insert = false,
+    float = {
+      border = 'rounded',
+    },
+  }
+  vim.diagnostic.config {
+    signs = true,
+    virtual_text = false,
+  }
+end
+vim.diagnostic.config(vim.g.diagnostic_config)
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -69,10 +94,10 @@ require('lazy').setup({
   require 'base.files',
   require 'base.dashboard',
 
+  require 'code.essentials',
   require 'code.treesitter',
   require 'code.debug',
   require 'code.lsp',
-  require 'code.essentials',
   require 'code.format',
   require 'code.lint',
   require 'code.scala',

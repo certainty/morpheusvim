@@ -24,6 +24,7 @@ return {
     },
     spec = {
       { '<leader>a', group = 'AI', mode = { 'n', 'v' } },
+      { '<localleader>a', group = 'AI', mode = { 'n', 'v' } },
       { '<leader>c', group = 'Code', mode = { 'n', 'x' } },
       { '<leader>t', group = 'Test' },
       { '<leader>n', group = 'Notes' },
@@ -37,6 +38,7 @@ return {
       { '<leader>w', group = 'Workspace' },
       { '<leader>1', group = '1Password' },
       { '<leader>!', group = 'Diagnostics' },
+      { '<localleader>', group = 'Mode actions' },
     },
   },
 }

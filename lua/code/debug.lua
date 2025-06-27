@@ -10,6 +10,13 @@ return {
   },
   keys = {
     {
+      '<leader>dd',
+      function()
+        require('dap').continue()
+      end,
+      desc = 'Debug: Start/Continue',
+    },
+    {
       '<leader>dc',
       function()
         require('dap').continue()
@@ -44,6 +51,14 @@ return {
       end,
       desc = 'Debug: Toggle Breakpoint',
     },
+    {
+      '<leader>d,',
+      function()
+        require('dap').toggle_breakpoint()
+      end,
+      desc = 'Debug: Toggle Breakpoint',
+    },
+
     {
       '<leader>dB',
       function()

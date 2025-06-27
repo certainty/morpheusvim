@@ -97,7 +97,8 @@ return {
       }
     end,
     init = function()
-      vim.keymap.set({ 'n', 'v' }, '<Localleader>ax', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true })
+      vim.keymap.set({ 'n', 'v' }, '<Localleader>ax', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true, desc = 'CodeCompanionActions' })
+      vim.keymap.set({ 'n', 'v' }, '<leader>ax', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true, desc = 'CodeCompanionActions' })
       vim.keymap.set('v', '<Localleader>aA', '<cmd>CodeCompanionChat Add<cr>', { noremap = true, silent = true, desc = ' Add to CodeCompanionChat' })
       vim.keymap.set({ 'n', 'v' }, '<Leader>ax', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true, desc = ' CodeCompanionActions' })
       vim.keymap.set({ 'n', 'v' }, '<Leader>aa', '<cmd>CodeCompanionChat Toggle<cr>', { noremap = true, silent = true, desc = ' Chat toggle' })

@@ -5,7 +5,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Quickfix l
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- diagnostics
-vim.keymap.set('n', '<localleader>!', function()
+vim.keymap.set('n', '<leader>!:', function()
   vim.diagnostic.open_float(nil, { focusable = false, scope = 'cursor' })
 end, { desc = 'Show diagnostics at cursor' })
 

@@ -44,22 +44,24 @@ return {
           map('gr', require('telescope.builtin').lsp_references, 'Goto References')
           map('gI', require('telescope.builtin').lsp_implementations, 'Goto Implementation')
 
-          map('<LocalLeader>D', require('telescope.builtin').lsp_type_definitions, 'Type Definition')
-          map('<LocalLeader>ds', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
-          map('<LocalLeader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
-          map('<LocalLeader>c', vim.lsp.buf.rename, 'Rename')
-          map('<LocalLeader>,', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
+          map('<Leader>cD', require('telescope.builtin').lsp_type_definitions, 'Type Definition')
+          map('<Leader>cds', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
+          map('<Leader>cws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
+          map('<Leader>cc', vim.lsp.buf.rename, 'Rename')
+          map('<Leader>c,', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
+          map('<localleader>,', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
+          map('<Leader>c?', vim.lsp.buf.signature_help, 'Signature')
           map('<LocalLeader>?', vim.lsp.buf.signature_help, 'Signature')
-          map('<LocalLeader>x', vim.lsp.codelens.run, 'Run Code Lens')
-          map('<localleader>rr', require('telescope').extensions.refactoring.refactors, 'Refactor', { 'n', 'x' })
+          map('<Leader>cx', vim.lsp.codelens.run, 'Run Code Lens')
+          map('<Leader>crr', require('telescope').extensions.refactoring.refactors, 'Refactor', { 'n', 'x' })
 
-          map('<localleader>rp', function()
+          map('<localleader>crp', function()
             require('refactoring').debug.printf { below = false }
           end, 'Add debug print')
 
-          map('<localleader>rv', require('refactoring').debug.print_var, 'Print var', { 'n', 'x' })
+          map('<localleader>crv', require('refactoring').debug.print_var, 'Print var', { 'n', 'x' })
 
-          map('<localleader>rc', function()
+          map('<localleader>crc', function()
             require('refactoring').debug.cleanup {}
           end, 'Cleanup')
 
@@ -90,21 +92,6 @@ return {
           end
         end,
       })
-
-      -- Change diagnostic symbols in the sign column (gutter)
-      if vim.g.have_nerd_font then
-        local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
-        local diagnostic_signs = {}
-        for type, icon in pairs(signs) do
-          diagnostic_signs[vim.diagnostic.severity[type]] = icon
-        end
-        vim.diagnostic.config { signs = { text = diagnostic_signs }, virtual_text = false }
-      else
-        vim.diagnostic.config {
-          signs = true,
-          virtual_text = false,
-        }
-      end
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())

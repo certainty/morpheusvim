@@ -29,7 +29,7 @@ vim.opt.scrolloff = 10
 -- vim.o.foldenable = true
 -- vim.o.foldlevelstart = 1
 -- vim.opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
---
+
 vim.diagnostic.config {
   virtual_text = false,
   signs = true,

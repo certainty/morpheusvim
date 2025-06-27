@@ -98,7 +98,12 @@ return {
         for type, icon in pairs(signs) do
           diagnostic_signs[vim.diagnostic.severity[type]] = icon
         end
-        vim.diagnostic.config { signs = { text = diagnostic_signs } }
+        vim.diagnostic.config { signs = { text = diagnostic_signs }, virtual_text = false }
+      else
+        vim.diagnostic.config {
+          signs = true,
+          virtual_text = false,
+        }
       end
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()

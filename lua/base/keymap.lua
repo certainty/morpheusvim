@@ -2,7 +2,7 @@ local M = {}
 
 
 local groups = {
-  ai =  { key = 'a', desc = 'AI' },
+     ai =  { key = 'a', desc = 'AI' },
   code = { key = 'c', desc = 'Code' },
   debug = { key = 'd', desc = 'Debug' },
   test = { key = 't', desc = 'Test' },
@@ -21,9 +21,9 @@ local groups = {
 }
 
 --- Internal helper to create mapper
----@param mode string|table
----@param prefix string
----@param opts? table
+--- @param mode string|table
+--- @param prefix string
+--- @param opts? table''
 local function binder(mode, prefix, opts)
   opts = opts or {}
   return function(key, command, desc)

@@ -18,13 +18,6 @@ return {
     'folke/trouble.nvim',
     opts = {}, -- for default options, refer to the configuration section for custom setup.
     cmd = 'Trouble',
-    keys = {
-      {
-        '<leader>!.',
-        '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
-        desc = 'Buffer Diagnostics (Trouble)',
-      },
-    },
   },
   {
     'nvim-neotest/neotest',
@@ -38,9 +31,11 @@ return {
       'zidhuss/neotest-minitest',
     },
     init = function()
-      vim.keymap.set('n', '<leader>tt', '<cmd>lua require("neotest").run.run()<cr>', { desc = 'Run' })
-      vim.keymap.set('n', '<leader>t.', '<cmd>lua require("neotest").run.run_last()<cr>', { desc = 'Run Last' })
-      vim.keymap.set('n', '<leader>ts', '<cmd>lua require("neotest").summary.toggle()<cr>', { desc = 'Summary' })
+      local test_map = require('base.keymap').group('n', 'test')
+      test_map('t', '<cmd>lua require("neotest").run.run()<cr>', 'Run')
+      test_map('.', '<cmd>lua require("neotest").run.run_last()<cr>', 'Run Last')
+      test_map('s', '<cmd>lua require("neotest").summary.toggle()<cr>', 'Summary')
+
       vim.keymap.set('n', '[n', "<cmd>lua require('neotest').jump.prev({ status = 'failed'})<CR>", { desc = 'Next failed' })
       vim.keymap.set('n', ']n', "<cmd>lua require('neotest').jump.next({ status = 'failed'})<CR>", { desc = 'Prev failed' })
     end,

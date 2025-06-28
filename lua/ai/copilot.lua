@@ -31,8 +31,10 @@ return {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
     init = function()
-      vim.keymap.set('n', '<leader>ac', '<cmd>Copilot enable<cr>', { desc = ' Enable Copilot' })
-      vim.keymap.set('n', '<leader>aC', '<cmd>Copilot disable<cr>', { desc = ' Disable Copilot' })
+      local ai_map = require('base.keymap').group('n', 'ai')
+
+      ai_map('c', '<cmd>Copilot enable<cr>', ' Enable Copilot')
+      ai_map('C', '<cmd>Copilot disable<cr>', ' Disable Copilot')
     end,
     config = function()
       require('copilot').setup {

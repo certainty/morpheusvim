@@ -9,6 +9,15 @@ return {
     config = function()
       require('codecompanion').setup {
         adapters = {
+          copilot = function()
+            return require('codecompanion.adapters').extend('copilot', {
+              schema = {
+                model = {
+                  default = vim.g.morpheus.copilot.chat_model,
+                },
+              },
+            })
+          end,
           openai = function()
             return require('codecompanion.adapters').extend('openai', {
               env = {

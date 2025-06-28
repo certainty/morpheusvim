@@ -38,6 +38,7 @@ return {
       require('copilot').setup {
         suggestion = { enabled = true },
         panel = { enabled = true },
+        copilot_model = vim.g.morpheus.copilot.completion_model,
       }
     end,
   },

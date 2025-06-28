@@ -58,36 +58,39 @@ return {
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = 'Files' })
 
-      vim.keymap.set('n', '<leader>F', function()
-        builtin.find_files { cwd = vim.fn.expand '%:p:h' }
-      end, { desc = 'File relative to buffer' })
+      local goto_map = require('base.keymap').group('n', 'goto')
+      local search_map = require('base.keymap').group('n', 'search')
+      local diagnostics_map = require('base.keymap').group('n', 'diagnostics')
+      local help_map = require('base.keymap').group('n', 'help')
 
-      vim.keymap.set('n', '<leader>f', builtin.git_files, { desc = 'Git Files' })
-      vim.keymap.set('n', '<leader>gf', function()
-        builtin.find_files { hidden = true }
-      end, { desc = 'Files (hidden=true)' })
-      vim.keymap.set('n', '<leader>gd', builtin.diagnostics, { desc = 'Diagnostics' })
-      vim.keymap.set('n', '<leader>go', builtin.oldfiles, { desc = 'Recent Files ("o" for old)' })
-      vim.keymap.set('n', '<leader>gb', builtin.buffers, { desc = 'Buffers buffers' })
-      vim.keymap.set('n', '<leader>gi', require('telescope').extensions.aerial.aerial, { desc = 'aerial' })
+      goto_map('F', function()
+        builtin.find_files { cwd = vim.fn.expand '%:p:h', hidden = true }
+      end, 'File relative to buffer (hidden=true)')
+      goto_map('f', builtin.git_files, 'Git Files')
 
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Help' })
-      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Keymaps' })
+      goto_map('o', builtin.oldfiles, 'Recent Files ("o" for old)')
+      goto_map('b', builtin.buffers, 'Buffers buffers')
+      goto_map('i', require('telescope').extensions.aerial.aerial, 'aerial')
+
+      help_map('h', builtin.help_tags, 'Help tags')
+      help_map('k', builtin.keymaps, 'Keymaps')
+
       vim.keymap.set('n', '<leader>st', builtin.builtin, { desc = 'Select Telescope' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = 'Word' })
-      vim.keymap.set('n', '<leader>ss', builtin.live_grep, { desc = 'Grep' })
-      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Resume' })
 
-      vim.keymap.set('n', '<leader>gvb', builtin.git_branches, { desc = 'Git branches' })
-      vim.keymap.set('n', '<leader>gvc', builtin.git_commits, { desc = 'Git commits' })
+      search_map('w', builtin.grep_string, 'Word')
+      search_map('s', builtin.live_grep, 'Grep')
+      search_map('r', builtin.resume, 'Resume')
 
-      vim.keymap.set('n', '<leader>x', builtin.commands, { desc = 'Commands' })
-      vim.keymap.set('n', '<leader>ne', require('telescope').extensions.emoji.emoji, { desc = 'Emoji' })
+      diagnostics_map('!', builtin.diagnostics, 'Diagnostics')
 
-      -- Shortcut for searching your Neovim configuration files
-      vim.keymap.set('n', '<leader>gn', function()
+      goto_map('vb', builtin.git_branches, 'Git branches')
+      goto_map('vc', builtin.git_commits, 'Git commits')
+
+      help_map('c', builtin.commands, 'Commands')
+
+      goto_map('n', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = 'Neovim files' })
+      end, 'Neovim data files')
     end,
   },
 }

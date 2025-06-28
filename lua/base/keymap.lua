@@ -7,13 +7,14 @@ local groups = {
   debug = '<leader>d',
   test = '<leader>t',
   notes = '<leader>n',
+  help = '<leader>h',
   goto = '<leader>g',
   search = '<leader>s',
   ux = '<leader>u',
   format = '<leader>m',
   vcs = '<leader>v',
   workspace = '<leader>w',
-  diganostics = '<leader>!',
+  diagnostics = '<leader>!',
 
 
   mode_local = '<localleader>',
@@ -41,9 +42,9 @@ local function binder(mode, prefix, opts)
 end
 
 --- Create a global group under `<leader>x`
----@param name string
-function M.group(mode, name)
-  return binder(mode or 'n', groups[name] or name)
+---@param name_or_prefix string
+function M.group(mode, name_or_prefix)
+  return binder(mode or 'n', groups[name_or_prefix] or name_or_prefix)
 end
 
 --- Buffer-local group under `<localleader>`
@@ -66,6 +67,7 @@ function M.whichkey_spec()
     { groups.code, group = 'Code', mode = { 'n', 'x', 'v' } },
     { groups.debug, group = 'Debug', mode = { 'n', 'v' } },
     { groups.test, group = 'Test', mode = { 'n', 'v'} },
+    { groups.help, group = 'Help', mode = { 'n', 'v' } },
     { groups.notes, group = 'Notes' },
     { groups.goto, group = 'Goto', mode = { 'n', 'v' } },
     { groups.search, group = 'Search', mode = { 'n', 'v' } },

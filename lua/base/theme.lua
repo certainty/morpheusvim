@@ -97,8 +97,9 @@ return {
       vim.cmd.colorscheme 'catppuccin'
       vim.cmd.hi 'Comment gui=none'
       -- set to light
-      vim.keymap.set('n', '<leader>udl', '<cmd>colorscheme catppuccin-latte<CR>', { desc = 'ColorScheme Light' })
-      vim.keymap.set('n', '<leader>udd', '<cmd>colorscheme catppuccin-mocha<CR>', { desc = 'ColorScheme Dark ' })
+      local ux_map = require('base.keymap').group('n', 'ux')
+      ux_map('dl', '<cmd>colorscheme catppuccin-latte<CR>', 'ColorScheme Light')
+      ux_map('dd', '<cmd>colorscheme catppuccin-mocha<CR>', 'ColorScheme Dark')
     end,
   },
 }

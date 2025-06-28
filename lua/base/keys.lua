@@ -5,9 +5,11 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Quickfix l
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- diagnostics
-vim.keymap.set('n', '<leader>!:', function()
+local at_point = require('base.keymap').at_point 'n'
+
+at_point('!', function()
   vim.diagnostic.open_float(nil, { focusable = false, scope = 'cursor' })
-end, { desc = 'Show diagnostics at cursor' })
+end, 'Show diagnostics at line')
 
 -- Term
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })

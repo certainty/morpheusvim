@@ -23,17 +23,34 @@ return {
         })
         :find()
     end
-    vim.keymap.set('n', '<leader>ga', function()
+    local goto_map = require('base.keymap').group('n', 'goto')
+    local local_goto_map = require('base.keymap').group('n', 'goto')
+
+    goto_map('a', function()
       harpoon:list():add()
-    end, { desc = 'Add file to harpoon list' })
-    vim.keymap.set('n', '<leader>gg', function()
+    end, 'Add file to harpoon list')
+    local_goto_map('a', function()
+      harpoon:list():add()
+    end, 'Add file to harpoon list')
+
+    goto_map('g', function()
       toggle_telescope(harpoon:list())
-    end, { desc = 'Open harpoon window' })
+    end, 'Open harpoon window')
+
     vim.keymap.set('n', '<C-M-P>', function()
       harpoon:list():prev()
     end, { desc = 'Select previous in harpoon list' })
+
+    vim.keymap.set('n', '[h', function()
+      harpoon:list():prev()
+    end, { desc = 'Harpoon prev' })
+
     vim.keymap.set('n', '<C-M-N>', function()
       harpoon:list():next()
     end, { desc = 'Select next in harpoon list' })
+
+    vim.keymap.set('n', ']h', function()
+      harpoon:list():next()
+    end, { desc = 'Harpoon next' })
   end,
 }

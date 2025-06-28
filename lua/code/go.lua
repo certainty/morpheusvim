@@ -25,43 +25,20 @@ return {
     }
     vim.api.nvim_create_autocmd('FileType', {
       pattern = 'go',
-      callback = function()
-        vim.keymap.set('n', '<localleader>f', '<cmd>GoFmt<CR>', {
-          desc = 'Format Go File',
-          buffer = 0,
-        })
-        vim.keymap.set('n', '<localleader>t', '<cmd>GoTest<CR>', {
-          desc = 'Run Go Tests',
-          buffer = 0,
-        })
-        vim.keymap.set('n', '<localleader>g', '<cmd>GoDef<CR>', {
-          desc = 'Go Definition',
-          buffer = 0,
-        })
-        vim.keymap.set('n', '<localleader>r', '<cmd>GoRun<CR>', {
-          desc = 'Run Go File',
-          buffer = 0,
-        })
-        vim.keymap.set('n', '<localleader>i', '<cmd>GoInfo<CR>', {
-          desc = 'Go Info',
-          buffer = 0,
-        })
-        vim.keymap.set('n', '<localleader>c', '<cmd>GoCoverageToggle<CR>', {
-          desc = 'Toggle Go Coverage',
-          buffer = 0,
-        })
-        vim.keymap.set('n', '<localleader>t', '<cmd>GoModTidy<CR>', {
-          desc = 'Go Mod Tidy',
-          buffer = 0,
-        })
-        vim.keymap.set('n', '<localleader>m', '<cmd>GoIfErr<CR>', {
-          desc = 'Insert IfErr',
-          buffer = 0,
-        })
-        vim.keymap.set('n', '<localleader>r', '<cmd>GoRun<CR>', {
-          desc = 'Run Go File',
-          buffer = 0,
-        })
+      callback = function(event)
+        local local_format_map = require('base.keymap').local_group({ 'n', 'v' }, event.buf, 'format')
+        local_format_map('f', '<cmd>GoFmt<CR>', 'Format Go File')
+
+        local local_go_map = require('base.keymap').local_group({ 'n', 'v' }, event.buf, ':')
+
+        local_go_map('t', '<cmd>GoTest<CR>', 'Run Go Tests')
+        local_go_map('r', '<cmd>GoRun<CR>', 'Run Go File')
+        local_go_map('i', '<cmd>GoInfo<CR>', 'Go Info')
+        local_go_map('c', '<cmd>GoCoverageToggle<CR>', 'Toggle Go Coverage')
+        local_go_map('t', '<cmd>GoModTidy<CR>', 'Go Mod Tidy')
+
+        local go_at_point = require('base.keymap').at_point({ 'n', 'v' }, event.buf)
+        go_at_point('e', '<cmd>GoIfErr<CR>', 'Insert IfErr')
       end,
     })
   end,

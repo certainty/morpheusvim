@@ -2,7 +2,7 @@ local M = {}
 
 
 local groups = {
-     ai =  { key = 'a', desc = 'AI' },
+  ai =  { key = 'a', desc = 'AI' },
   code = { key = 'c', desc = 'Code' },
   debug = { key = 'd', desc = 'Debug' },
   test = { key = 't', desc = 'Test' },
@@ -15,6 +15,7 @@ local groups = {
   vcs = { key = 'v', desc = 'Vcs' },
   workspace = { key = 'w', desc = 'Workspace' },
   diagnostics = { key = '!', desc = 'Diagnostics' },
+  refactoring = { key = 'r', desc = 'Refactor' },
 
   mode_local = { key = '<localleader>', desc = 'Mode actions' },
   at_point = { key = '<localleader>,', desc = 'At point' },
@@ -71,14 +72,18 @@ end
 
 --- At-point group under `<localleader>,`
 --- @param mode string|table specifying the mode(s) for the keymap
-function M.at_point(mode, name_or_prefix)
+function M.at_point(mode, name_or_prefix, bufnr)
   local group = groups[name_or_prefix]
   local effective_prefix = '<localleader>,'
   if group then
     effective_prefix = effective_prefix .. group.key
   end
+  local opts = {}
+  if bufnr then
+    opts.buffer = bufnr
+  end
 
-  return binder(mode or { 'n', 'v' }, effective_prefix)
+  return binder(mode or { 'n', 'v' }, effective_prefix, opts)
 end
 
 function M.whichkey_spec()

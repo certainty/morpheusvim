@@ -25,11 +25,12 @@ return {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
-      { 'williamboman/mason.nvim', opts = {} },
-      'williamboman/mason-lspconfig.nvim',
+      { 'mason-org/mason.nvim', opts = {} },
+      'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
       'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
     },
     config = function()
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -37,35 +38,55 @@ return {
         callback = function(event)
           local map = function(keys, func, desc, mode)
             mode = mode or 'n'
-            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
           end
 
-          map('gd', require('telescope.builtin').lsp_definitions, 'Goto Definition')
-          map('gr', require('telescope.builtin').lsp_references, 'Goto References')
-          map('gI', require('telescope.builtin').lsp_implementations, 'Goto Implementation')
+          local telescope = require 'telescope.builtin'
+          local at_point_goto_map = require('base.keymap').at_point('n', 'goto', event.buf)
 
-          map('<Leader>cD', require('telescope.builtin').lsp_type_definitions, 'Type Definition')
-          map('<Leader>cds', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
-          map('<Leader>cws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
-          map('<Leader>cc', vim.lsp.buf.rename, 'Rename')
-          map('<Leader>c,', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
-          map('<localleader>,', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
-          map('<Leader>c?', vim.lsp.buf.signature_help, 'Signature')
-          map('<LocalLeader>?', vim.lsp.buf.signature_help, 'Signature')
-          map('<Leader>cx', vim.lsp.codelens.run, 'Run Code Lens')
-          map('<Leader>crr', require('telescope').extensions.refactoring.refactors, 'Refactor', { 'n', 'x' })
+          map('gd', telescope.lsp_definitions, 'Goto Definition')
+          at_point_goto_map('d', telescope.lsp_definitions, 'Goto Definition at Point')
 
-          map('<localleader>crp', function()
-            require('refactoring').debug.printf { below = false }
-          end, 'Add debug print')
-
-          map('<localleader>crv', require('refactoring').debug.print_var, 'Print var', { 'n', 'x' })
-
-          map('<localleader>crc', function()
-            require('refactoring').debug.cleanup {}
-          end, 'Cleanup')
+          map('g<', telescope.lsp_references, 'Goto References')
+          at_point_goto_map('r', telescope.lsp_references, 'Goto References at Point')
 
           map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
+          at_point_goto_map('D', vim.lsp.buf.declaration, 'Goto Declaration at Point')
+
+          map('gI', telescope.lsp_implementations, 'Goto Implementation')
+          at_point_goto_map('I', telescope.lsp_implementations, 'Goto Implementation at Point')
+
+          local local_map = require('base.keymap').local_group('n', event.buf, 'code')
+          local at_point_map = require('base.keymap').at_point('n', 'code', event.buf)
+
+          at_point_map('k', vim.lsp.buf.hover, 'Hover')
+          at_point_map('D', telescope.lsp_type_definitions, 'Type Definition')
+
+          local_map('S', telescope.lsp_document_symbols, 'Document Symbols')
+          local_map('W', telescope.lsp_dynamic_workspace_symbols, 'Workspace Symbols')
+
+          at_point_map('c', vim.lsp.buf.rename, 'Rename')
+          at_point_map('a', vim.lsp.buf.code_action, 'Code Action')
+          at_point_map('?', vim.lsp.buf.signature_help, 'Signature Help')
+          at_point_map('x', vim.lsp.codelens.run, 'Run Code Lens')
+          local_map('x', vim.lsp.codelens.run, 'Run Code Lens')
+
+          local refactoring = require 'refactoring'
+          local refactoring_map = require('base.keymap').local_group({ 'n', 'x' }, event.buf, 'r')
+          local refactoring_at_point_map = require('base.keymap').at_point({ 'n', 'x' }, 'r', event.buf)
+
+          refactoring_at_point_map('r', require('telescope').extensions.refactoring.refactors, 'Refactor')
+          refactoring_map('r', require('telescope').extensions.refactoring.refactors, 'Refactor')
+
+          refactoring_at_point_map('p', function()
+            refactoring.debug.printf { below = false }
+          end, 'Add debug print')
+
+          refactoring_at_point_map('v', refactoring.debug.print_var, 'Print var')
+
+          refactoring_at_point_map('c', function()
+            refactoring.debug.cleanup {}
+          end, 'Cleanup')
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then

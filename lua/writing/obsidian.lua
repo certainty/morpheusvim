@@ -10,19 +10,25 @@ return {
   end,
 
   init = function()
-    vim.keymap.set('n', '<leader>nn', '<cmd>ObsidianQuickSwitch<CR>', { noremap = true, silent = true, desc = 'Quick Switch' })
-    vim.keymap.set('n', '<leader>nc', '<cmd>ObsidianNew<CR>', { noremap = true, silent = true, desc = 'New Note' })
-    vim.keymap.set('n', '<leader>nC', '<cmd>ObsidianNewFromTemplate<CR>', { noremap = true, silent = true, desc = 'New Note From Template' })
-    vim.keymap.set('n', '<leader>nw', '<cmd>ObsidianWorkspace<CR>', { noremap = true, silent = true, desc = 'Workspace' })
-    vim.keymap.set({ 'n', 'v' }, '<leader>nx', '<cmd>ObsidianExtractNote<CR>', { noremap = true, silent = true, desc = 'Extract Note' })
+    local notes_map = require('base.keymap').group('n', 'notes')
+    local local_notes_map = require('base.keymap').local_group('n', 0, 'notes')
+    local at_point = require('base.keymap').at_point({ 'n', 'v' }, 'notes', 0)
 
-    vim.keymap.set('n', '<leader>nm', '<cmd>ObsidianTemplate<CR>', { noremap = true, silent = true, desc = 'Template' })
+    notes_map('n', '<cmd>ObsidianQuickSwitch<CR>', 'Quick Switch')
+    notes_map('c', '<cmd>ObsidianNew<CR>', 'New Note')
+    notes_map('C', '<cmd>ObsidianNewFromTemplate<CR>', 'New Note From Template')
+    notes_map('w', '<cmd>ObsidianWorkspace<CR>', 'Workspace')
 
-    vim.keymap.set({ 'n', 'v' }, '<leader>sn', '<cmd>ObsidianSearch<CR>', { noremap = true, silent = true, desc = 'Notes' })
-    vim.keymap.set({ 'n', 'v' }, '<leader>ns', '<cmd>ObsidianSearch<CR>', { noremap = true, silent = true, desc = 'Search' })
+    at_point('x', '<cmd>ObsidianExtractNote<CR>', 'Extract Note')
 
-    vim.keymap.set('n', '<leader>n<', '<cmd>ObsidianBacklinks<CR>', { noremap = true, silent = true, desc = 'Backlinks' })
-    vim.keymap.set('n', '<leader>n>', '<cmd>ObsidianLinks<CR>', { noremap = true, silent = true, desc = 'Links' })
+    notes_map('t', '<cmd>ObsidianTemplate<CR>', 'Template')
+    notes_map('s', '<cmd>ObsidianSearch<CR>', 'Search')
+
+    notes_map('<', '<cmd>ObsidianBacklinks<CR>', 'Backlinks')
+    local_notes_map('<', '<cmd>ObsidianBacklinks<CR>', 'Backlinks')
+
+    notes_map('>', '<cmd>ObsidianLinks<CR>', 'Links')
+    local_notes_map('>', '<cmd>ObsidianLinks<CR>', 'Links')
   end,
 
   opts = {
@@ -101,6 +107,10 @@ return {
         action = '<cmd>ObsidianFollowLink<cr>',
         opts = { buffer = true, desc = 'Follow link' },
       },
+      ['<localleader>,l'] = {
+        action = '<cmd>ObsidianFollowLink<cr>',
+        opts = { buffer = true, desc = 'Follow link' },
+      },
       ['<localleader>t'] = {
         action = '<cmd>ObsidianTemplate<cr>',
         opts = { buffer = true, desc = 'Template' },
@@ -117,13 +127,17 @@ return {
         action = '<cmd>ObsidianPasteImg<cr>',
         opts = { buffer = true, desc = 'Paste image' },
       },
-      ['<localleader>,'] = {
+      ['<localleader>@'] = {
         action = '<cmd>ObsidianTags<cr>',
         opts = { buffer = true, desc = 'Tags' },
       },
       ['<localleader><'] = {
         action = '<cmd>ObsidianBacklinks<cr>',
         opts = { buffer = true, desc = 'Backlinks' },
+      },
+      ['<localleader>>'] = {
+        action = '<cmd>Obsidianlinks<cr>',
+        opts = { buffer = true, desc = 'Links' },
       },
     },
 

@@ -7,24 +7,11 @@ return {
   init = function()
     vim.api.nvim_create_autocmd('FileType', {
       pattern = 'ruby',
-      callback = function()
-        vim.keymap.set('n', '<Localleader>X', ":lua require('ror.commands').list_commands()<CR>", { silent = true, desc = 'List Rails Commands' })
-        vim.keymap.set('n', '<localleader>f', '<cmd>RorFormat<CR>', {
-          desc = 'Format Ruby File',
-          buffer = 0,
-        })
-        vim.keymap.set('n', '<localleader>r', '<cmd>RorRun<CR>', {
-          desc = 'Run Ruby File',
-          buffer = 0,
-        })
-        vim.keymap.set('n', '<localleader>t', '<cmd>RorTest<CR>', {
-          desc = 'Run Ruby Tests',
-          buffer = 0,
-        })
-        vim.keymap.set('n', '<localleader>d', '<cmd>RorDebug<CR>', {
-          desc = 'Debug Ruby File',
-          buffer = 0,
-        })
+      callback = function(event)
+        local ror_map = require('base.keymap').local_group('n', event.buf, ':')
+
+        ror_map(':', ":lua require('ror.commands').list_commands()<CR>", 'List Rails Commands')
+        ror_map('r', '<cmd>RorRun<CR>', 'Run Ruby File')
       end,
     })
   end,

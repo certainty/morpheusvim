@@ -46,14 +46,10 @@ return {
         pattern = 'markdown',
         group = markdown_group,
         callback = function(event)
-          vim.keymap.set('n', '<localleader>p', '<cmd>MarkdownPreviewToggle<CR>', {
-            buffer = event.buf,
-            desc = 'Toggle Markdown Preview',
-          })
-          vim.keymap.set('n', '<localleader>P', '<cmd>MarkdownPreview<CR>', {
-            buffer = event.buf,
-            desc = 'Markdown Preview',
-          })
+          local local_map = require('base.keymap').local_group({ 'n', 'v' }, event.buf, ':')
+
+          local_map('p', '<cmd>MarkdownPreviewToggle<CR>', 'Toggle Markdown Preview')
+          local_map('P', '<cmd>MarkdownPreview<CR>', 'Markdown Preview')
         end,
       })
     end,

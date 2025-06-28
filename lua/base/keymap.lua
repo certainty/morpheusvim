@@ -77,6 +77,10 @@ function M.at_point(mode, name_or_prefix, bufnr)
   local effective_prefix = '<localleader>,'
   if group then
     effective_prefix = effective_prefix .. group.key
+  else
+    if name_or_prefix then
+      effective_prefix = effective_prefix .. name_or_prefix
+    end
   end
   local opts = {}
   if bufnr then

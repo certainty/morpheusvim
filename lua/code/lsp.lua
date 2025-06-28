@@ -57,26 +57,27 @@ return {
           at_point_goto_map('I', telescope.lsp_implementations, 'Goto Implementation at Point')
 
           local local_map = require('base.keymap').local_group('n', event.buf, 'code')
-          local at_point_map = require('base.keymap').at_point('n', 'code', event.buf)
+          local at_point_code_map = require('base.keymap').at_point('n', 'code', event.buf)
+          local at_point_map = require('base.keymap').at_point('n', nil, event.buf)
 
-          at_point_map('k', vim.lsp.buf.hover, 'Hover')
-          at_point_map('D', telescope.lsp_type_definitions, 'Type Definition')
+          at_point_code_map('k', vim.lsp.buf.hover, 'Hover')
+          at_point_code_map('D', telescope.lsp_type_definitions, 'Type Definition')
 
           local_map('S', telescope.lsp_document_symbols, 'Document Symbols')
           local_map('W', telescope.lsp_dynamic_workspace_symbols, 'Workspace Symbols')
 
-          at_point_map('c', vim.lsp.buf.rename, 'Rename')
-          at_point_map('a', vim.lsp.buf.code_action, 'Code Action')
+          at_point_code_map('c', vim.lsp.buf.rename, 'Rename')
+          at_point_map(',', vim.lsp.buf.code_action, 'Code Action')
+          at_point_map('.', vim.lsp.buf.code_action, 'Code Action')
+
           at_point_map('?', vim.lsp.buf.signature_help, 'Signature Help')
-          at_point_map('x', vim.lsp.codelens.run, 'Run Code Lens')
+          at_point_code_map('x', vim.lsp.codelens.run, 'Run Code Lens')
           local_map('x', vim.lsp.codelens.run, 'Run Code Lens')
 
           local refactoring = require 'refactoring'
-          local refactoring_map = require('base.keymap').local_group({ 'n', 'x' }, event.buf, 'r')
-          local refactoring_at_point_map = require('base.keymap').at_point({ 'n', 'x' }, 'r', event.buf)
+          local refactoring_at_point_map = require('base.keymap').at_point({ 'n', 'x', 'v' }, 'r', event.buf)
 
           refactoring_at_point_map('r', require('telescope').extensions.refactoring.refactors, 'Refactor')
-          refactoring_map('r', require('telescope').extensions.refactoring.refactors, 'Refactor')
 
           refactoring_at_point_map('p', function()
             refactoring.debug.printf { below = false }

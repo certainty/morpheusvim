@@ -5,7 +5,8 @@ vim.g.have_nerd_font = true
 -- morpheus specific settings
 vim.g.morpheus = {
   copilot = {
-    completion_model = 'gemini-2.0-flash-001',
+    -- completion_model = 'gemini-2.0-flash-001',
+    completion_model = 'gpt-4.1',
     chat_model = 'claude-3.7-sonnet',
   },
 }

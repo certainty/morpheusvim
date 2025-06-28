@@ -14,7 +14,9 @@ return {
     opts = {},
     cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
     init = function()
-      vim.keymap.set({ 'v', 'n' }, '<Leader>%', '<cmd>MCstart<cr>', { noremap = true, silent = true, desc = 'Start multicursor' })
+      local cursor_map = require('base.keymap').at_point { 'v', 'n' }
+
+      cursor_map('%', '<cmd>MCstart</cr>', 'Start multicursor')
     end,
     config = function()
       require('multicursors').setup {

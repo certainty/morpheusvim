@@ -106,16 +106,18 @@ return {
       }
     end,
     init = function()
-      vim.keymap.set({ 'n', 'v' }, '<Localleader>ax', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true, desc = 'CodeCompanionActions' })
-      vim.keymap.set({ 'n', 'v' }, '<leader>ax', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true, desc = 'CodeCompanionActions' })
-      vim.keymap.set('v', '<Localleader>aA', '<cmd>CodeCompanionChat Add<cr>', { noremap = true, silent = true, desc = ' Add to CodeCompanionChat' })
-      vim.keymap.set({ 'n', 'v' }, '<Leader>ax', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true, desc = ' CodeCompanionActions' })
-      vim.keymap.set({ 'n', 'v' }, '<Leader>aa', '<cmd>CodeCompanionChat Toggle<cr>', { noremap = true, silent = true, desc = ' Chat toggle' })
-      vim.keymap.set({ 'n', 'v' }, '<Leader>a1', '<cmd>CodeCompanionChat anthropic<cr>', { noremap = true, silent = true, desc = ' Chat with Anthropic' })
-      vim.keymap.set({ 'n', 'v' }, '<Leader>a2', '<cmd>CodeCompanionChat copilot<cr>', { noremap = true, silent = true, desc = ' Chat with Copilot' })
-      vim.keymap.set({ 'n', 'v' }, '<Leader>a3', '<cmd>CodeCompanionChat openai<cr>', { noremap = true, silent = true, desc = ' Chat with OpenAI' })
-      vim.keymap.set({ 'n', 'v' }, '<Leader>a4', '<cmd>CodeCompanionChat gemini<cr>', { noremap = true, silent = true, desc = ' Chat with Gemini-Flash' })
-      vim.keymap.set({ 'n', 'v' }, '<Leader>a5', '<cmd>CodeCompanionChat gemini-pro<cr>', { noremap = true, silent = true, desc = ' Chat with Gemini-Pro' })
+      local ai_map = require('base.keymap').group({ 'n', 'v' }, 'ai')
+      local ai_at_point = require('base.keymap').at_point({ 'n', 'v' }, 'ai')
+
+      ai_at_point('a', '<cmd>CodeCompanionActions<cr>', ' CodeCompanionActions')
+      ai_map('a', '<cmd>CodeCompanionActions<cr>', ' CodeCompanionActions')
+      ai_map('A', '<cmd>CodeCompanionChat Add<cr>', ' Add to CodeCompanionChat')
+      ai_map('a', '<cmd>CodeCompanionChat Toggle<cr>', ' Toggle CodeCompanionChat')
+      ai_map('1', '<cmd>CodeCompanionChat anthropic<cr>', ' Chat with Anthropic')
+      ai_map('2', '<cmd>CodeCompanionChat copilot<cr>', ' Chat with Copilot')
+      ai_map('3', '<cmd>CodeCompanionChat openai<cr>', ' Chat with OpenAI')
+      ai_map('4', '<cmd>CodeCompanionChat gemini<cr>', ' Chat with Gemini-Flash')
+      ai_map('5', '<cmd>CodeCompanionChat gemini-pro<cr>', ' Chat with Gemini-Pro')
 
       -- Expand 'cc' into 'CodeCompanion' in the command line
       vim.cmd [[cab cc CodeCompanion]]

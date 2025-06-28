@@ -1,5 +1,6 @@
-return {
+local enable_linting = vim.g.morpheus.lint or true
 
+return {
   { -- Linting
     'mfussenegger/nvim-lint',
     event = { 'BufReadPre', 'BufNewFile' },
@@ -43,6 +44,11 @@ return {
 
       -- Create autocommand which carries out the actual linting
       -- on the specified events.
+      local code_map = require('base.keymap').group('n', 'code')
+      code_map('l', function()
+        enable_linting = not enable_linting
+        vim.notify('Linting is now ' .. (enable_linting and 'enabled' or 'disabled'), vim.log.levels.INFO)
+      end, 'Toggle Linting')
       local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
       vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
         group = lint_augroup,
@@ -50,7 +56,7 @@ return {
           -- Only run the linter in buffers that you can modify in order to
           -- avoid superfluous noise, notably within the handy LSP pop-ups that
           -- describe the hovered symbol using Markdown.
-          if vim.opt_local.modifiable:get() then
+          if vim.opt_local.modifiable:get() and enable_linting then
             lint.try_lint()
           end
         end,

@@ -9,6 +9,7 @@ vim.g.morpheus = {
     completion_model = 'gpt-4.1',
     chat_model = 'claude-3.7-sonnet',
   },
+  lint = true,
 }
 
 vim.opt.number = true

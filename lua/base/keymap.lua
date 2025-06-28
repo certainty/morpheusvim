@@ -1,24 +1,23 @@
 local M = {}
 
--- Common top-level groups
+
 local groups = {
-  ai = '<leader>a',
-  code = '<leader>c',
-  debug = '<leader>d',
-  test = '<leader>t',
-  notes = '<leader>n',
-  help = '<leader>h',
-  goto = '<leader>g',
-  search = '<leader>s',
-  ux = '<leader>u',
-  format = '<leader>m',
-  vcs = '<leader>v',
-  workspace = '<leader>w',
-  diagnostics = '<leader>!',
+  ai =  { key = 'a', desc = 'AI' },
+  code = { key = 'c', desc = 'Code' },
+  debug = { key = 'd', desc = 'Debug' },
+  test = { key = 't', desc = 'Test' },
+  notes = { key = 'n', desc = 'Notes' },
+  help = { key = 'h', desc = 'Help' },
+  goto = { key = 'g', desc = 'Goto' },
+  search = { key = 's', desc = 'Search' },
+  ux = { key = 'u', desc = 'Ux' },
+  format = { key = 'm', desc = 'Format' },
+  vcs = { key = 'v', desc = 'Vcs' },
+  workspace = { key = 'w', desc = 'Workspace' },
+  diagnostics = { key = '!', desc = 'Diagnostics' },
 
-
-  mode_local = '<localleader>',
-  at_point = '<localleader>,',
+  mode_local = { key = '<localleader>', desc = 'Mode actions' },
+  at_point = { key = '<localleader>,', desc = 'At point' },
 }
 
 --- Internal helper to create mapper
@@ -44,41 +43,53 @@ end
 --- Create a global group under `<leader>x`
 ---@param name_or_prefix string
 function M.group(mode, name_or_prefix)
-  return binder(mode or 'n', groups[name_or_prefix] or name_or_prefix)
+  local group = groups[name_or_prefix]
+  local effective_prefix = '<leader>'
+  if group then
+    effective_prefix = effective_prefix .. group.key
+  else
+    effective_prefix = effective_prefix .. name_or_prefix
+  end
+
+  return binder(mode or 'n', effective_prefix)
 end
 
 --- Buffer-local group under `<localleader>`
 ---@param mode string|table
 ---@param bufnr number
----@param name string
-function M.local_group(mode, bufnr, name)
-  return binder(mode or 'n', groups[name] or name, { buffer = bufnr })
+---@param name_or_prefix string
+function M.local_group(mode, bufnr, name_or_prefix)
+  local group = groups[name_or_prefix]
+  local effective_prefix = '<localleader>'
+  if group then
+    effective_prefix = effective_prefix .. group.key
+  else
+    effective_prefix = effective_prefix .. name_or_prefix
+  end
+  return binder(mode or 'n', effective_prefix, { buffer = bufnr })
 end
 
 --- At-point group under `<localleader>,`
 --- @param mode string|table specifying the mode(s) for the keymap
-function M.at_point(mode)
-  return binder(mode or { 'n', 'v' }, groups.at_point)
+function M.at_point(mode, name_or_prefix)
+  local group = groups[name_or_prefix]
+  local effective_prefix = '<localleader>,'
+  if group then
+    effective_prefix = effective_prefix .. group.key
+  end
+
+  return binder(mode or { 'n', 'v' }, effective_prefix)
 end
 
 function M.whichkey_spec()
-  return {
-    { groups.ai, group = 'AI', mode = { 'n', 'v' } },
-    { groups.code, group = 'Code', mode = { 'n', 'x', 'v' } },
-    { groups.debug, group = 'Debug', mode = { 'n', 'v' } },
-    { groups.test, group = 'Test', mode = { 'n', 'v'} },
-    { groups.help, group = 'Help', mode = { 'n', 'v' } },
-    { groups.notes, group = 'Notes' },
-    { groups.goto, group = 'Goto', mode = { 'n', 'v' } },
-    { groups.search, group = 'Search', mode = { 'n', 'v' } },
-    { groups.ux, group = 'Ux' },
-    { groups.format, group = 'Format' },
-    { groups.vcs, group = 'Vcs', mode = { 'n', 'v' } },
-    { groups.workspace, group = 'Workspace', mode = { 'n', 'v' } },
-    { groups.diganostics, group = 'Diagnostics', mode = { 'n', 'v' } },
-    { groups.at_point, group = 'At point', mode = { 'n', 'v' } },
-    { groups.mode_local, group = 'Mode actions', mode = { 'n', 'v' } },
-  }
+  local spec = {}
+  for _, group in pairs(groups) do
+    table.insert(spec, { '<leader>' .. group.key , group = group.desc, mode = { 'n', 'v' } })
+    table.insert(spec, { '<localleader>' .. group.key  , group = group.desc, mode = { 'n', 'v' } })
+    table.insert(spec, { '<localleader>,' .. group.key  , group = group.desc, mode = { 'n', 'v' } })
+  end
+  table.insert(spec, {'<localleader>,',  group = 'At point', mode = { 'n', 'v' } })
+  return spec
 end
 
 return M

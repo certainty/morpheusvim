@@ -40,25 +40,28 @@ return {
         end, { desc = 'Jump to previous git [c]hange' })
 
         -- Actions
-        -- visual mode
-        map('v', '<leader>vs', function()
+        local vc_map = require('base.keymap').local_group('n', bufnr, 'vcs')
+        local vc_visual_map = require('base.keymap').local_group('v', bufnr, 'vcs')
+
+        vc_visual_map('s', function()
           gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = 'git stage hunk' })
-        map('v', '<leader>br', function()
+        end, 'git stage hunk')
+        vc_visual_map('r', function()
           gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = 'git reset hunk' })
-        map('n', '<leader>vs', gitsigns.stage_hunk, { desc = 'stage hunk' })
-        map('n', '<leader>vr', gitsigns.reset_hunk, { desc = 'reset hunk' })
-        map('n', '<leader>vS', gitsigns.stage_buffer, { desc = 'stage buffer' })
-        map('n', '<leader>vR', gitsigns.reset_buffer, { desc = 'reset buffer' })
-        map('n', '<leader>vp', gitsigns.preview_hunk, { desc = 'preview hunk' })
-        map('n', '<leader>vb', gitsigns.blame_line, { desc = 'blame line' })
-        map('n', '<leader>vB', gitsigns.blame, { desc = 'blame' })
-        map('n', '<leader>vd', gitsigns.diffthis, { desc = 'diff against index' })
-        map('n', '<leader>vD', function()
+        end, 'git reset hunk')
+
+        vc_map('s', gitsigns.stage_hunk, 'stage hunk')
+        vc_map('r', gitsigns.reset_hunk, 'reset hunk')
+        vc_map('S', gitsigns.stage_buffer, 'stage buffer')
+        vc_map('R', gitsigns.reset_buffer, 'reset buffer')
+        vc_map('p', gitsigns.preview_hunk, 'preview hunk')
+        vc_map('b', gitsigns.blame_line, 'blame line')
+        vc_map('B', gitsigns.blame, 'blame')
+        vc_map('d', gitsigns.diffthis, 'diff against index')
+        vc_map('D', function()
           gitsigns.diffthis '@'
-        end, { desc = 'diff against last commit' })
-        map('n', '<leader>utb', gitsigns.toggle_current_line_blame, { desc = 'toggle git show blame line' })
+        end, 'diff against last commit')
+        vc_map('tb', gitsigns.toggle_current_line_blame, 'toggle git show blame line')
       end,
     },
   },

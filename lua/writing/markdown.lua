@@ -46,7 +46,7 @@ return {
         pattern = 'markdown',
         group = markdown_group,
         callback = function(event)
-          local local_map = require('base.keymap').local_group({ 'n', 'v' }, event.buf, ':')
+          local local_map = require('base.keymap').local_group({ 'n', 'v' }, nil, event.buf)
 
           local_map('p', '<cmd>MarkdownPreviewToggle<CR>', 'Toggle Markdown Preview')
           local_map('P', '<cmd>MarkdownPreview<CR>', 'Markdown Preview')

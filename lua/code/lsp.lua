@@ -36,35 +36,34 @@ return {
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('morpheus-lsp-attach', { clear = true }),
         callback = function(event)
-          local map = function(keys, func, desc, mode)
+          local g_map = function(keys, func, desc, mode)
             mode = mode or 'n'
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
           end
 
           local telescope = require 'telescope.builtin'
           local at_point_goto_map = require('base.keymap').at_point('n', 'goto', event.buf)
-
-          map('gd', telescope.lsp_definitions, 'Goto Definition')
-          at_point_goto_map('d', telescope.lsp_definitions, 'Goto Definition at Point')
-
-          map('g<', telescope.lsp_references, 'Goto References')
-          at_point_goto_map('r', telescope.lsp_references, 'Goto References at Point')
-
-          map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
-          at_point_goto_map('D', vim.lsp.buf.declaration, 'Goto Declaration at Point')
-
-          map('gI', telescope.lsp_implementations, 'Goto Implementation')
-          at_point_goto_map('I', telescope.lsp_implementations, 'Goto Implementation at Point')
-
-          local local_map = require('base.keymap').local_group('n', event.buf, 'code')
+          local code_map = require('base.keymap').group('n', 'code', event.buf)
           local at_point_code_map = require('base.keymap').at_point('n', 'code', event.buf)
           local at_point_map = require('base.keymap').at_point('n', nil, event.buf)
+
+          g_map('gd', telescope.lsp_definitions, 'Goto Definition')
+          at_point_map('<', telescope.lsp_definitions, 'Goto Definition at Point')
+
+          g_map('gr', telescope.lsp_references, 'Goto References')
+          at_point_map('>', telescope.lsp_references, 'Goto References at Point')
+
+          g_map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
+          at_point_goto_map('D', vim.lsp.buf.declaration, 'Goto Declaration at Point')
+
+          g_map('gI', telescope.lsp_implementations, 'Goto Implementation')
+          at_point_goto_map('I', telescope.lsp_implementations, 'Goto Implementation at Point')
 
           at_point_code_map('k', vim.lsp.buf.hover, 'Hover')
           at_point_code_map('D', telescope.lsp_type_definitions, 'Type Definition')
 
-          local_map('S', telescope.lsp_document_symbols, 'Document Symbols')
-          local_map('W', telescope.lsp_dynamic_workspace_symbols, 'Workspace Symbols')
+          code_map('S', telescope.lsp_document_symbols, 'Document Symbols')
+          code_map('W', telescope.lsp_dynamic_workspace_symbols, 'Workspace Symbols')
 
           at_point_code_map('c', vim.lsp.buf.rename, 'Rename')
           at_point_map(',', vim.lsp.buf.code_action, 'Code Action')
@@ -72,7 +71,6 @@ return {
 
           at_point_map('?', vim.lsp.buf.signature_help, 'Signature Help')
           at_point_code_map('x', vim.lsp.codelens.run, 'Run Code Lens')
-          local_map('x', vim.lsp.codelens.run, 'Run Code Lens')
 
           local refactoring = require 'refactoring'
           local refactoring_at_point_map = require('base.keymap').at_point({ 'n', 'x', 'v' }, 'r', event.buf)

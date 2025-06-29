@@ -10,6 +10,9 @@ vim.g.morpheus = {
     chat_model = 'claude-3.7-sonnet',
   },
   lint = true,
+  notes = {
+    base_path = vim.fn.expand '~/Documents/Silos',
+  },
 }
 
 vim.opt.number = true

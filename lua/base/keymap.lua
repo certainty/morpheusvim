@@ -42,46 +42,70 @@ local function binder(mode, prefix, opts)
 end
 
 --- Create a global group under `<leader>x`
----@param name_or_prefix string
-function M.group(mode, name_or_prefix)
-  local group = groups[name_or_prefix]
+--- @param mode string|table specifying the mode(s) for the keymap
+--- @param name_or_prefix string
+--- @param bufnr number|nil
+function M.group(mode, name_or_prefix, bufnr)
   local effective_prefix = '<leader>'
-  if group then
-    effective_prefix = effective_prefix .. group.key
-  else
-    effective_prefix = effective_prefix .. name_or_prefix
+
+  if name_or_prefix then 
+    local group = groups[name_or_prefix]
+    if group then
+      effective_prefix = effective_prefix .. group.key
+    else
+      effective_prefix = effective_prefix .. name_or_prefix
+    end
   end
 
-  return binder(mode or 'n', effective_prefix)
+  local opts = {}
+  if bufnr then
+    opts.buffer = bufnr
+  end
+
+  return binder(mode or 'n', effective_prefix, opts)
 end
 
 --- Buffer-local group under `<localleader>`
 ---@param mode string|table
----@param bufnr number
----@param name_or_prefix string
-function M.local_group(mode, bufnr, name_or_prefix)
-  local group = groups[name_or_prefix]
+---@param name_or_prefix string|nil
+---@param bufnr number|nil
+function M.local_group(mode, name_or_prefix, bufnr)
   local effective_prefix = '<localleader>'
-  if group then
-    effective_prefix = effective_prefix .. group.key
-  else
-    effective_prefix = effective_prefix .. name_or_prefix
+
+  if name_or_prefix then
+    local group = groups[name_or_prefix]
+    if group then
+      effective_prefix = effective_prefix .. group.key
+    else
+      effective_prefix = effective_prefix .. name_or_prefix
+    end
   end
-  return binder(mode or 'n', effective_prefix, { buffer = bufnr })
+
+  local opts = {}
+  if bufnr then
+    opts.buffer = bufnr
+  end
+
+
+  return binder(mode or 'n', effective_prefix, opts) 
 end
 
 --- At-point group under `<localleader>,`
 --- @param mode string|table specifying the mode(s) for the keymap
+--- @param name_or_prefix string|nil specifying the name or prefix for the keymap
+--- @param bufnr number|nil specifying the buffer number for the keymap
 function M.at_point(mode, name_or_prefix, bufnr)
-  local group = groups[name_or_prefix]
   local effective_prefix = '<localleader>,'
-  if group then
-    effective_prefix = effective_prefix .. group.key
-  else
-    if name_or_prefix then
+
+  if name_or_prefix then
+    local group = groups[name_or_prefix]
+    if group then
+      effective_prefix = effective_prefix .. group.key
+    else
       effective_prefix = effective_prefix .. name_or_prefix
     end
   end
+
   local opts = {}
   if bufnr then
     opts.buffer = bufnr
@@ -94,9 +118,10 @@ function M.whichkey_spec()
   local spec = {}
   for _, group in pairs(groups) do
     table.insert(spec, { '<leader>' .. group.key , group = group.desc, mode = { 'n', 'v' } })
-    table.insert(spec, { '<localleader>' .. group.key  , group = group.desc, mode = { 'n', 'v' } })
-    table.insert(spec, { '<localleader>,' .. group.key  , group = group.desc, mode = { 'n', 'v' } })
+    table.insert(spec, { '<localleader>,' .. group.key , group = group.desc, mode = { 'n', 'v' } })
   end
+
+  table.insert(spec, {'<localleader>',  group = 'Mode Action', mode = { 'n', 'v' } })
   table.insert(spec, {'<localleader>,',  group = 'At point', mode = { 'n', 'v' } })
   return spec
 end

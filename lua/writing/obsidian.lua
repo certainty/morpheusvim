@@ -11,24 +11,15 @@ return {
 
   init = function()
     local notes_map = require('base.keymap').group('n', 'notes')
-    local local_notes_map = require('base.keymap').local_group('n', 0, 'notes')
     local at_point = require('base.keymap').at_point({ 'n', 'v' }, 'notes', 0)
 
+    -- access obisidian from everywhere
     notes_map('n', '<cmd>ObsidianQuickSwitch<CR>', 'Quick Switch')
+    notes_map('s', '<cmd>ObsidianSearch<CR>', 'Search')
     notes_map('c', '<cmd>ObsidianNew<CR>', 'New Note')
     notes_map('C', '<cmd>ObsidianNewFromTemplate<CR>', 'New Note From Template')
-    notes_map('w', '<cmd>ObsidianWorkspace<CR>', 'Workspace')
-
+    notes_map('w', '<cmd>ObsidianWorkspace<CR>', 'Switch Workspace')
     at_point('x', '<cmd>ObsidianExtractNote<CR>', 'Extract Note')
-
-    notes_map('t', '<cmd>ObsidianTemplate<CR>', 'Template')
-    notes_map('s', '<cmd>ObsidianSearch<CR>', 'Search')
-
-    notes_map('<', '<cmd>ObsidianBacklinks<CR>', 'Backlinks')
-    local_notes_map('<', '<cmd>ObsidianBacklinks<CR>', 'Backlinks')
-
-    notes_map('>', '<cmd>ObsidianLinks<CR>', 'Links')
-    local_notes_map('>', '<cmd>ObsidianLinks<CR>', 'Links')
   end,
 
   opts = {
@@ -81,12 +72,12 @@ return {
     },
     workspaces = {
       {
-        name = 'work',
-        path = '~/Data/Notes/Work/',
+        name = 'shared',
+        path = vim.g.morpheus.notes.base_path .. '/Shared/Notes',
       },
       {
         name = 'personal',
-        path = '~/Data/Notes/Personal/',
+        path = vim.g.morpheus.notes.base_path .. '/Strictly Private/Notes',
       },
     },
     preferred_link_style = 'wiki',
@@ -97,19 +88,23 @@ return {
         end,
         opts = { expr = true, buffer = true, desc = 'Follow', noremap = false },
       },
+      ['<localleader>f'] = {
+        action = '<cmd>ObsidianQuickSwitch<cr>',
+        opts = { buffer = true, desc = 'Quick switch' },
+      },
+      ['<localleader>s'] = {
+        action = '<cmd>ObsidianSearch<cr>',
+        opts = { buffer = true, desc = 'Search' },
+      },
+      ['<localleader>S'] = {
+        action = '<cmd>ObsidianSearchCurrentFile<cr>',
+        opts = { buffer = true, desc = 'Search current file' },
+      },
       ['<localleader>c'] = {
         action = function()
           return require('obsidian').util.toggle_checkbox()
         end,
         opts = { buffer = true, desc = 'Toggle checkbox' },
-      },
-      ['<localleader>l'] = {
-        action = '<cmd>ObsidianFollowLink<cr>',
-        opts = { buffer = true, desc = 'Follow link' },
-      },
-      ['<localleader>,l'] = {
-        action = '<cmd>ObsidianFollowLink<cr>',
-        opts = { buffer = true, desc = 'Follow link' },
       },
       ['<localleader>t'] = {
         action = '<cmd>ObsidianTemplate<cr>',
@@ -127,6 +122,10 @@ return {
         action = '<cmd>ObsidianPasteImg<cr>',
         opts = { buffer = true, desc = 'Paste image' },
       },
+      ['<localleader>N'] = {
+        action = '<cmd>ObsidianNew<cr>',
+        opts = { buffer = true, desc = 'New note' },
+      },
       ['<localleader>@'] = {
         action = '<cmd>ObsidianTags<cr>',
         opts = { buffer = true, desc = 'Tags' },
@@ -138,6 +137,18 @@ return {
       ['<localleader>>'] = {
         action = '<cmd>Obsidianlinks<cr>',
         opts = { buffer = true, desc = 'Links' },
+      },
+      ['<localleader>w'] = {
+        action = '<cmd>ObsidianWorkspace<cr>',
+        opts = { buffer = true, desc = 'Workspace' },
+      },
+      ['<localleader>,l'] = {
+        action = '<cmd>ObsidianFollowLink<cr>',
+        opts = { buffer = true, desc = 'Follow link' },
+      },
+      ['<localleader>,L'] = {
+        action = '<cmd>ObsidianFollowLinkNewTab<cr>',
+        opts = { buffer = true, desc = 'Follow link in new tab' },
       },
     },
 

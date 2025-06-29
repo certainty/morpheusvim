@@ -26,10 +26,10 @@ return {
     vim.api.nvim_create_autocmd('FileType', {
       pattern = 'go',
       callback = function(event)
-        local local_format_map = require('base.keymap').local_group({ 'n', 'v' }, event.buf, 'format')
+        local local_format_map = require('base.keymap').local_group({ 'n', 'v' }, 'format', event.buf)
         local_format_map('f', '<cmd>GoFmt<CR>', 'Format Go File')
 
-        local local_go_map = require('base.keymap').local_group({ 'n', 'v' }, event.buf, ':')
+        local local_go_map = require('base.keymap').local_group({ 'n', 'v' }, nil, event.buf)
 
         local_go_map('t', '<cmd>GoTest<CR>', 'Run Go Tests')
         local_go_map('r', '<cmd>GoRun<CR>', 'Run Go File')
@@ -37,7 +37,7 @@ return {
         local_go_map('c', '<cmd>GoCoverageToggle<CR>', 'Toggle Go Coverage')
         local_go_map('t', '<cmd>GoModTidy<CR>', 'Go Mod Tidy')
 
-        local go_at_point = require('base.keymap').at_point({ 'n', 'v' }, event.buf)
+        local go_at_point = require('base.keymap').at_point({ 'n', 'v' }, nil, event.buf)
         go_at_point('e', '<cmd>GoIfErr<CR>', 'Insert IfErr')
       end,
     })

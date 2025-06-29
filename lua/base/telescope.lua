@@ -41,7 +41,7 @@ return {
             show_columns = 'both',
           },
           bibtex = {
-            global_files = { vim.fn.expand '~/Silos/Shared/Library/library.bib' },
+            global_files = { vim.g.morpheus.notes.base_path .. '/Shared/Library/library.bib' },
             search_keys = { 'author', 'year', 'title' },
           },
         },
@@ -70,7 +70,6 @@ return {
 
       goto_map('o', builtin.oldfiles, 'Recent Files ("o" for old)')
       goto_map('b', builtin.buffers, 'Buffers buffers')
-      goto_map('i', require('telescope').extensions.aerial.aerial, 'aerial')
 
       help_map('h', builtin.help_tags, 'Help tags')
       help_map('k', builtin.keymaps, 'Keymaps')

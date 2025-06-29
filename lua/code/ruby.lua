@@ -8,7 +8,7 @@ return {
     vim.api.nvim_create_autocmd('FileType', {
       pattern = 'ruby',
       callback = function(event)
-        local ror_map = require('base.keymap').local_group('n', event.buf, ':')
+        local ror_map = require('base.keymap').local_group('n', nil, event.buf)
 
         ror_map(':', ":lua require('ror.commands').list_commands()<CR>", 'List Rails Commands')
         ror_map('r', '<cmd>RorRun<CR>', 'Run Ruby File')

@@ -6,7 +6,7 @@ return {
       'sindrets/diffview.nvim', -- optional - Diff integration
     },
     config = function()
-      local vc_map = require('base.keymap').group('n', 'vc')
+      local vc_map = require('base.keymap').group('n', 'vcs')
       vc_map('v', '<cmd>Neogit<CR>', 'git (neogit)')
       require('neogit').setup {}
     end,
@@ -42,7 +42,7 @@ return {
 
         -- Actions
         --
-        local vc_map = require('base.keymap').group('n', 'vc', bufnr)
+        local vc_map = require('base.keymap').group('n', 'vcs', bufnr)
         local vc_at_point_map = require('base.keymap').at_point('n', 'vcs', bufnr)
         local vc_visual_map = require('base.keymap').local_group('v', 'vcs', bufnr)
 

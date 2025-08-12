@@ -42,6 +42,8 @@ require('lazy').setup({
 
   require 'ai.copilot',
   require 'ai.codecompanion',
+  require 'ai.vectorcode',
+  require 'ai.mcphub',
 
   require 'tools.terminal',
   require 'tools.harpoon',

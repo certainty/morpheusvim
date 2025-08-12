@@ -40,9 +40,9 @@ require('lazy').setup({
   require 'code.go',
   require 'code.ruby',
 
+  require 'ai.vectorcode',
   require 'ai.copilot',
   require 'ai.codecompanion',
-  require 'ai.vectorcode',
   require 'ai.mcphub',
 
   require 'tools.terminal',

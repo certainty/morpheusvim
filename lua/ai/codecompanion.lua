@@ -9,6 +9,14 @@ return {
     config = function()
       require('codecompanion').setup {
         extensions = {
+          mcphub = {
+            callback = 'mcphub.extensions.codecompanion',
+            opts = {
+              make_vars = true,
+              make_slash_commands = true,
+              show_result_in_chat = true,
+            },
+          },
           vectorcode = {
             tool_group = {
               enabled = true,

@@ -12,7 +12,10 @@ return {
   { 'echasnovski/mini.icons', version = '*' },
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      'franco-ruggeri/codecompanion-lualine.nvim',
+    },
     config = function()
       require('lualine').setup {
         options = {
@@ -38,7 +41,7 @@ return {
           lualine_a = { 'mode' },
           lualine_b = { 'branch' },
           lualine_c = { 'filename' },
-          lualine_x = { 'encoding', 'fileformat', 'filetype' },
+          lualine_x = { 'codecompanion', 'encoding', 'fileformat', 'filetype' },
         },
         inactive_sections = {
           lualine_a = {},
@@ -54,29 +57,5 @@ return {
       }
     end,
   },
-  {
-    'nvim-neo-tree/neo-tree.nvim',
-    version = '*',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-      'MunifTanjim/nui.nvim',
-    },
-    cmd = 'Neotree',
-    keys = {
-      { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
-    },
-    opts = {
-      filesystem = {
-        window = {
-          auto_expand_width = true,
-          mappings = {
-            ['\\'] = 'close_window',
-          },
-        },
-      },
-    },
-  },
-
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 }

@@ -96,6 +96,9 @@ return {
           end,
         },
         display = {
+          chat = {
+            show_settings = true,
+          },
           action_palette = {
             width = 95,
             height = 10,

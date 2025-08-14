@@ -21,7 +21,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   require 'base.whichkey',
   require 'base.theme',
-  require 'base.display-elements',
+  require 'base.display',
   require 'base.editing',
   require 'base.completion',
   require 'base.telescope',

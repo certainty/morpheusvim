@@ -46,54 +46,56 @@ return {
           },
         },
         adapters = {
-          copilot = function()
-            return require('codecompanion.adapters').extend('copilot', {
-              schema = {
-                model = {
-                  default = vim.g.morpheus.copilot.chat_model,
+          http = {
+            copilot = function()
+              return require('codecompanion.adapters').extend('copilot', {
+                schema = {
+                  model = {
+                    default = vim.g.morpheus.copilot.chat_model,
+                  },
                 },
-              },
-            })
-          end,
-          openai = function()
-            return require('codecompanion.adapters').extend('openai', {
-              env = {
-                api_key = 'cmd:op read op://personal/openai-neovim/credential --no-newline',
-              },
-            })
-          end,
-          anthropic = function()
-            return require('codecompanion.adapters').extend('anthropic', {
-              env = {
-                api_key = 'cmd:op read op://personal/anthropic-neovim/credential --no-newline',
-              },
-            })
-          end,
-          gemini = function()
-            return require('codecompanion.adapters').extend('gemini', {
-              schema = {
-                model = {
-                  default = 'gemini-2.5-flash',
+              })
+            end,
+            openai = function()
+              return require('codecompanion.adapters').extend('openai', {
+                env = {
+                  api_key = 'cmd:op read op://personal/openai-neovim/credential --no-newline',
                 },
-              },
-              env = {
-                api_key = 'cmd:op read op://personal/gemini-neovim/credential --no-newline',
-              },
-            })
-          end,
+              })
+            end,
+            anthropic = function()
+              return require('codecompanion.adapters').extend('anthropic', {
+                env = {
+                  api_key = 'cmd:op read op://personal/anthropic-neovim/credential --no-newline',
+                },
+              })
+            end,
+            gemini = function()
+              return require('codecompanion.adapters').extend('gemini', {
+                schema = {
+                  model = {
+                    default = 'gemini-2.5-flash',
+                  },
+                },
+                env = {
+                  api_key = 'cmd:op read op://personal/gemini-neovim/credential --no-newline',
+                },
+              })
+            end,
 
-          gemini_pro = function()
-            return require('codecompanion.adapters').extend('gemini', {
-              schema = {
-                model = {
-                  default = 'gemini-2.5-pro',
+            gemini_pro = function()
+              return require('codecompanion.adapters').extend('gemini', {
+                schema = {
+                  model = {
+                    default = 'gemini-2.5-pro',
+                  },
                 },
-              },
-              env = {
-                api_key = 'cmd:op read op://personal/gemini-neovim/credential --no-newline',
-              },
-            })
-          end,
+                env = {
+                  api_key = 'cmd:op read op://personal/gemini-neovim/credential --no-newline',
+                },
+              })
+            end,
+          },
         },
         display = {
           chat = {

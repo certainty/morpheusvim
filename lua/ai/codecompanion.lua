@@ -50,10 +50,10 @@ return {
             gemini_cli = function()
               return require('codecompanion.adapters').extend('gemini_cli', {
                 defaults = {
-                  auth_method = 'gemini-api-key',
+                  auth_method = 'oauth-personal',
                 },
                 env = {
-                  GEMINI_API_KEY = 'cmd:op read op://personal/gemini-neovim/credential --no-newline',
+                  -- GEMINI_API_KEY = 'cmd:op read op://personal/gemini-neovim/credential --no-newline',
                   GEMINI_MODEL = 'gemini-2.5-flash',
                 },
               })
@@ -112,7 +112,7 @@ return {
         },
         display = {
           chat = {
-            show_settings = true,
+            show_settings = false, -- if true I can not change adapters in the chat
           },
           action_palette = {
             width = 95,
@@ -165,6 +165,7 @@ return {
       local ai_at_point = require('base.keymap').at_point({ 'n', 'v' }, 'ai')
 
       ai_at_point('a', '<cmd>CodeCompanionActions<cr>', ' CodeCompanionActions')
+      ai_map('g', '<cmd>CodeCompanionChat gemini_cli<cr>', ' Chat with Gemini-CLI')
       ai_map('a', '<cmd>CodeCompanionActions<cr>', ' CodeCompanionActions')
       ai_map('A', '<cmd>CodeCompanionChat Add<cr>', ' Add to CodeCompanionChat')
       ai_map('a', '<cmd>CodeCompanionChat Toggle<cr>', ' Toggle CodeCompanionChat')
@@ -173,6 +174,7 @@ return {
       ai_map('3', '<cmd>CodeCompanionChat openai<cr>', ' Chat with OpenAI')
       ai_map('4', '<cmd>CodeCompanionChat gemini<cr>', ' Chat with Gemini-Flash')
       ai_map('5', '<cmd>CodeCompanionChat gemini-pro<cr>', ' Chat with Gemini-Pro')
+      ai_map('6', '<cmd>CodeCompanionChat gemini_cli<cr>', ' Chat with Gemini-CLI')
 
       -- Expand 'cc' into 'CodeCompanion' in the command line
       vim.cmd [[cab cc CodeCompanion]]

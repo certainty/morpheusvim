@@ -46,6 +46,19 @@ return {
           },
         },
         adapters = {
+          acp = {
+            gemini_cli = function()
+              return require('codecompanion.adapters').extend('gemini_cli', {
+                defaults = {
+                  auth_method = 'gemini-api-key',
+                },
+                env = {
+                  GEMINI_API_KEY = 'cmd:op read op://personal/gemini-neovim/credential --no-newline',
+                  GEMINI_MODEL = 'gemini-2.5-flash',
+                },
+              })
+            end,
+          },
           http = {
             copilot = function()
               return require('codecompanion.adapters').extend('copilot', {

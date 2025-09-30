@@ -3,9 +3,13 @@ return {
     'akinsho/toggleterm.nvim',
     version = '*',
     opts = {},
+    init = function()
+      vim.keymap.set('n', '<leader>\\', ':ToggleTerm<CR>', { desc = 'Toggle Terminal' })
+    end,
+
     config = function()
       require('toggleterm').setup {
-        direction = 'vertical',
+        direction = 'float',
         size = function(term)
           if term.direction == 'horizontal' then
             return 15
@@ -13,7 +17,6 @@ return {
             return vim.o.columns * 0.4
           end
         end,
-        open_mapping = [[<c-\>]],
         persist_size = true, -- Remember terminal size
         close_on_exit = true, -- Close terminal when process exits
       }

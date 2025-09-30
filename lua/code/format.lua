@@ -2,6 +2,13 @@ return {
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
+  init = function()
+    local code_map = require('base.keymap').group({ 'n', 'v' }, 'code')
+    code_map('f', function()
+      require('conform').format { lsp_fallback = true }
+    end, 'Format buffer')
+  end,
+
   opts = {
     notify_on_error = false,
     format_on_save = function(bufnr)

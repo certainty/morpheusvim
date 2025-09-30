@@ -6,38 +6,6 @@ return {
     },
   },
   {
-    'smoka7/multicursors.nvim',
-    event = 'VeryLazy',
-    dependencies = {
-      'nvimtools/hydra.nvim',
-    },
-    opts = {},
-    cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
-    init = function()
-      local cursor_map = require('base.keymap').at_point { 'v', 'n' }
-
-      cursor_map('%', '<cmd>MCstart</cr>', 'Start multicursor')
-    end,
-    config = function()
-      require('multicursors').setup {
-        hint_config = {
-          float_opts = {
-            border = 'rounded',
-          },
-          position = 'bottom-right',
-        },
-        generate_hints = {
-          normal = true,
-          insert = true,
-          extend = true,
-          config = {
-            column_count = 1,
-          },
-        },
-      }
-    end,
-  },
-  {
     'echasnovski/mini.bracketed',
     version = '*',
     config = function()
@@ -72,5 +40,16 @@ return {
       require('mini.surround').setup {}
     end,
   },
+  {
+    'nvim-mini/mini.trailspace',
+    version = '*',
+    event = 'BufReadPost',
+    config = function()
+      require('mini.trailspace').setup {
+        only_in_normal_buffers = true,
+      }
+    end,
+  },
+
   'tpope/vim-sleuth',
 }

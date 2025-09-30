@@ -43,7 +43,7 @@ return {
   {
     'nvim-mini/mini.trailspace',
     version = '*',
-    event = 'BufReadPost',
+    event = 'BufReadPost', -- this is important to make sure this does not mess with snacks.dashboard
     config = function()
       require('mini.trailspace').setup {
         only_in_normal_buffers = true,

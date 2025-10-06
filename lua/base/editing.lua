@@ -8,48 +8,33 @@ return {
   {
     'echasnovski/mini.bracketed',
     version = '*',
-    config = function()
-      require('mini.bracketed').setup {}
-    end,
+    opts = {},
   },
   {
     'echasnovski/mini.comment',
     version = '*',
-    config = function()
-      require('mini.comment').setup {}
-    end,
+    opts = {},
   },
   {
     'echasnovski/mini.pairs',
     version = '*',
-    config = function()
-      require('mini.pairs').setup {}
-    end,
+    opts = {},
   },
   {
     'echasnovski/mini.ai',
     version = '*',
-    config = function()
-      require('mini.ai').setup {}
-    end,
+    opts = {},
   },
   {
     'echasnovski/mini.surround',
     version = '*',
-    config = function()
-      require('mini.surround').setup {}
-    end,
+    opts = {},
   },
   {
     'nvim-mini/mini.trailspace',
     version = '*',
     event = 'BufReadPost', -- this is important to make sure this does not mess with snacks.dashboard
-    config = function()
-      require('mini.trailspace').setup {
-        only_in_normal_buffers = true,
-      }
-    end,
+    opts = { only_in_normal_buffers = true },
   },
-
   'tpope/vim-sleuth',
 }

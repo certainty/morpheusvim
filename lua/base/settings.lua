@@ -3,33 +3,10 @@ vim.g.maplocalleader = ','
 vim.g.have_nerd_font = true
 
 vim.g.morpheus = {
-  ai = {
-    default_provider = 'anthropic',
-    -- default_provider = 'gemini',
-    -- default_provider = 'openai'
-    chat_model = nil,
-    completion_model = nil,
-  },
   lint = true,
   notes = {
     base_path = vim.fn.expand '~/Documents/Silos',
   },
-}
-
-if vim.g.morpheus.ai.default_provider == 'openai' then
-  vim.g.morpheus.ai.chat_model = 'gpt-5'
-  vim.g.morpheus.ai.completion_model = 'gpt-5'
-elseif vim.g.morpheus.ai.default_provider == 'anthropic' then
-  vim.g.morpheus.ai.chat_model = 'claude-3.7-sonnet'
-  vim.g.morpheus.ai.completion_model = 'claude-3.7-sonnet'
-elseif vim.g.morpheus.ai.default_provider == 'gemini' then
-  vim.g.morpheus.ai.chat_model = 'gemini-2.5-pro'
-  vim.g.morpheus.ai.completion_model = 'gemini-2.5-pro'
-end
-
-vim.g.morpheus.ai.copilot = {
-  completion = vim.g.morpheus.ai.completion_model,
-  chat = vim.g.morpheus.ai.chat_model,
 }
 
 vim.opt.number = true

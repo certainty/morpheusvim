@@ -64,7 +64,7 @@ return {
             return require('codecompanion.adapters').extend('copilot', {
               schema = {
                 model = {
-                  default = vim.g.morpheus.ai.chat_model,
+                  default = 'claude-3.7-sonnet',
                 },
               },
             })

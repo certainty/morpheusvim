@@ -30,18 +30,14 @@ return {
   {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
-    init = function()
-      local ai_map = require('base.keymap').group('n', 'ai')
-
-      ai_map('c', '<cmd>Copilot enable<cr>', ' Enable Copilot')
-      ai_map('C', '<cmd>Copilot disable<cr>', ' Disable Copilot')
-    end,
-    config = function()
-      require('copilot').setup {
-        suggestion = { enabled = true },
-        panel = { enabled = true },
-        copilot_model = vim.g.morpheus.ai.completion_model,
-      }
-    end,
+    opts = {
+      suggestion = { enabled = true },
+      panel = { enabled = true },
+      copilot_model = 'claude-3.7-sonnet',
+    },
+    keys = {
+      { '<leader>ac', '<cmd>Copilot enable<cr>', desc = ' Copilot enable' },
+      { '<leader>aC', '<cmd>Copilot disable<cr>', desc = ' Copilot disable' },
+    },
   },
 }

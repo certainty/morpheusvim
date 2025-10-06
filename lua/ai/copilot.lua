@@ -33,7 +33,6 @@ return {
     opts = {
       suggestion = { enabled = true },
       panel = { enabled = true },
-      copilot_model = 'claude-3.7-sonnet',
     },
     keys = {
       { '<leader>ac', '<cmd>Copilot enable<cr>', desc = ' Copilot enable' },

@@ -88,7 +88,7 @@ return {
           end, 'Cleanup')
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('morpheus-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
@@ -117,6 +117,10 @@ return {
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
       local servers = {
         -- clangd = {},
+        ['ada-language-server'] = {
+          filetypes = { 'ada' },
+          root_markers = { '.gpr' },
+        },
         gopls = {},
         rust_analyzer = {},
         ts_ls = {},
@@ -130,7 +134,6 @@ return {
           },
         },
       }
-
       -- Ensure the servers and tools above are installed
       --
       -- To check the current status of installed tools and/or manually install
@@ -148,18 +151,24 @@ return {
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
       })
+
+      -- special treatment for ada as for some reason it does not autostart otherwise
+      vim.lsp.config('ada_ls', {})
+      vim.lsp.enable 'ada_ls'
+
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
       require('mason-lspconfig').setup {
-
+        automatic_enable = true,
         handlers = {
           function(server_name)
-            local server = servers[server_name] or {}
+            local config_name = server_name
+
+            local server_config = servers[config_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            server_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server_config.capabilities or {})
+            require('lspconfig')[server_name].setup(server_config)
           end,
         },
       }

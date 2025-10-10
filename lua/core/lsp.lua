@@ -1,6 +1,8 @@
 vim.lsp.enable({
   'lua_ls',
   'gopls',
+  'ruby-lsp',
+  'solargraph'
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {

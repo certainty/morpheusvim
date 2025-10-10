@@ -1,22 +1,21 @@
 vim.pack.add({ 'https://github.com/nvim-mini/mini.pick.git' })
 vim.pack.add({ 'https://github.com/nvim-mini/mini.extra.git' })
 
--- get_ivy style
-local win_config = function()
+-- telescope ivy style
+local ivy = function()
   local height = math.floor(0.3 * vim.o.lines)
-  local width = vim.o.columns
+  local width = vim.o.columns - 2
   return {
     anchor = 'NW',
     height = height,
     width = width,
     row = math.floor(vim.o.lines - height),
-    col = math.floor(vim.o.columns),
+    col = math.floor(vim.o.columns - 2),
   }
 end
 
-
 require('mini.pick').setup({
-  window = { config = win_config },
+  window = { config = ivy },
   options = {
     content_from_bottom = false,
     use_icons = true

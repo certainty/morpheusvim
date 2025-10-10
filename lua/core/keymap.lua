@@ -33,3 +33,7 @@ vim.keymap.set('i', '<C-a>', '<Home>', { desc = 'Move to the beginning of the li
 vim.keymap.set('i', '<C-e>', '<End>', { desc = 'Move to the end of the line' })
 vim.keymap.set('i', '<C-b>', '<Left>', { desc = 'Move left' })
 vim.keymap.set('i', '<C-f>', '<Right>', { desc = 'Move right' })
+
+-- vim
+vim.keymap.set('n', '<leader>Vr', '<cmd>restart<cr>', { desc = 'Restart NVim' })
+vim.keymap.set('n', '<leader>.', '<cmd>sourc<cr>', { desc = 'Eval Buffer' })

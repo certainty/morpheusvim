@@ -1,0 +1,90 @@
+{
+  "plugins": {
+    "aerial.nvim": {
+      "rev": "5e687b5",
+      "src": "https://github.com/stevearc/aerial.nvim.git"
+    },
+    "blink-cmp-copilot": {
+      "rev": "439cff7",
+      "src": "https://github.com/giuxtaposition/blink-cmp-copilot.git"
+    },
+    "blink.cmp": {
+      "rev": "327fff9",
+      "src": "https://github.com/Saghen/blink.cmp.git",
+      "version": "1.0.0 - 2.0.0"
+    },
+    "buffer-closer.nvim": {
+      "rev": "7c5586b",
+      "src": "https://github.com/psjay/buffer-closer.nvim.git"
+    },
+    "copilot-lsp": {
+      "rev": "a80e0c1",
+      "src": "https://github.com/copilotlsp-nvim/copilot-lsp.git"
+    },
+    "copilot.lua": {
+      "rev": "92e08cd",
+      "src": "https://github.com/zbirenbaum/copilot.lua.git"
+    },
+    "diffview.nvim": {
+      "rev": "4516612",
+      "src": "https://github.com/sindrets/diffview.nvim.git"
+    },
+    "gitsigns.nvim": {
+      "rev": "1ee5c1f",
+      "src": "https://github.com/lewis6991/gitsigns.nvim.git"
+    },
+    "lspkind.nvim": {
+      "rev": "3ddd1b4",
+      "src": "https://github.com/onsails/lspkind.nvim.git"
+    },
+    "lualine.nvim": {
+      "rev": "b8c2315",
+      "src": "https://github.com/nvim-lualine/lualine.nvim.git"
+    },
+    "mason.nvim": {
+      "rev": "ad7146a",
+      "src": "https://github.com/mason-org/mason.nvim.git"
+    },
+    "mini.extra": {
+      "rev": "7efa774",
+      "src": "https://github.com/nvim-mini/mini.extra.git"
+    },
+    "mini.icons": {
+      "rev": "2847986",
+      "src": "https://github.com/nvim-mini/mini.icons.git"
+    },
+    "mini.pick": {
+      "rev": "96ee37d",
+      "src": "https://github.com/nvim-mini/mini.pick.git"
+    },
+    "neogit": {
+      "rev": "90dcfa7b",
+      "src": "https://github.com/NeogitOrg/neogit.git"
+    },
+    "nvim": {
+      "rev": "af58927",
+      "src": "https://github.com/catppuccin/nvim.git"
+    },
+    "nvim-treesitter": {
+      "rev": "de003000",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter.git",
+      "version": "'main'"
+    },
+    "oil.nvim": {
+      "rev": "919e155",
+      "src": "https://github.com/stevearc/oil.nvim.git"
+    },
+    "plenary.nvim": {
+      "rev": "b9fd522",
+      "src": "https://github.com/nvim-lua/plenary.nvim.git"
+    },
+    "stickybuf.nvim": {
+      "rev": "0c1e5f1",
+      "src": "https://github.com/stevearc/stickybuf.nvim.git"
+    },
+    "which-key.nvim": {
+      "rev": "b4177e3",
+      "src": "https://github.com/folke/which-key.nvim.git"
+    }
+  }
+}

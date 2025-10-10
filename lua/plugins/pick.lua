@@ -28,3 +28,7 @@ vim.keymap.set('n', '<leader>gb', function() require('mini.pick').builtin.buffer
 vim.keymap.set('n', '<leader>hh', function() require('mini.pick').builtin.help() end, { desc = 'Help' })
 vim.keymap.set('n', '<leader>hc', function() require('mini.pick').builtin.commands() end, { desc = 'Commands' })
 vim.keymap.set('n', '<leader>hk', function() require('mini.extra').pickers.keymaps() end, { desc = 'Keymaps' })
+
+vim.keymap.set('n', '<leader>ss', function() require('mini.pick').builtin.grep_live() end, { desc = 'Search' })
+vim.keymap.set('n', '<leader>sS', function() require('mini.pick').builtin.grep() end, { desc = 'Search*' })
+vim.keymap.set('n', '<leader>gr', function() require('mini.pick').builtin.resume() end, { desc = 'Resume' })

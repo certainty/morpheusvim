@@ -25,6 +25,10 @@
       "rev": "92e08cd",
       "src": "https://github.com/zbirenbaum/copilot.lua.git"
     },
+    "dashboard-nvim": {
+      "rev": "0775e56",
+      "src": "https://github.com/nvimdev/dashboard-nvim.git"
+    },
     "diffview.nvim": {
       "rev": "4516612",
       "src": "https://github.com/sindrets/diffview.nvim.git"
@@ -76,6 +80,10 @@
     "mini.pick": {
       "rev": "96ee37d",
       "src": "https://github.com/nvim-mini/mini.pick.git"
+    },
+    "mini.sessions": {
+      "rev": "4ed3a61",
+      "src": "https://github.com/nvim-mini/mini.sessions.git"
     },
     "mini.surround": {
       "rev": "444e155",

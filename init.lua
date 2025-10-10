@@ -35,3 +35,5 @@ require 'plugins.fs.essentials'
 require 'plugins.ai.copilot'
 
 require 'core.keymap'
+
+require 'plugins.dashboard'

@@ -31,6 +31,7 @@ require('lazy').setup({
 
   require 'code.essentials',
   require 'code.treesitter',
+  require 'code.tests',
   require 'code.debug',
   require 'code.lsp',
   require 'code.format',
@@ -55,6 +56,17 @@ require('lazy').setup({
     icons = {},
   },
 })
+
+vim.filetype.add {
+  extension = {
+    gotmpl = 'gotmpl',
+  },
+  pattern = {
+    ['.*/templates/.*%.tpl'] = 'helm',
+    ['.*/templates/.*%.ya?ml'] = 'helm',
+    ['helmfile.*%.ya?ml'] = 'helm',
+  },
+}
 
 require 'base.keys'
 

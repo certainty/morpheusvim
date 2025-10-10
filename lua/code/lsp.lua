@@ -121,7 +121,20 @@ return {
           filetypes = { 'ada' },
           root_markers = { '.gpr' },
         },
-        gopls = {},
+        expert = {
+          capabilities = {
+            documentFormattingProvider = false,
+            documentRangeFormattingProvider = false,
+          },
+        },
+        gopls = {
+          analyses = {
+            unusedparams = true,
+            shadow = true,
+          },
+          gofumpt = true,
+          staticcheck = true,
+        },
         rust_analyzer = {},
         ts_ls = {},
         lua_ls = {

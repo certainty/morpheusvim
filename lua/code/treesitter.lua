@@ -28,6 +28,8 @@ return {
         'javascript',
         'ruby',
         'css',
+        'comment',
+        'sql',
       },
       auto_install = true,
       highlight = {

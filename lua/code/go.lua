@@ -2,7 +2,7 @@ return {
   'ray-x/go.nvim',
   dependencies = {
     'mfussenegger/nvim-dap',
-    'leoluz/nvim-dap-go',
+    'ray-x/guihua.lua',
   },
   opts = {
     icons = false,
@@ -36,14 +36,12 @@ return {
         local_go_map('i', '<cmd>GoInfo<CR>', 'Go Info')
         local_go_map('c', '<cmd>GoCoverageToggle<CR>', 'Toggle Go Coverage')
         local_go_map('t', '<cmd>GoModTidy<CR>', 'Go Mod Tidy')
+        local_go_map('d', '<cmd>GoDebug<cr>', 'Debug')
 
         local go_at_point = require('base.keymap').at_point({ 'n', 'v' }, nil, event.buf)
         go_at_point('e', '<cmd>GoIfErr<CR>', 'Insert IfErr')
       end,
     })
-  end,
-  config = function(lp, opts)
-    require('go').setup(opts)
   end,
   event = { 'CmdlineEnter' },
   ft = { 'go', 'gomod' },

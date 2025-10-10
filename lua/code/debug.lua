@@ -7,6 +7,7 @@ return {
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
     'suketa/nvim-dap-ruby',
+    'leoluz/nvim-dap-go',
   },
   keys = {
     {
@@ -139,5 +140,6 @@ return {
 
     -- individual language debug settings where we don't have inidividual modules
     require('dap-ruby').setup()
+    require('dap-go').setup()
   end,
 }

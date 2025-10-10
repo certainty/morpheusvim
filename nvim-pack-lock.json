@@ -117,9 +117,17 @@
       "rev": "881f7dc",
       "src": "https://github.com/mfussenegger/nvim-dap.git"
     },
+    "nvim-dap-go": {
+      "rev": "b442115",
+      "src": "https://github.com/leoluz/nvim-dap-go.git"
+    },
     "nvim-dap-ui": {
       "rev": "cf91d5e",
       "src": "https://github.com/rcarriga/nvim-dap-ui.git"
+    },
+    "nvim-dap-view": {
+      "rev": "668e9e6",
+      "src": "https://github.com/igorlfs/nvim-dap-view.git"
     },
     "nvim-metals": {
       "rev": "40f7b9e",

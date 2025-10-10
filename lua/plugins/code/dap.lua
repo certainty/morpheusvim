@@ -1,32 +1,33 @@
 vim.pack.add { 'https://github.com/mfussenegger/nvim-dap.git' }
-vim.pack.add { 'https://github.com/rcarriga/nvim-dap-ui.git' }
+-- vim.pack.add { 'https://github.com/rcarriga/nvim-dap-ui.git' }
 vim.pack.add { 'https://github.com/jay-babu/mason-nvim-dap.nvim.git' }
 vim.pack.add { 'https://github.com/nvim-neotest/nvim-nio.git' }
+vim.pack.add { 'https://github.com/igorlfs/nvim-dap-view.git' }
 
 require('mason-nvim-dap').setup {
   automatic_installation = true,
   handlers = {},
 }
 
-require('dapui').setup {
-  icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
-  controls = {
-    icons = {
-      pause = '⏸',
-      play = '▶',
-      step_into = '⏎',
-      step_over = '⏭',
-      step_out = '⏮',
-      step_back = 'b',
-      run_last = '▶▶',
-      terminate = '⏹',
-      disconnect = '⏏',
-    },
-  },
-}
+-- require('dapui').setup {
+--   icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+--   controls = {
+--     icons = {
+--       pause = '⏸',
+--       play = '▶',
+--       step_into = '⏎',
+--       step_over = '⏭',
+--       step_out = '⏮',
+--       step_back = 'b',
+--       run_last = '▶▶',
+--       terminate = '⏹',
+--       disconnect = '⏏',
+--     },
+--   },
+-- }
 
 local dap = require 'dap'
-local dapui = require 'dapui'
+-- local dapui = require 'dapui'
 
 vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
 vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
@@ -39,14 +40,14 @@ for type, icon in pairs(breakpoint_icons) do
   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
 end
 
-dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-dap.listeners.before.event_exited['dapui_config'] = dapui.close
+-- dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+-- dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+-- dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
 
-vim.keymap.set('n', '<leader>du', function()
-  dapui.toggle()
-end, { desc = 'Toggle Dap UI' })
+-- vim.keymap.set('n', '<leader>du', function()
+--   dapui.toggle()
+-- end, { desc = 'Toggle Dap UI' })
 
 vim.keymap.set('n', '<leader>dd', function()
   dap.continue()
@@ -71,3 +72,8 @@ end, { desc = 'DAP Toggle Breakpoint' })
 vim.keymap.set('n', '<leader>dB', function()
   dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
 end, { desc = 'DAP Set Breakpoint Condition' })
+
+require('dap-view').setup {
+  auto_toggle = true,
+  follow_tab = true,
+}

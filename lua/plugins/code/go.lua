@@ -1,3 +1,6 @@
+vim.pack.add({ 'https://github.com/ray-x/go.nvim.git' })
+vim.pack.add({ 'https://github.com/leoluz/nvim-dap-go.git' })
+
 vim.filetype.add {
   extension = {
     gotmpl = 'gotmpl',
@@ -9,7 +12,6 @@ vim.filetype.add {
   },
 }
 
-vim.pack.add({ 'https://github.com/ray-x/go.nvim.git' })
 
 require('go').setup {
   goimport = 'gopls',   -- if set to 'gopls' will use gopls format
@@ -29,7 +31,9 @@ require('go').setup {
   },
   luasnip = false,
   dap_debug = true,
-  dap_debug_keymap = true,
+  dap_debug_keymap = false,
   dap_debug_gui = true,
   dap_debug_vt = false, -- true: show variable floating window
 }
+
+require('dap-go').setup()

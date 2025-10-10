@@ -37,9 +37,17 @@
       "rev": "5239e0f",
       "src": "https://github.com/allaman/emoji.nvim.git"
     },
+    "fidget.nvim": {
+      "rev": "3f54759",
+      "src": "https://github.com/j-hui/fidget.nvim.git"
+    },
     "gitsigns.nvim": {
       "rev": "1ee5c1f",
       "src": "https://github.com/lewis6991/gitsigns.nvim.git"
+    },
+    "go.nvim": {
+      "rev": "db20146",
+      "src": "https://github.com/ray-x/go.nvim.git"
     },
     "lspkind.nvim": {
       "rev": "3ddd1b4",
@@ -112,6 +120,10 @@
     "nvim-dap-ui": {
       "rev": "cf91d5e",
       "src": "https://github.com/rcarriga/nvim-dap-ui.git"
+    },
+    "nvim-metals": {
+      "rev": "40f7b9e",
+      "src": "http://github.com/scalameta/nvim-metals"
     },
     "nvim-nio": {
       "rev": "21f5324",

@@ -25,6 +25,10 @@ require 'plugins.lspkind'
 require 'plugins.code.imenu'
 require 'plugins.code.todo'
 require 'plugins.code.dap'
+require 'plugins.code.scala'
+require 'plugins.code.go'
+
+require 'plugins.lsp.fidget'
 
 require 'plugins.vc.git'
 
@@ -38,4 +42,4 @@ require 'plugins.ai.copilot'
 
 require 'core.keymap'
 
-require 'plugins.dashboard'
+-- require 'plugins.dashboard'

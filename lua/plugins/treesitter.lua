@@ -9,7 +9,6 @@ vim.api.nvim_create_autocmd('PackChanged', {
 })
 
 local treesitter = require('nvim-treesitter')
-treesitter.setup()
 
 function InstallAllTS()
   treesitter.install({

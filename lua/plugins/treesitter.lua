@@ -41,3 +41,4 @@ function InstallAllTS()
 end
 
 vim.keymap.set('n', '<leader>Vt', InstallAllTS, { desc = 'Install all TreeSitter parsers' })
+vim.keymap.set('n', '<leader>gt', function() require('mini.extra').pickers.treesitter() end, { desc = 'Treesitter' })

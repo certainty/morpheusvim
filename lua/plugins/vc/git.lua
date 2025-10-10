@@ -23,3 +23,8 @@ vim.keymap.set('n', '<localleader>vD', function() require('gitsigns').diffthis '
 vim.keymap.set('n', '<leader>vv', function()
   require('neogit').open()
 end, { desc = 'Neogit' })
+
+
+vim.keymap.set('n', '<leader>gvb', function() require('mini.extra').pickers.git_branches() end, { desc = 'Branches' })
+vim.keymap.set('n', '<leader>gvc', function() require('mini.extra').pickers.git_commits() end, { desc = 'Commits' })
+vim.keymap.set('n', '<leader>gvh', function() require('mini.extra').pickers.git_hunks() end, { desc = 'Hunks' })

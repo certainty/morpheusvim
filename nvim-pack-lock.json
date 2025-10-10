@@ -29,6 +29,10 @@
       "rev": "4516612",
       "src": "https://github.com/sindrets/diffview.nvim.git"
     },
+    "emoji.nvim": {
+      "rev": "5239e0f",
+      "src": "https://github.com/allaman/emoji.nvim.git"
+    },
     "gitsigns.nvim": {
       "rev": "1ee5c1f",
       "src": "https://github.com/lewis6991/gitsigns.nvim.git"
@@ -45,6 +49,18 @@
       "rev": "ad7146a",
       "src": "https://github.com/mason-org/mason.nvim.git"
     },
+    "mini.ai": {
+      "rev": "11c5718",
+      "src": "https://github.com/nvim-mini/mini.ai.git"
+    },
+    "mini.bracketed": {
+      "rev": "0ea3cb6",
+      "src": "https://github.com/nvim-mini/mini.bracketed.git"
+    },
+    "mini.comment": {
+      "rev": "c40bc46",
+      "src": "https://github.com/nvim-mini/mini.comment.git"
+    },
     "mini.extra": {
       "rev": "7efa774",
       "src": "https://github.com/nvim-mini/mini.extra.git"
@@ -53,9 +69,21 @@
       "rev": "2847986",
       "src": "https://github.com/nvim-mini/mini.icons.git"
     },
+    "mini.pairs": {
+      "rev": "b9aada8",
+      "src": "https://github.com/nvim-mini/mini.pairs.git"
+    },
     "mini.pick": {
       "rev": "96ee37d",
       "src": "https://github.com/nvim-mini/mini.pick.git"
+    },
+    "mini.surround": {
+      "rev": "444e155",
+      "src": "https://github.com/nvim-mini/mini.surround.git"
+    },
+    "mini.trailspace": {
+      "rev": "fab31f4",
+      "src": "https://github.com/nvim-mini/mini.trailspace.git"
     },
     "neogit": {
       "rev": "90dcfa7b",

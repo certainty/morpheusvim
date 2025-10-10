@@ -16,6 +16,7 @@ require 'plugins.whichkey'
 require 'plugins.pick'
 require 'plugins.buffers'
 require 'plugins.lualine'
+require 'plugins.editing'
 
 -- code support
 require 'plugins.mason'

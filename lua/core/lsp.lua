@@ -23,5 +23,25 @@ vim.api.nvim_create_autocmd('LspAttach', {
         })
       end
     end
+
+    vim.keymap.set('n', '<localleader>gs',
+      function() require('mini.extra').pickers.lsp({ scope = "document_symbol" }) end,
+      { desc = "Document Symbols", buffer = buffer })
+
+    vim.keymap.set('n', '<localleader>gS',
+      function() require('mini.extra').pickers.lsp({ scope = "workspace_symbol" }) end,
+      { desc = "Workspace Symbols", buffer = buffer })
+
+    vim.keymap.set('n', 'grr',
+      function() require('mini.extra').pickers.lsp({ scope = "references" }) end,
+      { desc = "References", buffer = buffer })
+
+    vim.keymap.set('n', 'grt',
+      function() require('mini.extra').pickers.lsp({ scope = "type_definition" }) end,
+      { desc = "Type Definition", buffer = buffer })
+
+    vim.keymap.set('n', 'gri',
+      function() require('mini.extra').pickers.lsp({ scope = "implementation" }) end,
+      { desc = "Implementation", buffer = buffer })
   end
 })

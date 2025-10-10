@@ -1,5 +1,6 @@
 vim.lsp.enable({
   'lua_ls',
+  'gopls'
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -28,9 +29,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
       function() require('mini.extra').pickers.lsp({ scope = "document_symbol" }) end,
       { desc = "Document Symbols", buffer = buffer })
 
+
     vim.keymap.set('n', '<localleader>gS',
       function() require('mini.extra').pickers.lsp({ scope = "workspace_symbol" }) end,
       { desc = "Workspace Symbols", buffer = buffer })
+
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Definition", buffer = buffer })
+
+    vim.keymap.set('n', 'gD',
+      function() require('mini.extra').pickers.lsp({ scope = "definition" }) end,
+      { desc = "Definition", buffer = buffer })
 
     vim.keymap.set('n', 'grr',
       function() require('mini.extra').pickers.lsp({ scope = "references" }) end,
@@ -43,5 +51,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gri',
       function() require('mini.extra').pickers.lsp({ scope = "implementation" }) end,
       { desc = "Implementation", buffer = buffer })
+
+    vim.keymap.set('n', '<localleader>,,', vim.lsp.buf.code_action, { desc = "Code Action", buffer = buffer })
+    vim.keymap.set('n', '<localleader>,x', vim.lsp.codelens.run, { desc = "Code Lens", buffer = buffer })
   end
 })

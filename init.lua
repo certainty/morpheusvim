@@ -23,6 +23,8 @@ require 'plugins.mason'
 require 'plugins.treesitter'
 require 'plugins.lspkind'
 require 'plugins.code.imenu'
+require 'plugins.code.todo'
+require 'plugins.code.dap'
 
 require 'plugins.vc.git'
 

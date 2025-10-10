@@ -49,6 +49,10 @@
       "rev": "b8c2315",
       "src": "https://github.com/nvim-lualine/lualine.nvim.git"
     },
+    "mason-nvim-dap.nvim": {
+      "rev": "86389a3",
+      "src": "https://github.com/jay-babu/mason-nvim-dap.nvim.git"
+    },
     "mason.nvim": {
       "rev": "ad7146a",
       "src": "https://github.com/mason-org/mason.nvim.git"
@@ -101,6 +105,18 @@
       "rev": "af58927",
       "src": "https://github.com/catppuccin/nvim.git"
     },
+    "nvim-dap": {
+      "rev": "881f7dc",
+      "src": "https://github.com/mfussenegger/nvim-dap.git"
+    },
+    "nvim-dap-ui": {
+      "rev": "cf91d5e",
+      "src": "https://github.com/rcarriga/nvim-dap-ui.git"
+    },
+    "nvim-nio": {
+      "rev": "21f5324",
+      "src": "https://github.com/nvim-neotest/nvim-nio.git"
+    },
     "nvim-treesitter": {
       "rev": "de003000",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter.git",
@@ -117,6 +133,10 @@
     "stickybuf.nvim": {
       "rev": "0c1e5f1",
       "src": "https://github.com/stevearc/stickybuf.nvim.git"
+    },
+    "todo-comments.nvim": {
+      "rev": "19d461d",
+      "src": "https://github.com/folke/todo-comments.nvim.git"
     },
     "which-key.nvim": {
       "rev": "b4177e3",

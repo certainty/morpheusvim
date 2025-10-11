@@ -1,7 +1,9 @@
 local M = {}
 
+local utils = require 'morpheus.utils'
+
 M.capabilities = {
-  ui = {},
+  core = {},
   lang = {
     go = {},
     ruby = {},
@@ -17,6 +19,7 @@ M.capabilities = {
 
 function M.is_enabled(capability, sub)
   local c = M.capabilities[capability]
+
   if type(c) == 'boolean' then
     return c
   end
@@ -25,21 +28,25 @@ function M.is_enabled(capability, sub)
     if sub then
       return c[sub]
     else
-      return next(c) ~= nil
+      return true
     end
   end
 
   return false
 end
 
-function M.each_enabled(capability, cb)
-  local f = M.capabilities[capability]
+function M.each_enabled(cb)
+  for capname, cap in pairs(M.capabilities) do
+    if M.is_enabled(capname) then
+      cb(capname, cap)
+    end
+  end
+end
 
-  if type(f) == 'table' then
-    for k, v in pairs(f) do
-      if v then
-        cb(k)
-      end
+function M.each_disabled(cb)
+  for capname, cap in pairs(M.capabilities) do
+    if not M.is_enabled(capname) then
+      cb(capname, cap)
     end
   end
 end

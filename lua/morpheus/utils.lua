@@ -53,4 +53,15 @@ function M.ftcmd(group, ft, callback)
   end)
 end
 
+-- install package from github
+function M.plugin_install(ghpath, version)
+  local cfg = { src = 'https://github.com/' .. ghpath .. '.git' }
+
+  if version then
+    cfg.version = version
+  end
+
+  vim.pack.add { cfg }
+end
+
 return M

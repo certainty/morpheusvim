@@ -40,7 +40,6 @@ end
 
 function M.autocmd(group, event, pattern, callback)
   local grp = vim.api.nvim_create_augroup(groupName(group), { clear = true })
-  M.log('creating autocomd in group: ' .. vim.inspect(grp) .. ' with group name: ' .. groupName(group))
 
   vim.api.nvim_create_autocmd(event, {
     group = grp,

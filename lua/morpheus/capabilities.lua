@@ -24,7 +24,7 @@ M.modules = {
   ui = { 'extras.ui.theme', 'extras.ui.statusline' },
   lang = {
     'extras.lang.treesitter',
-    -- 'extras.lang.lsp',
+    'extras.lang.lsp',
     -- 'extras.lang.dap',
     -- 'extras.lang.test',
     -- 'extras.lang.scala',

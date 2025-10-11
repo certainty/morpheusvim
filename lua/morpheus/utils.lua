@@ -1,6 +1,18 @@
 -- lua/morpheus/utils.lua
 local M = {}
 
+function M.is_enabled(config, path)
+  local current = config
+
+  for _, prop in ipairs(path) do
+    current = current[prop]
+    if current == nil then
+      return false
+    end
+  end
+  return true
+end
+
 function M.log(msg)
   vim.notify('[Morpheus] ' .. msg, vim.log.levels.INFO)
 end
@@ -18,7 +30,7 @@ function M.guard(cap, sub)
 end
 
 local function groupName(group)
-  return 'Morpheus' .. group
+  return 'Morpheus_' .. group
 end
 
 function M.map(mode, lhs, rhs, opts)
@@ -28,6 +40,7 @@ end
 
 function M.autocmd(group, event, pattern, callback)
   local grp = vim.api.nvim_create_augroup(groupName(group), { clear = true })
+  M.log('creating autocomd in group: ' .. vim.inspect(grp) .. ' with group name: ' .. groupName(group))
 
   vim.api.nvim_create_autocmd(event, {
     group = grp,

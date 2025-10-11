@@ -3,6 +3,9 @@
     "mini.nvim": {
       "rev": "57c1611",
       "src": "https://github.com/nvim-mini/mini.nvim.git"
+    },
+    "nvim-treesitter": {
+      "version": "'main'"
     }
   }
 }

@@ -1,9 +1,18 @@
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ','
+
 require 'morpheus'
 
-Morpheus.capabilities.enable 'core'
-Morpheus.capabilities.enable('go', { lsp = true, treesitter = true, dap = true })
-Morpheus.capabilities.enable('ruby', { lsp = true, treesitter = true, dap = true })
-Morpheus.capabilities.enable('scala', { lsp = true, treesitter = true, dap = true })
+local config = Morpheus.capabilities.configured
 
-Morpheus.loader.install_all()
-Morpheus.loader.configure_all()
+config.core = { whichkey = true }
+config.ui = { theme = true, statusline = true }
+config.lang = {
+  lua = { treesitter = true },
+  scala = { treesitter = true },
+  go = { treesitter = true },
+  ruby = { treesitter = true },
+}
+
+Morpheus.capabilities.install_all()
+Morpheus.capabilities.configure_all()

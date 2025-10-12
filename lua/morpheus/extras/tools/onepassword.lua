@@ -110,4 +110,4 @@ function M.configure(ctx)
 	-- }
 end
 
-return M
+return {}

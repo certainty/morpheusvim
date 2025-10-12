@@ -43,4 +43,4 @@ function M.configure(ctx)
 	vim.keymap.set('n', '<C-\\>', ':ToggleTerm<CR>', { noremap = true, silent = true })
 end
 
-return M
+return {}

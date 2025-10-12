@@ -154,6 +154,7 @@ vim.lsp.enable(M.lsps)
 
 return {
 	'mason-org/mason.nvim',
+	lazy = false,
 	dependencies = {
 		{
 			'onsails/lspkind.nvim',

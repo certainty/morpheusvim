@@ -1,6 +1,7 @@
 return {
 	'nvim-lualine/lualine.nvim',
 	enabled = Morpheus.is_enabled { 'ui', 'statusline' },
+	foo = {},
 	dependencies = {
 		{
 			'franco-ruggeri/codecompanion-lualine.nvim',

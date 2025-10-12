@@ -1,5 +1,3 @@
-local utils = require 'morpheus.utils'
-
 local M = {}
 
 function M.install(_) end

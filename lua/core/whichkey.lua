@@ -26,6 +26,10 @@ function M.configure(ctx)
 
   if utils.is_enabled(ctx, { 'ai' }) then
     table.insert(whichkeySpec, { '<leader>a', group = 'AI', mode = { 'n', 'v' } })
+
+    if utils.is_enabled(ctx, { 'ai', 'copilot' }) then
+      table.insert(whichkeySpec, { '<leader>ac', group = 'Copilot', mode = { 'n', 'v' } })
+    end
   end
 
   if utils.is_enabled(ctx, { 'tools', 'git' }) then

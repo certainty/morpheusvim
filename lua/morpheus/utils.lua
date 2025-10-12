@@ -13,7 +13,8 @@ function M.is_enabled(config, path)
       return false
     end
   end
-  return true
+
+  return current
 end
 
 function M.log(msg)

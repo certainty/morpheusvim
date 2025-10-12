@@ -19,6 +19,8 @@ function M.configure(ctx)
     suggestion = { enabled = false },
     panel = { enabled = false },
   }
+
+  vim.keymap.set('n', '<leader>acc', '<cmd>Copilot enable<cr>', { desc = 'Enable Copilot' })
 end
 
 return M

@@ -14,7 +14,7 @@ M.configured = {
     yaml = { treesitter = false, lsp = false },
   },
   writing = { markdown = true },
-  ai = { codecompanion = true, copilot = true },
+  ai = { codecompanion = { vectorcode = false, mcphub = false }, copilot = true },
   tools = { git = true, terminal = true },
 }
 
@@ -32,7 +32,7 @@ M.modules = {
     -- 'extras.lang.config',
   },
   writing = {},
-  ai = { 'extras.ai.copilot' },
+  ai = { 'extras.ai.copilot', 'extras.ai.codecompanion' },
   tools = {},
 }
 

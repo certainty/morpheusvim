@@ -1,11 +1,10 @@
 -- lua/morpheus/utils.lua
 local M = {}
 
--- recursively check if path exists in the table
---- @param config table
+--- @param table table
 --- @param path table
-function M.is_enabled(config, path)
-  local current = config
+function M.dig(table, path)
+  local current = table
 
   for _, prop in ipairs(path) do
     current = current[prop]
@@ -31,12 +30,6 @@ end
 --- @param group string
 function M.groupName(group)
   return 'Morpheus/' .. group
-end
-
--- Entry point for more convenion map
-function M.map(mode, lhs, rhs, opts)
-  opts = opts or {}
-  vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 -- Creates an auto command
@@ -75,19 +68,6 @@ function M.ftcmd(group, ft, callback, opts)
     ctx.ft = ft
     callback(ctx)
   end, opts)
-end
-
--- install package from github
---- @param ghpath string
---- @param version string|nil
-function M.plugin_install(ghpath, version)
-  local cfg = { src = 'https://github.com/' .. ghpath .. '.git' }
-
-  if version then
-    cfg.version = version
-  end
-
-  vim.pack.add { cfg }
 end
 
 return M

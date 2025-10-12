@@ -1,33 +1,48 @@
--- lua/morpheus/init.lua
---
--- Global API for Morpheus
+-- Bootstrap lazy.nvim if not installed
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system {
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    lazypath,
+  }
+end
+
+vim.opt.rtp:prepend(lazypath)
 
 local M = {}
+local utils = require 'morpheus.utils'
 
-M.utils = require 'morpheus.utils'
-M.capabilities = require 'morpheus.capabilities'
+M.capabilities = {
+  core = { whichkey = false },
+  ui = { theme = false, statusline = false },
+  lang = {
+    go = { treesitter = false, lsp = false, dap = false, test = false },
+    ruby = { treesitter = false, lsp = false, dap = false, test = false },
+    scala = { treesitter = false, lsp = false, dap = false, test = false },
+    terraform = { treesitter = false, lsp = false, test = false },
+    json = { treesitter = false, lsp = false },
+    yaml = { treesitter = false, lsp = false },
+  },
+  writing = { markdown = true },
+  ai = { codecompanion = { vectorcode = false, mcphub = false }, copilot = true },
+  tools = { git = true, terminal = true },
+}
 
--- Global object for convenience
+function M.is_enabled(path)
+  local value = utils.dig(M.capabilities, path)
+  return value ~= nil and value ~= false
+end
+
+function M.setup()
+  require('lazy').setup({
+    { import = 'morpheus.core' },
+    { import = 'morpheus.extras.ai' },
+  }, {
+    ui = { border = 'rounded' },
+  })
+end
+
 _G.Morpheus = M
-
-function _G.Morpheus.status()
-  _G.Morpheus.capabilities.status()
-end
-
-function _G.Morpheus.status_buffer()
-  _G.Morpheus.capabilities.status_buffer()
-end
-
-vim.api.nvim_create_user_command('MorpheusStatus', function()
-  Morpheus.status()
-end, { desc = 'Show MorpheusNvim system status' })
-
-vim.api.nvim_create_user_command('MorpheusInspect', function()
-  Morpheus.status_buffer()
-end, { desc = 'Show MorpheusNvim system status' })
-
-vim.api.nvim_create_user_command('MorpheusPluginsUpdate', function()
-  vim.pack.update()
-end, { desc = 'Update plugins' })
-
-return M

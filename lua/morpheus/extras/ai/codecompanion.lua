@@ -260,4 +260,4 @@ function M.configure(ctx)
   vim.keymap.set({ 'n', 'v' }, '<localleader>,a', '<cmd>CodeCompanionActions<cr>', { desc = ' CodeCompanionActions' })
 end
 
-return M
+return {}

@@ -26,4 +26,8 @@ vim.api.nvim_create_user_command('MorpheusInspect', function()
   Morpheus.status_buffer()
 end, { desc = 'Show MorpheusNvim system status' })
 
+vim.api.nvim_create_user_command('MorpheusPluginsUpdate', function()
+  vim.pack.update()
+end, { desc = 'Update plugins' })
+
 return M

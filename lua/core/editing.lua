@@ -103,7 +103,7 @@ function M.configure()
     },
   }
 
-  vim.keymap.set('n', '<leader>e', '<cmd>Oil<CR>', { desc = 'Dired' })
+  vim.keymap.set('n', '<leader>e', '<cmd>Oil<CR>', { desc = 'Files' })
 end
 
 return M

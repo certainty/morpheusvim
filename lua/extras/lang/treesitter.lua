@@ -26,7 +26,7 @@ local function enable_treesitter()
 end
 
 function M.configure(ctx)
-  if utils.is_enabled(ctx, { 'go', 'treesitter' }) then
+  if utils.is_enabled(ctx, { 'lang', 'go', 'treesitter' }) then
     table.insert(M.installed_parsers, 'go')
     table.insert(M.installed_parsers, 'gomod')
     table.insert(M.installed_parsers, 'gosum')
@@ -34,7 +34,7 @@ function M.configure(ctx)
     utils.ftcmd('go', 'go', enable_treesitter)
   end
 
-  if utils.is_enabled(ctx, { 'scala', 'treesitter' }) then
+  if utils.is_enabled(ctx, { 'lang', 'scala', 'treesitter' }) then
     table.insert(M.installed_parsers, 'scala')
     utils.ftcmd('scala', 'scala', function(bctx)
       enable_treesitter()
@@ -43,23 +43,23 @@ function M.configure(ctx)
     end)
   end
 
-  if utils.is_enabled(ctx, { 'ruby', 'treesitter' }) then
+  if utils.is_enabled(ctx, { 'lang', 'ruby', 'treesitter' }) then
     table.insert(M.installed_parsers, 'ruby')
 
     utils.ftcmd('ruby', 'ruby', enable_treesitter)
   end
 
-  if utils.is_enabled(ctx, { 'lua', 'treesitter' }) then
+  if utils.is_enabled(ctx, { 'lang', 'lua', 'treesitter' }) then
     table.insert(M.installed_parsers, 'lua')
     utils.ftcmd('lua', 'lua', enable_treesitter)
   end
 
-  if utils.is_enabled(ctx, { 'yaml', 'treesitter' }) then
+  if utils.is_enabled(ctx, { 'lang', 'yaml', 'treesitter' }) then
     table.insert(M.installed_parsers, 'yaml')
     utils.ftcmd('yaml', 'yaml', enable_treesitter)
   end
 
-  if utils.is_enabled(ctx, { 'json', 'treesitter' }) then
+  if utils.is_enabled(ctx, { 'lang', 'json', 'treesitter' }) then
     table.insert(M.installed_parsers, 'json')
     utils.ftcmd('json', 'json', enable_treesitter)
   end

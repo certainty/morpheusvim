@@ -2,7 +2,7 @@ local M = {}
 local utils = require 'morpheus.utils'
 
 function M.install(ctx)
-  if not ctx.whichkey then
+  if not utils.is_enabled(ctx, { 'core', 'whichkey' }) then
     return
   end
 
@@ -10,8 +10,34 @@ function M.install(ctx)
 end
 
 function M.configure(ctx)
-  if not ctx.whichkey then
+  if not utils.is_enabled(ctx, { 'core', 'whichkey' }) then
     return
+  end
+
+  local whichkeySpec = {
+    { '<leader>!', group = 'Diagnostics', mode = { 'n', 'v' } },
+    { '<leader>c', group = 'Code', mode = { 'n', 'v' } },
+    { '<leader>h', group = 'Help', mode = { 'n', 'v' } },
+    { '<leader>g', group = 'Goto', mode = { 'n', 'v' } },
+    { '<leader>s', group = 'Search', mode = { 'n', 'v' } },
+    { '<leader>u', group = 'Ux', mode = { 'n' } },
+    { '<leader>V', group = 'Morpheus', mode = { 'n' } },
+  }
+
+  if utils.is_enabled(ctx, { 'ai' }) then
+    table.insert(whichkeySpec, { '<leader>a', group = 'AI', mode = { 'n', 'v' } })
+  end
+
+  if utils.is_enabled(ctx, { 'tools', 'git' }) then
+    table.insert(whichkeySpec, { '<leader>v', group = 'Git', mode = { 'n', 'v' } })
+  end
+
+  if utils.is_enabled(ctx, { 'tools', 'terminal' }) then
+    table.insert(whichkeySpec, { '<leader>\\', group = 'Term', mode = { 'n', 'v' } })
+  end
+
+  if utils.is_enabled(ctx, { 'writing' }) then
+    table.insert(whichkeySpec, { '<leader>n', group = 'Notes', mode = { 'n', 'v' } })
   end
 
   require('which-key').setup {
@@ -35,6 +61,7 @@ function M.configure(ctx)
       group = ' +',
       keys = {},
     },
+    spec = whichkeySpec,
   }
 end
 

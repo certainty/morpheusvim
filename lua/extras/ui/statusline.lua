@@ -3,7 +3,7 @@ local utils = require 'morpheus.utils'
 local M = {}
 
 function M.install(ctx)
-  if not ctx.statusline then
+  if not utils.is_enabled(ctx, { 'ui', 'statusline' }) then
     return
   end
 
@@ -11,7 +11,7 @@ function M.install(ctx)
 end
 
 function M.configure(ctx)
-  if not ctx.statusline then
+  if not utils.is_enabled(ctx, { 'ui', 'statusline' }) then
     return
   end
 

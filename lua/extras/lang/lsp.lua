@@ -118,22 +118,22 @@ function M.install(ctx)
   utils.plugin_install 'j-hui/fidget.nvim'
   utils.plugin_install 'aznhe21/actions-preview.nvim'
 
-  if utils.is_enabled(ctx, { 'scala', 'lsp' }) then
+  if utils.is_enabled(ctx, { 'lang', 'scala', 'lsp' }) then
     utils.plugin_install 'scalameta/nvim-metals'
   end
 end
 
 function M.configure(ctx)
-  if utils.is_enabled(ctx, { 'go', 'lsp' }) then
+  if utils.is_enabled(ctx, { 'lang', 'go', 'lsp' }) then
     table.insert(M.lsps, 'gopls')
   end
 
-  if utils.is_enabled(ctx, { 'ruby', 'lsp' }) then
+  if utils.is_enabled(ctx, { 'lang', 'ruby', 'lsp' }) then
     table.insert(M.lsps, 'ruby-lsp')
     table.insert(M.lsps, 'solargraph')
   end
 
-  if utils.is_enabled(ctx, { 'lua', 'lsp' }) then
+  if utils.is_enabled(ctx, { 'lang', 'lua', 'lsp' }) then
     table.insert(M.lsps, 'lua_ls')
   end
 

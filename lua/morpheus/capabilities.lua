@@ -88,14 +88,14 @@ function M.call_modules(capname, func, ctx)
 end
 
 function M.install_all()
-  for capname, config in pairs(M.configured) do
-    M.call_modules(capname, 'install', config)
+  for capname, _ in pairs(M.configured) do
+    M.call_modules(capname, 'install', M.configured)
   end
 end
 
 function M.configure_all()
-  for capname, config in pairs(M.configured) do
-    M.call_modules(capname, 'configure', config)
+  for capname, _ in pairs(M.configured) do
+    M.call_modules(capname, 'configure', M.configured)
   end
 end
 

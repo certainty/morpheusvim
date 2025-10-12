@@ -13,6 +13,7 @@ config.lang = {
   go = { treesitter = true, lsp = true },
   ruby = { treesitter = true, lsp = true },
 }
+config.ai = { copilot = true }
 
 Morpheus.capabilities.install_all()
 Morpheus.capabilities.configure_all()

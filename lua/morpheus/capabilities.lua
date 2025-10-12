@@ -32,7 +32,7 @@ M.modules = {
     -- 'extras.lang.config',
   },
   writing = {},
-  ai = {},
+  ai = { 'extras.ai.copilot' },
   tools = {},
 }
 

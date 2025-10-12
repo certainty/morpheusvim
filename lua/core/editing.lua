@@ -50,6 +50,7 @@ function M.configure()
 
   vim.opt.tabstop = 2
   vim.opt.softtabstop = 2
+  vim.opt.winborder = 'rounded'
 
   require('mini.bracketed').setup()
   require('mini.comment').setup()

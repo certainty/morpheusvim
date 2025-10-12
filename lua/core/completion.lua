@@ -4,17 +4,37 @@ local M = {}
 
 function M.install(ctx)
   utils.plugin_install('Saghen/blink.cmp', vim.version.range '1.*')
-  -- TODO: install copilot cmp if enabled
+
+  if utils.is_enabled(ctx, { 'ai', 'copilot' }) then
+    utils.plugin_install 'giuxtaposition/blink-cmp-copilot'
+  end
 end
 
 function M.configure(ctx)
   vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'fuzzy', 'popup' }
   vim.opt.pumheight = 20
 
+  local sources = {
+    default = { 'lsp', 'path', 'snippets', 'buffer' },
+  }
+
+  if utils.is_enabled(ctx, { 'ai', 'copilot' }) then
+    sources.default = { 'copilot', 'lsp', 'path', 'snippets', 'buffer' }
+    sources.providers = {
+      copilot = {
+        name = 'copilot',
+        module = 'blink-cmp-copilot',
+        score_offset = 100,
+        async = true,
+      },
+    }
+  end
+
   require('blink.cmp').setup {
+    sources = sources,
     cmdline = { enabled = false },
     appearance = {
-      kind_icons = require('mini.icons').symbol_kinds, -- TODO: does that work?
+      kind_icons = require('mini.icons').symbol_kinds,
     },
     completion = {
       documentation = { auto_show = true },
@@ -64,18 +84,6 @@ function M.configure(ctx)
         },
       },
     },
-
-    -- sources = {
-    --   default = { 'copilot', 'lsp', 'path', 'snippets', 'buffer' },
-    --   providers = {
-    --     copilot = {
-    --       name = 'copilot',
-    --       module = 'blink-cmp-copilot',
-    --       score_offset = 100,
-    --       async = true,
-    --     },
-    --   },
-    -- },
   }
 
   -- extend LSPs

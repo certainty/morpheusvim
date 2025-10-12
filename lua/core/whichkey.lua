@@ -34,6 +34,8 @@ function M.configure(ctx)
 
   if utils.is_enabled(ctx, { 'tools', 'git' }) then
     table.insert(whichkeySpec, { '<leader>v', group = 'Git', mode = { 'n', 'v' } })
+    table.insert(whichkeySpec, { '<localleader>,v', group = 'Git', mode = { 'n', 'v' } })
+    table.insert(whichkeySpec, { '<localleader>v', group = 'Git', mode = { 'n', 'v' } })
   end
 
   if utils.is_enabled(ctx, { 'tools', 'terminal' }) then

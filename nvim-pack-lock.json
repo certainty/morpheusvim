@@ -17,7 +17,9 @@
       "src": "https://github.com/olimorris/codecompanion.nvim.git"
     },
     "copilot.lua": [],
+    "diffview.nvim": [],
     "fidget.nvim": [],
+    "gitsigns.nvim": [],
     "lspkind.nvim": [],
     "lualine.nvim": [],
     "mason.nvim": [],
@@ -26,6 +28,7 @@
       "src": "https://github.com/nvim-mini/mini.nvim.git",
       "version": "'main'"
     },
+    "neogit": [],
     "nvim": [],
     "nvim-metals": [],
     "nvim-treesitter": {

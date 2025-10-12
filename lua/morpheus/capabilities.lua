@@ -33,7 +33,7 @@ M.modules = {
   },
   writing = {},
   ai = { 'extras.ai.copilot', 'extras.ai.codecompanion' },
-  tools = {},
+  tools = { 'extras.tools.git' },
 }
 
 M.phases = {

@@ -43,8 +43,12 @@ local function on_attach(client, bufnr)
 
   -- format
   if client:supports_method 'textDocument/formatting' then
-    utils.autocmd('LspFormat', 'BufWritePre', '*', function(ctx)
-      vim.lsp.buf.format { bufnr = ctx.buf, id = ctx.evt.data.client_id }
+    keymap('<leader>cf', function()
+      vim.lsp.buf.format { bufnr = bufnr, id = client.id }
+    end, 'Format Buffer')
+
+    utils.autocmd('LspFormat', 'BufWritePre', '*', function(_)
+      vim.lsp.buf.format { bufnr = bufnr, id = client.id }
     end)
   end
 

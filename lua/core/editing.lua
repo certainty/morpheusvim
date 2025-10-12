@@ -48,6 +48,9 @@ function M.configure()
     silent = false,
   }
 
+  vim.opt.tabstop = 2
+  vim.opt.softtabstop = 2
+
   require('mini.bracketed').setup()
   require('mini.comment').setup()
   require('mini.pairs').setup()

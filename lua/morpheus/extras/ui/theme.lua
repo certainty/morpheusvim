@@ -1,21 +1,7 @@
-local utils = require 'morpheus.utils'
-
-local M = {}
-
-function M.install(ctx)
-  if not utils.is_enabled(ctx, { 'ui', 'theme' }) then
-    return
-  end
-
-  utils.plugin_install 'catppuccin/nvim'
-end
-
-function M.configure(ctx)
-  if not utils.is_enabled(ctx, { 'ui', 'theme' }) then
-    return
-  end
-
-  require('catppuccin').setup {
+return {
+  'catppuccin/nvim',
+  enabled = Morpheus.is_enabled { 'ui', 'theme' },
+  opts = {
     flavour = 'auto',
     background = {
       light = 'latte',
@@ -51,10 +37,9 @@ function M.configure(ctx)
         indentscope_color = 'lavendar',
       },
     },
-  }
-
-  vim.cmd [[colorscheme catppuccin]]
-  vim.cmd [[hi Comment gui=none]]
-end
-
-return M
+  },
+  config = function()
+    vim.cmd [[colorscheme catppuccin]]
+    vim.cmd [[hi Comment gui=none]]
+  end,
+}

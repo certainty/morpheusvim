@@ -39,6 +39,7 @@ end
 function M.setup()
   require('lazy').setup({
     { import = 'morpheus.core' },
+    { import = 'morpheus.extras.ui' },
     { import = 'morpheus.extras.ai' },
   }, {
     ui = { border = 'rounded' },

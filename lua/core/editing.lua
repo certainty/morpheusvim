@@ -3,9 +3,8 @@ local utils = require 'morpheus.utils'
 local M = {}
 
 function M.install()
-  utils.plugin_install 'nvim-mini/mini.nvim'
+  utils.plugin_install('nvim-mini/mini.nvim', 'main')
   utils.plugin_install 'stevearc/oil.nvim'
-  utils.plugin_install 'psjay/buffer-closer.nvim'
 end
 
 local ivy = function()
@@ -24,8 +23,6 @@ function M.configure()
   vim.schedule(function()
     vim.opt.clipboard = 'unnamedplus'
   end)
-
-  require('buffer-closer').setup()
 
   require('mini.basics').setup {
     options = {

@@ -20,7 +20,7 @@ M.configured = {
 
 -- Modules to load for each toplevel capability
 M.modules = {
-  core = { 'core.editing', 'core.whichkey', 'core.diagnostics' },
+  core = { 'core.editing', 'core.whichkey', 'core.diagnostics', 'core.completion' },
   ui = { 'extras.ui.theme', 'extras.ui.statusline' },
   lang = {
     'extras.lang.treesitter',

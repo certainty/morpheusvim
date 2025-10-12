@@ -1,6 +1,9 @@
 -- lua/morpheus/utils.lua
 local M = {}
 
+-- recursively check if path exists in the table
+--- @param config table
+--- @param path table
 function M.is_enabled(config, path)
   local current = config
 
@@ -23,23 +26,27 @@ function M.error(msg)
   vim.notify('[Morpheus] ' .. msg, vim.log.levels.ERROR)
 end
 
-function M.guard(cap, sub)
-  if not require('morpheus.capabilities').is_enabled(cap, sub) then
-    return true
-  end
+-- Create a group name for morpheus
+--- @param group string
+function M.groupName(group)
+  return 'Morpheus/' .. group
 end
 
-local function groupName(group)
-  return 'Morpheus_' .. group
-end
-
+-- Entry point for more convenion map
 function M.map(mode, lhs, rhs, opts)
   opts = opts or {}
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
-function M.autocmd(group, event, pattern, callback)
-  local grp = vim.api.nvim_create_augroup(groupName(group), { clear = true })
+-- Creates an auto command
+--- @param group string
+--- @param event string|table
+--- @param pattern string
+--- @param callback function
+--- @param opts table | nil
+function M.autocmd(group, event, pattern, callback, opts)
+  opts = opts or { clear = false }
+  local grp = vim.api.nvim_create_augroup(M.groupName(group), opts)
 
   vim.api.nvim_create_autocmd(event, {
     group = grp,
@@ -57,6 +64,10 @@ function M.autocmd(group, event, pattern, callback)
   })
 end
 
+function M.clearAutoCmds(group, buffer)
+  vim.api.nvim_clear_autocmds { group = M.groupName(group), buffer = buffer }
+end
+
 -- filetype-specific helper
 function M.ftcmd(group, ft, callback)
   M.autocmd(group, 'FileType', ft, function(ctx)
@@ -66,6 +77,8 @@ function M.ftcmd(group, ft, callback)
 end
 
 -- install package from github
+--- @param ghpath string
+--- @param version string|nil
 function M.plugin_install(ghpath, version)
   local cfg = { src = 'https://github.com/' .. ghpath .. '.git' }
 

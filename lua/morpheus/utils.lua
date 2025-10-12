@@ -69,11 +69,11 @@ function M.clearAutoCmds(group, buffer)
 end
 
 -- filetype-specific helper
-function M.ftcmd(group, ft, callback)
+function M.ftcmd(group, ft, callback, opts)
   M.autocmd(group, 'FileType', ft, function(ctx)
     ctx.ft = ft
     callback(ctx)
-  end)
+  end, opts)
 end
 
 -- install package from github

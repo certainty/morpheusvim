@@ -95,6 +95,7 @@ local function on_attach(client, bufnr)
   end
 
   keymap('<localleader>,x', vim.lsp.codelens.run, 'Codelens')
+  keymap('grn', vim.lsp.buf.rename, 'Rename')
 
   if client:supports_method 'textDocument/documentHighlight' then
     utils.autocmd('LspHighlight', { 'CursorHold', 'InsertLeave' }, '*', function(_)
@@ -133,7 +134,6 @@ function M.configure(ctx)
   end
 
   vim.lsp.enable(M.lsps)
-  utils.log('configured lsps: ' .. vim.inspect(M.lsps))
 
   require('mason').setup {
     ui = {

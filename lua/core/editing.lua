@@ -24,6 +24,9 @@ function M.configure()
     vim.opt.clipboard = 'unnamedplus'
   end)
 
+  -- basic vim setup
+  require('vim._extui').enable {}
+
   require('mini.basics').setup {
     options = {
       basic = true,
@@ -65,43 +68,20 @@ function M.configure()
       use_icons = true,
     },
   }
+  require('mini.extra').setup()
 
-  vim.keymap.set('n', '<leader>gb', function()
-    MiniPick.builtin.buffers()
-  end, { desc = 'Buffers' })
-
-  vim.keymap.set('n', '<leader>hh', function()
-    MiniPick.builtin.help()
-  end, { desc = 'Help' })
-
-  vim.keymap.set('n', '<leader>hc', function() end, { desc = 'Commands' })
-  vim.keymap.set('n', '<leader>hk', function()
-    MiniExtra.pickers.keymaps()
-  end, { desc = 'Keymaps' })
-
-  vim.keymap.set('n', '<leader>ss', function()
-    MiniPick.builtin.grep_live()
-  end, { desc = 'Search' })
-
-  vim.keymap.set('n', '<leader>sS', function()
-    MiniPick.builtin.grep()
-  end, { desc = 'Search*' })
-
-  vim.keymap.set('n', '<leader>gr', function()
-    MiniPick.builtin.resume()
-  end, { desc = 'Resume' })
-
+  vim.keymap.set('n', '<leader>gb', MiniPick.builtin.buffers, { desc = 'Buffers' })
+  vim.keymap.set('n', '<leader>hh', MiniPick.builtin.help, { desc = 'Help' })
+  vim.keymap.set('n', '<leader>hk', MiniExtra.pickers.keymaps, { desc = 'Keymaps' })
+  vim.keymap.set('n', '<leader>ss', MiniPick.builtin.grep_live, { desc = 'Search' })
+  vim.keymap.set('n', '<leader>sS', MiniPick.builtin.grep, { desc = 'Search*' })
+  vim.keymap.set('n', '<leader>gr', MiniPick.builtin.resume, { desc = 'Resume' })
   vim.keymap.set('n', '<leader><leader>', function()
     MiniPick.builtin.files { tool = 'git' }
   end, { desc = 'File (Git)' })
 
-  vim.keymap.set('n', '<leader>gf', function()
-    MiniPick.builtin.files()
-  end, { desc = 'Files' })
-
-  vim.keymap.set('n', '<leader>go', function()
-    MiniPick.pickers.oldfiles()
-  end, { desc = 'Recent' })
+  vim.keymap.set('n', '<leader>gf', MiniPick.builtin.files, { desc = 'Files' })
+  vim.keymap.set('n', '<leader>go', MiniExtra.pickers.oldfiles, { desc = 'Recent' })
 
   require('oil').setup {
     view_options = {

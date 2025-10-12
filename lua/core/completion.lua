@@ -13,12 +13,12 @@ function M.configure(ctx)
 
   require('blink.cmp').setup {
     cmdline = { enabled = false },
-
+    appearance = {
+      kind_icons = require('mini.icons').symbol_kinds, -- TODO: does that work?
+    },
     completion = {
       documentation = { auto_show = true },
-      appearance = {
-        kind_icons = require('mini.icons').symbol_kinds, -- TODO: does that work?
-      },
+
       menu = {
         draw = {
           components = {

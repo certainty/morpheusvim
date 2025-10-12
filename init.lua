@@ -14,7 +14,7 @@ config.lang = {
 	ruby = { treesitter = true, lsp = true },
 }
 config.ai = { copilot = true, codecompanion = { vectorcode = true, mcphub = false } }
-config.tools = { git = true, terminal = true }
+config.tools = { git = true, terminal = true, onepassword = true }
 
 Morpheus.capabilities.install_all()
 Morpheus.capabilities.configure_all()

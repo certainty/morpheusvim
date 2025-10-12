@@ -12,6 +12,10 @@
     "blink.cmp": {
       "version": "1.0.0 - 2.0.0"
     },
+    "codecompanion-lualine.nvim": {
+      "rev": "b264433",
+      "src": "https://github.com/franco-ruggeri/codecompanion-lualine.nvim.git"
+    },
     "codecompanion.nvim": {
       "rev": "e59f692",
       "src": "https://github.com/olimorris/codecompanion.nvim.git"
@@ -35,7 +39,15 @@
       "version": "'main'"
     },
     "oil.nvim": [],
+    "op.nvim": {
+      "rev": "b8d465e",
+      "src": "https://github.com/mrjones2014/op.nvim.git"
+    },
     "plenary.nvim": [],
+    "toggleterm.nvim": {
+      "rev": "9a88eae",
+      "src": "https://github.com/akinsho/toggleterm.nvim.git"
+    },
     "which-key.nvim": []
   }
 }

@@ -4,10 +4,6 @@ end)
 
 require('vim._extui').enable {}
 
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.winborder = 'rounded'
-
 local ivy = function()
   local height = math.floor(0.3 * vim.o.lines)
   local width = vim.o.columns - 2
@@ -22,6 +18,7 @@ end
 
 local mini = {
   'nvim-mini/mini.nvim',
+  lazy = false,
   version = '*',
   config = function()
     require('mini.basics').setup {
@@ -66,6 +63,16 @@ local mini = {
       },
     }
     require('mini.extra').setup()
+
+    -- overwrite potential basic settings with defaults
+    vim.opt.mouse = ''
+    vim.opt.cursorline = false
+    vim.opt.tabstop = 2
+    vim.opt.softtabstop = 2
+    vim.opt.shiftwidth = 2
+    vim.opt.expandtab = true
+    vim.opt.winborder = 'rounded'
+
 
     vim.keymap.set('n', '<leader>gb', MiniPick.builtin.buffers, { desc = 'Buffers' })
     vim.keymap.set('n', '<leader>hh', MiniPick.builtin.help, { desc = 'Help' })

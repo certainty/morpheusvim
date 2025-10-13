@@ -10,6 +10,15 @@ local whichkeySpec = {
   { '<leader>s', group = 'Search', mode = { 'n', 'v' } },
   { '<leader>u', group = 'Ux', mode = { 'n' } },
   { '<leader>V', group = 'Morpheus', mode = { 'n' } },
+  { '<leader>T', group = 'Treesitter', mode = { 'n' } },
+  { '<localleader>,', group = 'At point', mode = { 'n', 'v' } },
+  { '<localleader>c', group = 'Code', mode = { 'n', 'v' } },
+  { '<localleader>h', group = 'Help', mode = { 'n', 'v' } },
+  { '<localleader>s', group = 'Search', mode = { 'n', 'v' } },
+  { 'g', group = 'Goto', mode = { 'n', 'v' } },
+  { 's', group = 'Search', mode = { 'n' } },
+  { '[', group = 'Prev', mode = { 'n', 'v' } },
+  { ']', group = 'Next', mode = { 'n', 'v' } },
 }
 
 if Morpheus.is_enabled { 'ai' } then

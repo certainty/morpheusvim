@@ -49,9 +49,14 @@ function M.autocmd(group, event, pattern, callback, opts)
       local buf = ctx.buf
 
       local map = function(mode, lhs, rhs, opts)
-        opts = opts or {}
-        opts.buffer = buf
-        vim.keymap.set(mode, lhs, rhs, opts)
+        local final_opts = {}
+        if type(opts) == 'string' then
+          final_opts.desc = opts
+        else
+          final_opts = opts or {}
+        end
+        final_opts.buffer = buf
+        vim.keymap.set(mode, lhs, rhs, final_opts)
       end
       callback { buf = buf, evt = ctx, map = map }
     end,

@@ -2,7 +2,9 @@ vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
 
-require('vim._extui').enable {}
+if Morpheus.vim_nightly then
+  require('vim._extui').enable {}
+end
 
 local ivy = function()
   local height = math.floor(0.3 * vim.o.lines)
@@ -20,7 +22,7 @@ local mini = {
   'nvim-mini/mini.nvim',
   lazy = false,
   version = '*',
-  config = function()
+  init = function()
     require('mini.basics').setup {
       options = {
         basic = true,
@@ -42,6 +44,9 @@ local mini = {
       silent = false,
     }
 
+    require('mini.icons').setup()
+    MiniIcons.mock_nvim_web_devicons()
+
     require('mini.bracketed').setup()
     require('mini.comment').setup()
     require('mini.pairs').setup()
@@ -53,7 +58,6 @@ local mini = {
     require('mini.visits').setup()
 
     require('mini.bufremove').setup()
-    require('mini.icons').setup()
     require('mini.trailspace').setup()
     require('mini.pick').setup {
       window = { config = ivy },
@@ -72,7 +76,6 @@ local mini = {
     vim.opt.shiftwidth = 2
     vim.opt.expandtab = true
     vim.opt.winborder = 'rounded'
-
 
     vim.keymap.set('n', '<leader>gb', MiniPick.builtin.buffers, { desc = 'Buffers' })
     vim.keymap.set('n', '<leader>hh', MiniPick.builtin.help, { desc = 'Help' })

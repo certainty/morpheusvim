@@ -17,4 +17,8 @@ vim.keymap.set('n', '<leader>!!', function()
   require('mini.extra').pickers.diagnostic()
 end, { desc = 'Diagnostics' })
 
-return {}
+return {
+  'folke/todo-comments.nvim',
+  dependencies = { 'nvim-lua/plenary.nvim' },
+  opts = { signs = false },
+}

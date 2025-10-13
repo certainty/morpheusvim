@@ -5,6 +5,7 @@ return {
   dependencies = { 'nvim-lua/plenary.nvim' },
   enable = Morpheus.is_enabled { 'lang', 'scala', 'lsp' },
   ft = { 'scala', 'sbt', 'java' },
+  event = { 'CmdlineEnter' },
   opts = function()
     local metals_config = require('metals').bare_config()
 

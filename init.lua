@@ -1,8 +1,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
+vim.o.number = true
+vim.o.signcolumn = 'yes'
 
 require 'morpheus'
-
 local config = Morpheus.capabilities
 
 config.core = { whichkey = true }
@@ -14,7 +15,7 @@ config.lang = {
   ruby = { treesitter = true, lsp = true, ror = true, test = true, dap = true },
 }
 config.ai = { copilot = true, codecompanion = { vectorcode = true, mcphub = false } }
-config.tools = { git = true, terminal = true, onepassword = true }
+config.tools = { git = true, terminal = true, onepassword = true, colorizer = true }
 config.writing = { markdown = { preview = true, images = true, lsp = true }, obsidian = true }
 
 Morpheus.setup()

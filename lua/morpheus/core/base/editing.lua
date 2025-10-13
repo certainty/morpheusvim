@@ -21,7 +21,6 @@ end
 local mini = {
   'nvim-mini/mini.nvim',
   lazy = false,
-  priority = 1000,
   version = '*',
   config = function()
     require('mini.basics').setup {

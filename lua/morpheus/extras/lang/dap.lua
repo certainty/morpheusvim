@@ -8,7 +8,55 @@ local function dapKeyBinds(ctx)
   ctx.map('n', '<leader>dd', require('dap').continue, { noremap = true, desc = 'Continue' })
   ctx.map('n', '<leader>do', require('dap').step_over, { noremap = true, desc = 'Step Over' })
   ctx.map('n', '<leader>di', require('dap').step_into, { noremap = true, desc = 'Step Into' })
-  ctx.map('n', '<leader>du', require('dapui').toggle, { noremap = true, desc = 'Dap UI' })
+  ctx.map('n', '<leader>dU', require('dapui').toggle, { noremap = true, desc = 'Dap UI' })
+  ctx.map('n', '<leader>du', '<cmd>DapViewOpen<cr>', { noremap = true, desc = 'Dap View Open' })
+  ctx.map('n', '<leader>dx', '<cmd>DapViewClose<cr>', { noremap = true, desc = 'Dap View Close' })
+end
+
+local function setupDapUI(dap)
+  local dapui = require 'dapui'
+  dapui.setup()
+
+  dap.listeners.after.event_initialized['dapui_config'] = function()
+    dapui.open()
+  end
+  dap.listeners.before.event_terminated['dapui_config'] = function()
+    dapui.close()
+  end
+  dap.listeners.before.event_exited['dapui_config'] = function()
+    dapui.close()
+  end
+
+  dapui.setup {
+    icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+    controls = {
+      icons = {
+        pause = '⏸',
+        play = '▶',
+        step_into = '⏎',
+        step_over = '⏭',
+        step_out = '⏮',
+        step_back = 'b',
+        run_last = '▶▶',
+        terminate = '⏹',
+        disconnect = '⏏',
+      },
+    },
+  }
+  vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#f11900' })
+  vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
+  local breakpoint_icons = { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped =
+  '' }
+
+  for type, icon in pairs(breakpoint_icons) do
+    local tp = 'Dap' .. type
+    local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
+    vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
+  end
+
+  dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+  dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+  dap.listeners.before.event_exited['dapui_config'] = dapui.close
 end
 
 return {
@@ -16,26 +64,16 @@ return {
   lazy = false,
   dependencies = {
     { 'rcarriga/nvim-dap-ui' },
+    { 'igorlfs/nvim-dap-view' },
     { 'nvim-neotest/nvim-nio' },
-    { 'suketa/nvim-dap-ruby', enable = Morpheus.is_enabled { 'lang', 'ruby', 'dap' } },
-    { 'leoluz/nvim-dap-go', enable = Morpheus.is_enabled { 'lang', 'go', 'dap' } },
+    { 'suketa/nvim-dap-ruby',              enable = Morpheus.is_enabled { 'lang', 'ruby', 'dap' } },
+    { 'leoluz/nvim-dap-go',                enable = Morpheus.is_enabled { 'lang', 'go', 'dap' } },
     { 'jbyuki/one-small-step-for-vimkind', enable = Morpheus.is_enabled { 'lang', 'lua', 'dap' } },
   },
   config = function()
     local dap = require 'dap'
-    local dapui = require 'dapui'
 
-    dapui.setup()
-
-    dap.listeners.after.event_initialized['dapui_config'] = function()
-      dapui.open()
-    end
-    dap.listeners.before.event_terminated['dapui_config'] = function()
-      dapui.close()
-    end
-    dap.listeners.before.event_exited['dapui_config'] = function()
-      dapui.close()
-    end
+    setupDapUI(dap)
 
     -- Adapters
     if Morpheus.is_enabled { 'lang', 'ruby', 'dap' } then

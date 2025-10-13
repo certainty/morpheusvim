@@ -2,6 +2,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 vim.o.number = true
 vim.o.signcolumn = 'yes'
+vim.o.cmdheight = 0
 
 require 'morpheus'
 local config = Morpheus.capabilities

@@ -175,11 +175,6 @@ end
 return {
   'mason-org/mason.nvim',
   dependencies = {
-    {
-      'j-hui/fidget.nvim',
-      version = '*',
-      opts = {},
-    },
     { 'neovim/nvim-lspconfig' },
     { 'mason-org/mason-lspconfig.nvim' },
     {
@@ -199,7 +194,7 @@ return {
       end,
     },
     { 'aznhe21/actions-preview.nvim', opts = { backend = 'minipick' } },
-    { 'scalameta/nvim-metals', enabled = Morpheus.is_enabled { 'lang', 'scala', 'lsp' } },
+    { 'scalameta/nvim-metals',        enabled = Morpheus.is_enabled { 'lang', 'scala', 'lsp' } },
   },
   opts = {
     automatic_enable = true,

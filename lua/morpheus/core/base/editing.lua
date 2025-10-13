@@ -58,7 +58,6 @@ local mini = {
     require('mini.visits').setup()
 
     require('mini.bufremove').setup()
-    require('mini.trailspace').setup()
     require('mini.pick').setup {
       window = { config = ivy },
       options = {

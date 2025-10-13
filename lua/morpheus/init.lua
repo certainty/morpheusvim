@@ -19,7 +19,7 @@ M.vim_nightly = vim.version().api_prerelease
 
 M.capabilities = {
   core = { whichkey = false },
-  ui = { theme = false, statusline = false },
+  ui = { theme = false, statusline = false, dashboard = false },
   lang = {
     go = { treesitter = false, lsp = false, dap = false, test = false },
     ruby = { treesitter = false, lsp = false, dap = false, test = false, ror = false },

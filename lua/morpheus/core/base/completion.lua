@@ -29,7 +29,7 @@ return {
 
       return {
         sources = sources,
-        cmdline = { enabled = false },
+        cmdline = { enabled = true },
         appearance = {
           kind_icons = require('mini.icons').symbol_kinds,
         },

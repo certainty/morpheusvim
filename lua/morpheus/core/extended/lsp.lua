@@ -177,23 +177,11 @@ return {
   dependencies = {
     {
       'j-hui/fidget.nvim',
-      tag = "*",
-      opts = {
-      }
+      version = '*',
+      opts = {},
     },
     { 'neovim/nvim-lspconfig' },
     { 'mason-org/mason-lspconfig.nvim' },
-    {
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
-      init = function()
-        require('mason-tool-installer').setup {
-          ensure_installed = M.lsps,
-          auto_update = true,
-          run_on_start = true,
-          start_delay = 3000, -- 3 second delay
-        }
-      end,
-    },
     {
       'onsails/lspkind.nvim',
       opts = function()
@@ -211,7 +199,7 @@ return {
       end,
     },
     { 'aznhe21/actions-preview.nvim', opts = { backend = 'minipick' } },
-    { 'scalameta/nvim-metals',        enabled = Morpheus.is_enabled { 'lang', 'scala', 'lsp' } },
+    { 'scalameta/nvim-metals', enabled = Morpheus.is_enabled { 'lang', 'scala', 'lsp' } },
   },
   opts = {
     automatic_enable = true,
@@ -223,7 +211,6 @@ return {
       },
     },
   },
-
   init = function()
     vim.lsp.enable(M.lsps)
   end,

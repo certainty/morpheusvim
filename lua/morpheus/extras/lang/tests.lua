@@ -1,7 +1,6 @@
 local utils = require 'morpheus.utils'
 
 local function addTestBindings(ctx)
-  utils.log('Lets go')
   ctx.map('n', '<leader>tt', '<cmd>lua require("neotest").run.run()<cr>', { desc = 'Run' })
   ctx.map('n', '<leader>t.', '<cmd>lua require("neotest").run.run_last()<cr>', { desc = 'Run Last' })
   ctx.map('n', '<leader>ts', '<cmd>lua require("neotest").summary.toggle()<cr>', { desc = 'Summary' })
@@ -34,12 +33,12 @@ return {
     },
     {
       'nvim-neotest/neotest-vim-test',
-      enable = Morpheus.is_enabled { 'lang', 'scala', 'test' }
+      enable = Morpheus.is_enabled { 'lang', 'scala', 'test' },
     },
     {
       'vim-test/vim-test',
-      enable = Morpheus.is_enabled { 'lang', 'scala', 'test' }
-    }
+      enable = Morpheus.is_enabled { 'lang', 'scala', 'test' },
+    },
   },
   opts = function()
     local adapters = {}
@@ -54,16 +53,19 @@ return {
       table.insert(adapters, require 'neotest-golang' { runner = 'gotestsum' })
     end
     if Morpheus.is_enabled { 'lang', 'scala', 'test' } then
-      table.insert(adapters, require 'neotest-vim-test' {
-        allow_file_types = { 'scala' },
-        runners = { scala = "sbt" }
-      })
+      table.insert(
+        adapters,
+        require 'neotest-vim-test' {
+          allow_file_types = { 'scala' },
+          runners = { scala = 'sbt' },
+        }
+      )
     end
 
     -- FIXME: for some reason this does not work
-    vim.g["test#shell"] = "/bin/sh"
-    vim.g["test#scala#runner"] = "sbt"
-    vim.g["test#shell_options"] = "-f"
+    vim.g['test#shell'] = '/bin/sh'
+    vim.g['test#scala#runner'] = 'sbt'
+    vim.g['test#shell_options'] = '-f'
 
     return {
       adapters = adapters,
@@ -89,5 +91,5 @@ return {
     if Morpheus.is_enabled { 'lang', 'ruby', 'test' } then
       utils.ftcmd('RubyTest', 'ruby', addTestBindings)
     end
-  end
+  end,
 }

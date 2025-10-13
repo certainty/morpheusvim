@@ -5,6 +5,7 @@ end
 local whichkeySpec = {
   { '<leader>!',      group = 'Diagnostics', mode = { 'n', 'v' } },
   { '<leader>c',      group = 'Code',        mode = { 'n', 'v' } },
+  { '<leader>d',      group = 'Debug',       mode = { 'n', 'v' } },
   { '<leader>h',      group = 'Help',        mode = { 'n', 'v' } },
   { '<leader>g',      group = 'Goto',        mode = { 'n', 'v' } },
   { '<leader>s',      group = 'Search',      mode = { 'n', 'v' } },
@@ -12,6 +13,7 @@ local whichkeySpec = {
   { '<leader>V',      group = 'Morpheus',    mode = { 'n' } },
   { '<leader>t',      group = 'Tests',       mode = { 'n', 'v' } },
   { '<leader>T',      group = 'Treesitter',  mode = { 'n' } },
+  { '<leader>o',      group = '1pass',       mode = { 'n', 'v' } },
   { '<localleader>,', group = 'At point',    mode = { 'n', 'v' } },
   { '<localleader>c', group = 'Code',        mode = { 'n', 'v' } },
   { '<localleader>h', group = 'Help',        mode = { 'n', 'v' } },

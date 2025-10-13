@@ -21,8 +21,9 @@ end
 local mini = {
   'nvim-mini/mini.nvim',
   lazy = false,
+  priority = 1000,
   version = '*',
-  init = function()
+  config = function()
     require('mini.basics').setup {
       options = {
         basic = true,
@@ -47,6 +48,16 @@ local mini = {
     require('mini.icons').setup()
     MiniIcons.mock_nvim_web_devicons()
 
+    require('mini.pick').setup {
+      window = { config = ivy },
+      options = {
+        content_from_bottom = false,
+        use_icons = true,
+      },
+    }
+    require('mini.extra').setup()
+    vim.ui.select = MiniPick.ui_select
+
     require('mini.bracketed').setup()
     require('mini.comment').setup()
     require('mini.pairs').setup()
@@ -58,15 +69,6 @@ local mini = {
     require('mini.visits').setup()
 
     require('mini.bufremove').setup()
-    require('mini.pick').setup {
-      window = { config = ivy },
-      options = {
-        content_from_bottom = false,
-        use_icons = true,
-      },
-    }
-    require('mini.extra').setup()
-
     -- overwrite potential basic settings with defaults
     vim.opt.mouse = ''
     vim.opt.cursorline = false

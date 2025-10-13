@@ -6,8 +6,6 @@ return {
   ft = { 'go', 'gomod' },
   event = { 'CmdlineEnter' },
   dependencies = {
-    { 'mfussenegger/nvim-dap', enable = Morpheus.is_enabled { 'lang', 'go', 'dap' } },
-    { 'leoluz/nvim-dap-go', enable = Morpheus.is_enabled { 'lang', 'go', 'dap' } },
     'ray-x/guihua.lua',
   },
   opts = {
@@ -18,7 +16,6 @@ return {
     iferr_vertical_shift = 2,
   },
   init = function()
-    require('dap-go').setup()
     vim.filetype.add {
       extension = {
         gotmpl = 'gotmpl',

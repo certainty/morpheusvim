@@ -3,6 +3,8 @@ return {
     'folke/which-key.nvim',
     dependencies = {
       'nvim-mini/mini.icons',
+      'nvim-mini/mini.pick',
+      'nvim-mini/mini.extra',
     },
     opts = {
       preset = 'helix',
@@ -30,8 +32,7 @@ return {
         { '<leader>a', group = 'AI', mode = { 'n', 'v' } },
         { '<leader>ac', group = 'Copilot', mode = { 'n', 'v' } },
         { '<leader>h', group = 'Help', mode = { 'n', 'v' } },
-        { '<leader>g', group = 'Goto', mode = { 'n', 'v' } },
-        { '<leader>s', group = 'Search', mode = { 'n', 'v' } },
+        { '<leader>f', group = 'Find', mode = { 'n', 'v' } },
         { '<leader>u', group = 'Ux', mode = { 'n' } },
         { '<leader>V', group = 'Morpheus', mode = { 'n' } },
         { '<leader>T', group = 'Treesitter', mode = { 'n' } },
@@ -91,6 +92,21 @@ return {
       vim.keymap.set('i', '<C-e>', '<End>', { desc = 'Move to the end of the line' })
       vim.keymap.set('i', '<C-b>', '<Left>', { desc = 'Move left' })
       vim.keymap.set('i', '<C-f>', '<Right>', { desc = 'Move right' })
+
+      require 'mini.pick'
+      require 'mini.extra'
+
+      vim.keymap.set('n', '<leader>fb', MiniPick.builtin.buffers, { desc = 'Buffers' })
+      vim.keymap.set('n', '<leader>hh', MiniPick.builtin.help, { desc = 'Help' })
+      vim.keymap.set('n', '<leader>hk', MiniExtra.pickers.keymaps, { desc = 'Keymaps' })
+      vim.keymap.set('n', '<leader>fw', MiniPick.builtin.grep_live, { desc = 'Search in files' })
+      vim.keymap.set('n', '<leader>fr', MiniPick.builtin.resume, { desc = 'Resume' })
+      vim.keymap.set('n', '<leader><leader>', function()
+        MiniPick.builtin.files { tool = 'git' }
+      end, { desc = 'File (Git)' })
+
+      vim.keymap.set('n', '<leader>ff', MiniPick.builtin.files, { desc = 'Files' })
+      vim.keymap.set('n', '<leader>fo', MiniExtra.pickers.oldfiles, { desc = 'Recent' })
     end,
   },
 }

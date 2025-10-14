@@ -34,5 +34,12 @@ return {
     map_combo({ 'n', 'x' }, 'jj', '}')
     map_combo({ 'n', 'x' }, 'kk', '{')
     map_combo('t', 'jk', '<BS><BS><C-\\><C-n>')
+
+    vim.api.nvim_create_autocmd('TextYankPost', {
+      pattern = '*',
+      callback = function(_)
+        vim.hl.on_yank { higroup = 'Visual' }
+      end,
+    })
   end,
 }

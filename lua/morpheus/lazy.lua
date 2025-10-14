@@ -18,9 +18,8 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   { import = 'morpheus.core' },
   { import = 'morpheus.ui' },
-  -- { import = 'morpheus.code' },
+  { import = 'morpheus.code' },
   { import = 'morpheus.ai' },
-
-  -- { import = 'morpheus.tools' },
+  { import = 'morpheus.tools' },
   -- { import = 'morpheus.writing' },
 }, { ui = { border = 'rounded' } })

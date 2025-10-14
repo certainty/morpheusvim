@@ -27,5 +27,6 @@ return {
   },
   {
     'nvim-mini/mini.extra',
+    config = true,
   },
 }

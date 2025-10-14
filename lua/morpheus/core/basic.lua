@@ -38,5 +38,21 @@ return {
 
     require('mini.bufremove').setup()
     vim.keymap.set({ 'n' }, 'q', MiniBufremove.unshow, { desc = 'Hide Buffer' })
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = { 'git', 'help', 'man', 'qf', 'scratch' },
+      callback = function()
+        vim.keymap.set('n', 'q', '<cmd>quit<cr>', { buffer = true })
+      end,
+    })
+    vim.api.nvim_create_autocmd('BufReadPost', {
+      pattern = '*',
+      callback = function()
+        local mark = vim.api.nvim_buf_get_mark(ctx.buf, '"')
+        local line_count = vim.api.nvim_buf_line_count(ctx.buf)
+        if mark[1] > 0 and mark[1] <= line_count then
+          vim.cmd 'normal! g`"zz'
+        end
+      end,
+    })
   end,
 }

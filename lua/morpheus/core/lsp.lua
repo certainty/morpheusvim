@@ -30,7 +30,7 @@ local function on_attach(client, bufnr)
       vim.lsp.buf.format { bufnr = bufnr, id = client.id }
     end, 'Format Buffer')
 
-    vim.api.nvim.create_autocmd('BufReadPost', {
+    vim.api.nvim_create_autocmd('BufReadPost', {
       pattern = '*', -- this pattern should match the pattern by which this plugin is loaded with
       callback = function(evt)
         vim.lsp.buf.format { bufnr = evt.bufnr, id = client.id }
@@ -40,32 +40,25 @@ local function on_attach(client, bufnr)
 
   -- picker integration
   if client:supports_method 'textDocument/codeAction' then
-    keymap('gra', function()
-      require('actions-preview').code_actions()
-    end, 'Code Actions', { 'n', 'x' })
-
     keymap('<localleader>,.', function()
       require('actions-preview').code_actions()
     end, 'Code Actions', { 'n', 'x' })
   end
 
   if client:supports_method 'textDocument/references' then
-    keymap('grr', function()
-      require('mini.extra').pickers.lsp { scope = 'references' }
-    end, 'References')
     keymap('<localleader>,r', function()
       require('mini.extra').pickers.lsp { scope = 'references' }
     end, 'References')
   end
 
   if client:supports_method 'textDocument/typeDefinition' then
-    keymap('grt', function()
+    keymap('<localleader>,t', function()
       require('mini.extra').pickers.lsp { scope = 'type_definition' }
     end, 'Type definition')
   end
 
   if client:supports_method 'textDocument/documentSymbol' then
-    keymap('<leader>gs', function()
+    keymap('<localleader>s', function()
       require('mini.extra').pickers.lsp { scope = 'document_symbol' }
     end, 'Document symbols')
   end
@@ -81,10 +74,6 @@ local function on_attach(client, bufnr)
     keymap('<localleader>,D', function()
       require('mini.extra').pickers.lsp { scope = 'definition' }
     end, 'Definition')
-
-    keymap('gri', function()
-      require('mini.extra').pickers.lsp { scope = 'implementation' }
-    end, 'implementation')
 
     keymap('<localleader>,i', function()
       require('mini.extra').pickers.lsp { scope = 'implementation' }
@@ -117,6 +106,9 @@ end
 
 return {
   {
+    'neovim/nvim-lspconfig',
+  },
+  {
     'onsails/lspkind.nvim',
     opts = {
       symbol_map = {
@@ -131,6 +123,7 @@ return {
   { 'aznhe21/actions-preview.nvim', opts = { backend = 'minipick' } },
   {
     'mason-org/mason.nvim',
+    build = ':MasonUpdate',
     dependencies = {
       'neovim/nvim-lspconfig',
       'mason-org/mason-lspconfig.nvim',
@@ -138,6 +131,7 @@ return {
       'aznhe21/actions-preview.nvim',
       -- { 'scalameta/nvim-metals', enabled = Morpheus.is_enabled { 'lang', 'scala', 'lsp' } },
     },
+    opts_extend = { 'ensure_installed' },
     opts = {
       automatic_enable = true,
       ui = {

@@ -17,4 +17,8 @@ vim.opt.rtp:prepend(lazypath)
 -- Main entry point for plugins and config
 require('lazy').setup({
   { import = 'morpheus.core' },
+  { import = 'morpheus.ui' },
+  -- { import = 'morpheus.code' },
+  -- { import = 'morpheus.tools' },
+  -- { import = 'morpheus.writing' },
 }, { ui = { border = 'rounded' } })

@@ -15,7 +15,8 @@ function M.error(msg)
   vim.notify('[Morpheus] ' .. msg, vim.log.levels.ERROR)
 end
 
+_G.Morpheus = M
+
 require 'morpheus.lazy'
 
-_G.Morpheus = M
 return _G.Morpheus

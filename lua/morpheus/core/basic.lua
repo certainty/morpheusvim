@@ -1,7 +1,9 @@
 return {
-  'nvim-mini/mini.nvim',
+  'nvim-mini/mini.basics',
+  dependencies = {
+    'nvim-mini/mini.bufremove',
+  },
   lazy = false,
-  version = '*',
   config = function()
     require('mini.basics').setup {
       options = {
@@ -33,5 +35,8 @@ return {
     vim.opt.winborder = 'rounded'
     vim.o.signcolumn = 'yes'
     vim.o.cmdheight = 0
+
+    require('mini.bufremove').setup()
+    vim.keymap.set({ 'n' }, 'q', MiniBufremove.unshow, { desc = 'Hide Buffer' })
   end,
 }

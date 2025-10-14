@@ -29,10 +29,6 @@ return {
 
     map_multistep('i', '<BS>', { 'minipairs_bs' })
     map_combo({ 'i', 'c', 'x', 's' }, 'jk', '<BS><BS><Esc>')
-    map_combo({ 'n', 'x' }, 'll', 'g$')
-    map_combo({ 'n', 'x' }, 'hh', 'g^')
-    map_combo({ 'n', 'x' }, 'jj', '}')
-    map_combo({ 'n', 'x' }, 'kk', '{')
     map_combo('t', 'jk', '<BS><BS><C-\\><C-n>')
 
     vim.api.nvim_create_autocmd('TextYankPost', {

@@ -27,6 +27,9 @@ return {
       'nvim-mini/mini.visits',
     },
     lazy = false,
+    keys = {
+      {'<leader>fl', function() require('mini.visits').select_path() end, desc = 'Visits' }
+    },
     config = function()
       require('mini.sessions').setup()
       require('mini.visits').setup()

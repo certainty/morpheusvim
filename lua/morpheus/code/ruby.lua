@@ -1,4 +1,4 @@
-vim.lsp.enable 'solargraph'
+--vim.lsp.enable 'solargraph'
 vim.lsp.enable 'ruby-lsp'
 
 return {

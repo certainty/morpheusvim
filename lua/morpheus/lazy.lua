@@ -19,6 +19,8 @@ require('lazy').setup({
   { import = 'morpheus.core' },
   { import = 'morpheus.ui' },
   -- { import = 'morpheus.code' },
+  { import = 'morpheus.ai' },
+
   -- { import = 'morpheus.tools' },
   -- { import = 'morpheus.writing' },
 }, { ui = { border = 'rounded' } })

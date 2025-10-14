@@ -25,6 +25,7 @@ return {
   },
   {
     'saghen/blink.cmp',
+    dependencies = { 'neovim/nvim-lspconfig' },
     optional = true,
     opts = {
       sources = {

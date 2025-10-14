@@ -89,7 +89,9 @@ local function on_attach(client, bufnr)
     end, 'Signature help', 'i')
   end
 
-  keymap('<localleader>,x', vim.lsp.codelens.run, 'Codelens')
+  keymap('<localleader>xx', vim.lsp.codelens.run, 'Codelens')
+  keymap('<localleader>xr', vim.lsp.codelens.refresh, 'Codelens refresh')
+
   keymap('grn', vim.lsp.buf.rename, 'Rename')
 end
 
@@ -143,6 +145,10 @@ return {
       },
     },
     init = function()
+      vim.lsp.enable 'yaml-language-server'
+      vim.lsp.enable 'json-language-server'
+      vim.lsp.enable 'lua-language-server'
+
       vim.api.nvim_create_autocmd('LspAttach', {
         pattern = '*',
         callback = function(evt)

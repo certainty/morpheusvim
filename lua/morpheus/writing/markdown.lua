@@ -4,12 +4,15 @@ return {
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     build = 'cd app && yarn install',
     ft = { 'markdown', 'codecompanion' },
-    keys = {
-      { '<localleader>p', '<cmd>MarkdownPreviewToggle<CR>', desc = 'Toggle Markdown Preview', mode = 'n' },
-      { '<localleader>P', '<cmd>MarkdownPreview<CR>', desc = 'Markdown Preview', mode = 'n' },
-    },
     init = function()
       vim.g.mkdp_filetypes = { 'markdown' }
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = { 'markdown' },
+        callback = function(evt)
+          vim.keymap.set('n', '<localleader>p', '<cmd>MarkdownPreviewToggle<CR>', { desc = 'Toggle Markdown Preview', buffer = evt.buf })
+          vim.keymap.set('n', '<localleader>P', '<cmd>MarkdownPreview<CR>', { desc = 'Markdown Preview', buffer = evt.buf })
+        end,
+      })
     end,
   },
   {

@@ -18,7 +18,6 @@ return {
     },
     default_integrations = true,
     integrations = {
-      cmp = true,
       mason = true,
       aerial = true,
       neogit = true,
@@ -27,14 +26,13 @@ return {
       dap_ui = true,
       diffview = true,
       gitsigns = true,
-      neotree = true,
-      telescope = true,
       which_key = true,
       treesitter = true,
       mini = {
         enabled = true,
         indentscope_color = 'lavendar',
       },
+      blink = true,
     },
   },
   config = function(_, opts)

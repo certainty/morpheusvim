@@ -29,13 +29,6 @@ local function on_attach(client, bufnr)
     keymap('<leader>cf', function()
       vim.lsp.buf.format { bufnr = bufnr, id = client.id }
     end, 'Format Buffer')
-
-    vim.api.nvim_create_autocmd('BufReadPost', {
-      pattern = '*', -- this pattern should match the pattern by which this plugin is loaded with
-      callback = function(evt)
-        vim.lsp.buf.format { bufnr = evt.bufnr, id = client.id }
-      end,
-    })
   end
 
   -- picker integration
@@ -93,6 +86,7 @@ local function on_attach(client, bufnr)
   keymap('<localleader>xr', vim.lsp.codelens.refresh, 'Codelens refresh')
 
   keymap('grn', vim.lsp.buf.rename, 'Rename')
+  keymap('<localleader>,R', vim.lsp.buf.rename, 'Rename')
 end
 
 local register_capability = vim.lsp.handlers['client/registerCapability']
@@ -107,9 +101,6 @@ vim.lsp.handlers['client/registerCapability'] = function(err, res, ctx)
 end
 
 return {
-  {
-    'neovim/nvim-lspconfig',
-  },
   {
     'onsails/lspkind.nvim',
     opts = {
@@ -127,11 +118,8 @@ return {
     'mason-org/mason.nvim',
     build = ':MasonUpdate',
     dependencies = {
-      'neovim/nvim-lspconfig',
-      'mason-org/mason-lspconfig.nvim',
       'onsails/lspkind.nvim',
       'aznhe21/actions-preview.nvim',
-      -- { 'scalameta/nvim-metals', enabled = Morpheus.is_enabled { 'lang', 'scala', 'lsp' } },
     },
     opts_extend = { 'ensure_installed' },
     opts = {
